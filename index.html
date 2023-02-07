@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="script.js"></script>
+  <title>Bug-eecha | UENG101 | IISc Bangalore</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body onload="load()">
+  <section class="header">
+    <div id="textbox_div" style="float: left;">
+      <h1 style="text-align: center"><u>Input History</u></h1>
+      <p id="past-inputs"></p>
+    </div>
+    <div id="code_div" style="float: left;">
+      <h1 style="text-align: center"><u>Correct Code</u></h1>
+      <p id="correct-code"></p>
+    </div>
+    <div id="heart_div" style="float: right;"></div>
+    <div class="question">
+      <div id="question"></div>
+      <div id="input_div"></div>
+    </div>
+    <!-- Boxes for input and output-->
+    <div>
+      <div class="output_div">
+        <label for="output">Output:</label><br>
+        <input type="text" id="output" name="output"><br><br><br>
+        <!--<input type = "submit" value = "Submit">-->
+        <button type="button" onclick="runFunc()" id="execute">Submit!</button>
+      </div>
+    </div>
+    <div class="boxes1">
+      <div id="f1div" style="display: inline;">
+        <svg width="400" height="110">
+          <rect width="250" height="75" style="fill:rgb(0, 255, 0);stroke-width:3;stroke:rgb(0,0,0)" id="f1box" />
+        </svg>
+      </div>
+      <div id="f2div" style="display: inline;">
+        <svg width="400" height="110">
+          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f2box" />
+        </svg>
+      </div>
+    </div>
+    <div class="boxes2">
+      <div id="f3div" style="display: inline;">
+        <svg width="400" height="110">
+          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f3box" />
+        </svg>
+      </div>
+      <div id="f4div" style="display: inline;">
+        <svg width="400" height="110">
+          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f4box" />
+        </svg>
+      </div>
+    </div>
+    <div class="win">
+      <p id="win" style="display: none;">You win!</p>
+      <button type="button" id="nq" onclick="qload()" style="display: none;">Next Question!</button>
+    </div>
+    <div class="loss">
+      <p id="loss" style="display: none;">You lose! Please try again.</p>
+    </div>
+  </section>
+</body>
+
+</html>
