@@ -19,7 +19,7 @@ function heart_init() {
     for (var i = 1; i <= hearts; i++) {
         var div = document.createElement("div");
         var heart = document.createElement("img");
-        heart.setAttribute("src", "/assets/heart.png");
+        heart.setAttribute("src", "assets/heart.png");
         heart.setAttribute("id", `heart${MAX_HEARTS - i + 1}`);
         heart.setAttribute("width", "40px");
         heart.setAttribute("height", "40px");
