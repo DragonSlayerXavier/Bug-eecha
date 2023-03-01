@@ -19,7 +19,7 @@ function heart_init() {
     for (var i = 1; i <= hearts; i++) {
         var div = document.createElement("div");
         var heart = document.createElement("img");
-        heart.setAttribute("src", "assets/heart.png");
+        heart.setAttribute("class", "fill");
         heart.setAttribute("id", `heart${MAX_HEARTS - i + 1}`);
         heart.setAttribute("width", "40px");
         heart.setAttribute("height", "40px");
@@ -93,10 +93,10 @@ function end_game() {
 
 function setHearts() {
     for (var i = 1; i <= hearts; i++) {
-        document.getElementById(`heart${i}`).setAttribute("src", "/assets/heart.png");
+        document.getElementById(`heart${i}`).setAttribute("class", "fill");
     }
     for (var i = hearts + 1; i <= MAX_HEARTS; i++) {
-        document.getElementById(`heart${i}`).setAttribute("src", "/assets/empty.png");
+        document.getElementById(`heart${i}`).setAttribute("class", "empty");
     }
     if (hearts == 0) {
         for (var i = 1; i <= data.database[rand].count; i++) {

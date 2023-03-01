@@ -159,3 +159,9 @@ nav img{
     background: #f44336;
     transition: 1s;
 }
+.fill{
+    content: url(assets/heart.png);
+}
+.empty{
+    content: url(assets/empty.png);
+}
