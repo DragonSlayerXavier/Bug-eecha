@@ -8,11 +8,16 @@ var picked = [];
 var inc_array = [];
 var logs = "$$$$$$$$$$$$$$$\r\n";
 var futile = 0;
-const str_break = /","/
 async function load() {
     await fetch("data.json").then(response => response.json()).then(json => data = json);
     heart_init();
     qload();
+}
+
+function setAttributes(el, attrs) {
+    for (var key in attrs) {
+        el.setAttribute(key, attrs[key]);
+    }
 }
 
 function heart_init() {
@@ -20,10 +25,7 @@ function heart_init() {
         var div = document.createElement("div");
         var heart = document.createElement("img");
         heart.setAttribute("class", "empty");
-        heart.setAttribute("class", "fill");
-        heart.setAttribute("id", `heart${MAX_HEARTS - i + 1}`);
-        heart.setAttribute("width", "40px");
-        heart.setAttribute("height", "40px");
+        setAttributes(heart, { "class": "fill", "id": `heart${MAX_HEARTS - i + 1}`, "width": "40px", "height": "40px" });
         div.appendChild(heart);
         document.getElementById("heart_div").appendChild(div);
     }
@@ -37,22 +39,17 @@ function qload() {
     } while (picked.includes(rand));*/ // Uncomment this to enable random question selection
     rand = rand + 1; // Comment this to enable random question selection
     picked.push(rand);
-    document.getElementById("question").innerHTML = data.database[rand].question;
+    document.getElementById("question").innerHTML = data.database[rand].question.split("\n").join("<br />");
+    document.getElementById("correct-code").innerHTML = data.database[rand].code.split("\n").join("<br />");
     logs = logs.concat(`Question: ${data.database[rand].question}\r\n`);
     for (var i = 1; i <= data.database[rand].count; i++) {
         var div = document.createElement("div");
-        div.setAttribute("class", "inpdiv");
-        div.setAttribute("id", `inpdiv${i}`);
+        setAttributes(div, { "class": "inpdiv", "id": `inpdiv${i}` });
         var label = document.createElement("label");
         label.innerText = data.database[rand].in_label[i - 1];
-        label.setAttribute("for", `input${i}`);
-        label.setAttribute("class", "input_label");
+        setAttributes(label, { "for": `input${i}`, "class": "input_label" });
         var textbox = document.createElement("input");
-        textbox.setAttribute("type", "text");
-        textbox.setAttribute("id", `input${i}`);
-        textbox.setAttribute("class", "input_box");
-        textbox.setAttribute("name", `input${i}`);
-        textbox.setAttribute("placeholder", data.database[rand].in_desc[i - 1]);
+        setAttributes(textbox, { "type": "text", "id": `input${i}`, "class": "input_box", "name": `input${i}`, "placeholder": data.database[rand].in_desc[i - 1] });
         textbox.setAttribute("size", textbox.getAttribute("placeholder").length);
         div.appendChild(label);
         div.appendChild(document.createElement("br"));
@@ -215,6 +212,18 @@ function validate(input, output) {
     return true;
 }
 
+function customValidate(input) {
+    if(!data.database[rand].customValidate) {
+        return true;
+    }
+    var f = new Function(...(data.database[rand].valFunc.arguments), data.database[rand].valFunc.body);
+    if(!f(...input)){
+        alert("Please follow input specifications.");
+        return false;
+    }
+    return true;
+}
+
 function handleInput(n) {
     var args = document.getElementById(`input${n + 1}`).value;
     if (data.database[rand].in[n] == "number") {
@@ -327,6 +336,9 @@ function runFunc() {
     }
     let out = handleOutput();
     if (!validate(inp, out)) {
+        return logs = logs.concat(`Input: ${appendInputToLogs(inp)}. Output: ${appendOutputToLogs(out)}. Invalid.\r\n`);
+    }
+    if(!customValidate(inp)) {
         return logs = logs.concat(`Input: ${appendInputToLogs(inp)}. Output: ${appendOutputToLogs(out)}. Invalid.\r\n`);
     }
     inp = updateInputType(inp);
