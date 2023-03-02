@@ -15,6 +15,7 @@
             "out": "number",
             "out_desc": "Return value (0 or 1)",
             "question": "is_sorted(xs): returns 1 if xs is sorted in ascending order, and returns 0 otherwise. For instance, the return value should be 1 for xs = [10, 20, 20, 30] since 10 <= 20 <= 20 <= 30. However, the return value should be 0 for xs = [30, 20, 20] since 30 > 20.",
+            "code": "var n = num_list.length;\r\n    for (var i = 0; i < n-1; i++) {\r\n        if (num_list[i] > num_list[i+1]) {\r\n            return 0;\r\n        }\r\n    }\r\n    return 1;",
             "correct": {
                 "arguments": [
                     "num_list"
@@ -64,6 +65,7 @@
             "out": "number",
             "out_desc": "Return value (a valid index, or -1)",
             "question": "smallest_index(xs, t): returns the smallest index (position) at which t appears in xs (returns the invalid index -1 if t does NOT appear xs). Note that index numbering starts from 0, not 1.",
+            "code": "var lo = 0;\r\n    var hi = num_list.length - 1;\r\n    while (lo <= hi) {\r\n        var mid = parseInt(Math.floor(lo + (hi - lo)/2));  \r\n        var val = num_list[mid];\r\n        if (val == key) {\r\n            while (mid > 0 && num_list[mid - 1] == val) {\r\n                mid--;\r\n            }\r\n            return mid;\r\n        }\r\n        if (val < key) {\r\n            lo = mid + 1;\r\n        } else {\r\n            hi = mid - 1;\r\n        }\r\n    }\r\n    return -1;",
             "correct": {
                 "arguments": [
                     "num_list",
