@@ -50,14 +50,14 @@ function qload() {
         setAttributes(label, { "for": `input${i}`, "class": "input_label" });
         var textbox = document.createElement("input");
         setAttributes(textbox, { "type": "text", "id": `input${i}`, "class": "input_box", "name": `input${i}`, "placeholder": data.database[rand].in_desc[i - 1] });
-        textbox.setAttribute("size", textbox.getAttribute("placeholder").length);
+        textbox.setAttribute("size", textbox.getAttribute("placeholder").length * 2.5);
         div.appendChild(label);
         div.appendChild(document.createElement("br"));
         div.appendChild(textbox);
         document.getElementById("input_div").appendChild(div);
     }
     document.getElementById("output").setAttribute("placeholder", data.database[rand].out_desc);
-    document.getElementById("output").setAttribute("size", document.getElementById("output").getAttribute("placeholder").length);
+    document.getElementById("output").setAttribute("size", document.getElementById("output").getAttribute("placeholder").length * 2.5);
     setHearts();
     clear_and_focus();
     //document.getElementById("input1").focus();
