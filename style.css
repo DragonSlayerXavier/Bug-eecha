@@ -89,7 +89,7 @@
     width: 90%;
     color: #fff;
     position: absolute;
-    top: 55%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
@@ -119,12 +119,12 @@
 .boxes1{
     position: absolute;
     left: 27%;
-    top: 63%;
+    top: 58%;
 }
 .boxes2{
     position: absolute;
     left: 27%;
-    top: 80%;
+    top: 75%;
 }
 #win{
     width: 90%;
