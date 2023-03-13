@@ -1,102 +1,193 @@
 {
     "database": [
         {
-            "count": "1",
-            "futile": "3",
+            "count": 1,
+            "futile": 3,
             "in": [
                 "num_array"
             ],
             "in_desc": [
-                "Example: [1, 2, 3]"
+                "Enter the list here."
             ],
             "in_label": [
-                "xs: a list of integers"
+                "Array(list)"
             ],
             "out": "number",
-            "out_desc": "Return value (0 or 1)",
-            "question": "is_sorted(xs): returns 1 if xs is sorted in ascending order, and returns 0 otherwise. For instance, the return value should be 1 for xs = [10, 20, 20, 30] since 10 <= 20 <= 20 <= 30. However, the return value should be 0 for xs = [30, 20, 20] since 30 > 20.",
-            "code": "var n = num_list.length;\r\n    for (var i = 0; i < n-1; i++) {\r\n        if (num_list[i] > num_list[i+1]) {\r\n            return 0;\r\n        }\r\n    }\r\n    return 1;",
+            "out_desc": "Enter the median.",
+            "question": "Given a list of three numbers, output the median.",
+            "code": "copy=[...list];\ncopy.sort();\nreturn copy[1];",
             "correct": {
                 "arguments": [
-                    "num_list"
+                    "list"
                 ],
-                "body": "var n = num_list.length;\r\n    for (var i = 0; i < n-1; i++) {\r\n        if (num_list[i] > num_list[i+1]) {\r\n            return 0;\r\n        }\r\n    }\r\n    return 1;"
+                "body": "copy=[...list];\ncopy.sort();\nreturn copy[1];"
             },
             "incorrect": [
                 {
                     "heart": false,
                     "arguments": [
-                        "num_list"
+                        "list"
                     ],
-                    "body": " var n = num_list.length;\r\n    for (var i = 0; i < n-1; i++) {\r\n        if (num_list[i] >= num_list[i+1]) {\r\n            return 0;\r\n        }\r\n    }\r\n    return 1;"
-
+                    "body": "return list[1];"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "list"
+                    ],
+                    "body": "var min = list[0];\nvar max = list[0];\nfor (var i = 1; i < list.length; i++) {if (list[i] < min) {\nmin = list[i];\n}\nif (list[i] > max) {\nmax = list[i];\n}\n}\nreturn max;"
                 },
                 {
                     "heart": true,
                     "arguments": [
-                        "num_list"
+                        "list"
                     ],
-                    "body": "var n = num_list.length;\r\n    for (var i = 0; i < n-2; i++) {\r\n        if (num_list[i] > num_list[i+1]) {\r\n            return 0;\r\n        }\r\n    }\r\n    return 1;"
-                },
-                {
-                    "heart": false,
-                    "arguments": [
-                        "num_list"
-                    ],
-                    "body": " var n = num_list.length;\r\n    for (var i = 0; i < n-1; i++) {\r\n        if (num_list[i] > num_list[i+1]) {\r\n            return 0;\r\n        } else {\r\n            return 1;\r\n        }\r\n    }\r\n    return 1;"
+                    "body": "var max = Math.max.apply(null, list);\nreturn list.filter(function(x) { return x < max; })[0];"
                 }
             ]
         },
         {
-            "count": "2",
-            "futile": "4",
+            "count": 1,
+            "futile": 3,
             "in": [
-                "sorted_num_array",
-                "number"
+                "string"
             ],
             "in_desc": [
-                "Example: [1, 2, 3]",
-                "Example: 1"
+                "Enter the string here."
             ],
             "in_label": [
-                "xs: a list of integers sorted in ascending order",
-                "t: the target integer"
+                "String"
             ],
             "out": "number",
-            "out_desc": "Return value (a valid index, or -1)",
-            "question": "smallest_index(xs, t): returns the smallest index (position) at which t appears in xs (returns the invalid index -1 if t does NOT appear xs). Note that index numbering starts from 0, not 1.",
-            "code": "var lo = 0;\r\n    var hi = num_list.length - 1;\r\n    while (lo <= hi) {\r\n        var mid = parseInt(Math.floor(lo + (hi - lo)/2));  \r\n        var val = num_list[mid];\r\n        if (val == key) {\r\n            while (mid > 0 && num_list[mid - 1] == val) {\r\n                mid--;\r\n            }\r\n            return mid;\r\n        }\r\n        if (val < key) {\r\n            lo = mid + 1;\r\n        } else {\r\n            hi = mid - 1;\r\n        }\r\n    }\r\n    return -1;",
+            "out_desc": "Is it a palindrome? (Enter 1 for yes, 0 for no.)",
+            "question": "Check if a String is a palindrome (Case-sensitive). Return 1 if it is, 0 if it is not.",
+            "code": "return str === str.split('').reverse().join('');",
             "correct": {
                 "arguments": [
-                    "num_list",
-                    "key"
+                    "str"
                 ],
-                "body": " var lo = 0;\r\n    var hi = num_list.length - 1;\r\n    while (lo <= hi) {\r\n        var mid = parseInt(Math.floor(lo + (hi - lo)/2));  \r\n        var val = num_list[mid];\r\n        if (val == key) {\r\n            while (mid > 0 && num_list[mid - 1] == val) {\r\n                mid--;\r\n            }\r\n            return mid;\r\n        }\r\n        if (val < key) {\r\n            lo = mid + 1;\r\n        } else {\r\n            hi = mid - 1;\r\n        }\r\n    }\r\n    return -1;"
+                "body": "return str === str.split('').reverse().join('');"
             },
             "incorrect": [
                 {
-                    "heart": null,
+                    "heart": false,
                     "arguments": [
-                        "num_list",
-                        "key"
+                        "str"
                     ],
-                    "body": "  var lo = 0;\r\n    var hi = num_list.length - 1;\r\n    while (lo <= hi) {\r\n        var mid = parseInt(Math.floor(lo + (hi - lo)/2));  \r\n        var val = num_list[mid];\r\n        if (val == key) {\r\n            return mid;\r\n        }\r\n        if (val < key) {\r\n            lo = mid + 1;\r\n        } else {\r\n            hi = mid - 1;\r\n        }\r\n    }\r\n    return -1;"
+                    "body": "return (str.substring(0, str.length / 2) === str.substring(str.length / 2) ? 1 : 0);"
                 },
                 {
-                    "heart": null,
+                    "heart": false,
                     "arguments": [
-                        "num_list",
-                        "key"
+                        "str"
                     ],
-                    "body": " var lo = 0;\r\n    var hi = num_list.length;\r\n    while (lo < hi) {\r\n        var mid = parseInt(Math.floor(lo + (hi - lo)/2));  \r\n       var val = num_list[mid];\r\n        if (val == key) {\r\n            while (mid > 0 && num_list[mid - 1] == val) {\r\n                mid--;\r\n            }\r\n            return mid;\r\n        }\r\n        if (val < key) {\r\n            lo = mid + 1;\r\n        } else {\r\n            hi = mid - 1;\r\n        }\r\n    }\r\n    return -1;"
+                    "body": "if (str.length < 2) return 1; \nreturn (str[0] === str[str.length - 1]) ? 1 : 0;"
                 },
                 {
-                    "heart": null,
+                    "heart": false,
                     "arguments": [
-                        "num_list",
-                        "key"
+                        "str"
                     ],
-                    "body": " var lo = 0;\r\n    var hi = num_list.length - 1;\r\n    while (lo < hi) {\r\n        var mid = parseInt(Math.floor(lo + (hi - lo)/2));  \r\n        var val = num_list[mid];\r\n        if (val == key) {\r\n            while (mid > 0 && num_list[mid - 1] == val) {\r\n                mid--;\r\n            }\r\n            return mid;\r\n        }\r\n        if (val < key) {\r\n            lo = mid + 1;\r\n        } else {\r\n            hi = mid - 1;\r\n        }\r\n    }\r\n    return -1;"
+                    "body": "var len = str.length;\n if (len < 4) return 1;\n var first = str.substring(0, 2);\n var last = str.substring(len-2, len);\n return (first == last.split('').reverse().join('') ? 1 : 0);"
+                }
+            ]
+        },
+        {
+            "count": 1,
+            "futile": 3,
+            "in": [
+                "num_array"
+            ],
+            "in_desc": [
+                "Enter the list here."
+            ],
+            "in_label": [
+                "Array(list)"
+            ],
+            "out": "number",
+            "out_desc": "The required value.",
+            "question": "Return the largest integer in a list that is strictly less than the maximum value in the list.\nYou may assume that the list has at least two distinct values.",
+            "code": "// Initialize max as the maximum value in the list\n            var max = Math.max.apply(null, list);\n            // Initialize result as the\n            // minimum possible value in the list\n            var result = Math.min.apply(null, list);\n            // Loop through the list\n            for (var i = 0; i < list.length; i++) {\n                &emsp;// If the current value is less than max\n                &emsp;// and greater than result, update result\n                &emsp;if (list[i] < max && list[i] > result) {\n                &emsp;&emsp;result = list[i];\n                &emsp;}\n            }\n            // Return the result\n            return result;",
+            "customValidate": true,
+            "valFunc": {
+                "arguments": [
+                    "list"
+                ],
+                "body": "for(var i = 1;i < list.length; i++) {\n if(list[i] != list[0]){\n return true;\n}\n}\n return false;"
+            },
+            "correct": {
+                "arguments": [
+                    "list"
+                ],
+                "body": "var max = Math.max.apply(null, list);\nvar result = Math.min.apply(null, list);\nfor (var i = 0; i < list.length; i++) {\nif (list[i] < max && list[i] > result) {\n                result = list[i];\n                }\n            }\nreturn result;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "list"
+                    ],
+                    "body": "var largest = list[0];\n                    var second = list[0];\n                    for (var i = 0; i < list.length; i++) {\n                        if (list[i] > largest) {\n                            second = largest;\n                            largest = list[i];\n                        } else if (list[i] > second) {\n                            second = list[i];\n                        }\n                    }\nreturn second;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "list"
+                    ],
+                    "body": "var max = Math.max.apply(null, list);\n                    list.splice(list.indexOf(max), 1);\n                    return Math.max.apply(null, list);\n"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "list"
+                    ],
+                    "body": "var largest = list[0];\n                    for (var i = 0; i < list.length; i++) {\n                        if (list[i] > largest) {\n                        largest = list[i];\n                        }\n                    }\n                    return largest;"
+                }
+            ]
+        },
+        {
+            "count": 1,
+            "futile": 3,
+            "in": [
+                "num_array"
+            ],
+            "in_desc": [
+                "Enter the list here."
+            ],
+            "in_label": [
+                "Array(list)"
+            ],
+            "out": "number",
+            "out_desc": "The number of squares in the list",
+            "question": "Given a list of numbers, count the number of perfect squares in the list.",
+            "code": "var count = 0;\n            for (var i = 0; i < arr.length; i++) {\n              &emsp;if (Math.sqrt(arr[i]) % 1 === 0) {\n              &emsp;&emsp;count++;\n              &emsp;}\n            }\n            return count;",
+            "correct": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "var count = 0;\n            for (var i = 0; i < arr.length; i++) {\nif (Math.sqrt(arr[i]) % 1 === 0) {\ncount++;\n}\n            }\n            return count;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var count = 0;\n                    for (var i = 0; i < arr.length; i++) {\n                        for (var j = 0; j < arr.length; j++) {\n                            if (arr[i] == arr[j] * arr[j]) {\n                                count++;\n                            }\n                        }\n                    }\n                    return count;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var valid = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100];\n                    var count = 0;\n                    for (var i = 0; i < arr.length; i++) {\n                        if (valid.indexOf(arr[i]) > -1) {\n                            count++;\n                        }\n                    }\n                    return count;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "let count = 0;\n                    for (let i = 0; i < arr.length; i++) {\n                        if (Math.sqrt(Math.abs(arr[i])) % 1 === 0) {\n                        count++;\n                        }\n                    }\n                    return count;"
                 }
             ]
         }
