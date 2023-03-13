@@ -14,7 +14,7 @@
 #textbox_div{
     position: absolute;
     color: #fff;
-    top: 10%;
+    top: 5%;
     left: 5%;
     width: 15%;
     word-wrap:break-word;  
@@ -40,6 +40,7 @@
     height: 250px;
     overflow-y: auto;
     overflow-x: auto;
+    padding: 5% 5% 5% 5%;
 }
 
 #heart_div{
