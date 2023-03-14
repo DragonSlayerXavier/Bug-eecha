@@ -437,7 +437,10 @@ function appendOutputToLogs(arr) {
  * @returns {Boolean} If the values are equal.
  */
 function resultCheck(a1, a2) {
-    if (data.database[rand].out == "number" || data.database[rand].out == "string") {
+    if (data.database[rand].out == "number") {
+        return a1 == a2;
+    }
+    if(data.database[rand].out == "string") {
         return a1 === a2;
     }
     if (a1.length != a2.length) return false;
