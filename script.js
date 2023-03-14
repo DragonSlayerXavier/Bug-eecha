@@ -26,8 +26,8 @@ function heart_init() {
 
 /**
  * Creates the array of which boxes to associate with incorrect functions.
- * @param {The total number of boxes (One of which will be assigned the correct function)} n 
- * @returns A list of length n-1, with the correct function's box number missing.
+ * @param {Number} n The total number of boxes (One of which will be assigned the correct function)
+ * @returns {Array} A list of length n-1, with the correct function's box number missing.
  */
 function create_inc_array(n) {
     var arr = [];
@@ -153,8 +153,8 @@ async function load() {
 
 /**
  * A QOL function to set multiple attributes at once.
- * @param {The element the attributes are being set to.} el 
- * @param {The list of attributes to be set in the form of key-value pairs.} attrs 
+ * @param {Object} el The element the attributes are being set to.
+ * @param {Array} attrs The list of attributes to be set in the form of key-value pairs.
  */
 function setAttributes(el, attrs) {
     for (var key in attrs) {
@@ -164,9 +164,9 @@ function setAttributes(el, attrs) {
 
 /**
  * A function to validate whether the input and output are of the expected types.
- * @param {Array of inputs given by the user.} input 
- * @param {Output given by the use.} output 
- * @returns true or false based on whether the input and output are valid.
+ * @param {Array} input Array of inputs given by the user.
+ * @param {String} output Output given by the user.
+ * @returns {Boolean} true or false based on whether the input and output are valid.
  */
 function validate(input, output) {
     //Runs a loop to validate every entry in the input array.
@@ -288,8 +288,8 @@ function validate(input, output) {
 /**
  * Function for custom validation of the input, if any.
  * Pulls the function from the JSON.
- * @param {Array of inputs given by the user.} input 
- * @returns true if the input is valid, false otherwise.
+ * @param {Array} input Array of inputs given by the user.
+ * @returns {Boolean} true if the input is valid, false otherwise.
  */
 function customValidate(input) {
     if (!data.database[rand].customValidate) {
@@ -306,8 +306,8 @@ function customValidate(input) {
 /**
  * Removes type formatting from input values.
  * This includes double quotes from strings and square brackets from arrays.
- * @param {The index of the input being updated} n 
- * @returns The updated input.
+ * @param {Number} n The index of the input being updated
+ * @returns {String} The updated input.
  */
 function handleInput(n) {
     var args = document.getElementById(`input${n + 1}`).value;
@@ -325,7 +325,7 @@ function handleInput(n) {
 /**
  * Removes type formatting from output value.
  * This includes double quotes from strings and square brackets from arrays.
- * @returns The updated output.
+ * @returns {String} The updated output.
  */
 function handleOutput() {
     var args = document.getElementById("output").value;
@@ -342,8 +342,8 @@ function handleOutput() {
 
 /**
  * Parses the input values to the correct types and creates an array of them
- * @param {The array of inputs as given by the user after removing type formatting} input 
- * @returns Parsed input.
+ * @param {Array} input The array of inputs as given by the user after removing type formatting
+ * @returns {Array} Parsed input.
  */
 function updateInputType(input) {
     var arr = [];
@@ -372,8 +372,8 @@ function updateInputType(input) {
 
 /**
  * Parses the output value to the correct type.
- * @param {The output value as given by the user after removing type formatting.} output 
- * @returns Parsed output.
+ * @param {String} output The output value as given by the user after removing type formatting.
+ * @returns {String} Parsed output.
  */
 function updateOutputType(output) {
     if (data.database[rand].out == "number") {
@@ -398,8 +398,8 @@ function updateOutputType(output) {
 
 /**
  * Appends input values to the logs.
- * @param {The current logs array} arr 
- * @returns Updated logs.
+ * @param {Array} arr The current logs array
+ * @returns {Array} Updated logs.
  */
 function appendInputToLogs(arr) {
     res = "";
@@ -416,8 +416,8 @@ function appendInputToLogs(arr) {
 
 /**
  * Appends output value to the logs.
- * @param {The current logs array} arr 
- * @returns Updated logs.
+ * @param {Array} arr The current logs array
+ * @returns {Array} Updated logs.
  */
 function appendOutputToLogs(arr) {
     res = "";
@@ -432,9 +432,9 @@ function appendOutputToLogs(arr) {
 
 /**
  * Used to check equality between user output and expected output.
- * @param {The first of the values being compared.} a1 
- * @param {The second of the values being compared.} a2 
- * @returns If the values are equal.
+ * @param {Object} a1 The first of the values being compared.
+ * @param {Object} a2 The second of the values being compared.
+ * @returns {Boolean} If the values are equal.
  */
 function resultCheck(a1, a2) {
     if (data.database[rand].out == "number" || data.database[rand].out == "string") {
@@ -449,8 +449,8 @@ function resultCheck(a1, a2) {
 
 /**
  * The first incorrrect function.
- * @param {The input after parsing.} input 
- * @returns The function's output.
+ * @param {Array} input The input after parsing.
+ * @returns {data.database[rand].out} The function's output.
  */
 function function1(input) {
     var f = new Function(...(data.database[rand].incorrect[0].arguments), data.database[rand].incorrect[0].body);
@@ -459,8 +459,8 @@ function function1(input) {
 
 /**
  * The second incorrect function.
- * @param {The input after parsing.} input 
- * @returns The function's output.
+ * @param {Array} input The input after parsing.
+ * @returns {data.database[rand].out} The function's output.
  */
 function function2(input) {
     var f = new Function(...(data.database[rand].incorrect[1].arguments), data.database[rand].incorrect[1].body);
@@ -469,8 +469,8 @@ function function2(input) {
 
 /**
  * The third incorrect function.
- * @param {The input after parsing.} input 
- * @returns The function's output.
+ * @param {Array} input The input after parsing.
+ * @returns {data.database[rand].out} The function's output.
  */
 function function3(input) {
     var f = new Function(...(data.database[rand].incorrect[2].arguments), data.database[rand].incorrect[2].body);
@@ -479,8 +479,8 @@ function function3(input) {
 
 /**
  * The correct function.
- * @param {The input after parsing.} input 
- * @returns The function's output.
+ * @param {Array} input The input after parsing.
+ * @returns {data.database[rand].out} The function's output.
  */
 function function4(input) {
     var f = new Function(...(data.database[rand].correct.arguments), data.database[rand].correct.body);
@@ -489,7 +489,7 @@ function function4(input) {
 
 /**
  * Updates the status of the box of the first incorrect function.
- * @returns Nothing. Early return to ensure that the function kill is not logged twice.
+ * @returns {Execution Abortion} Nothing. Early return to ensure that the function kill is not logged twice.
  */
 function killf1() {
     document.getElementById(`f${inc_array[0]}box`).style.fill = "rgb(255,0,0)";
@@ -504,7 +504,7 @@ function killf1() {
 
 /**
  * Updates the status of the box of the second incorrect function.
- * @returns Nothing. Early return to ensure that the function kill is not logged twice.
+ * @returns {Execution Abortion} Nothing. Early return to ensure that the function kill is not logged twice.
  */
 function killf2() {
     document.getElementById(`f${inc_array[1]}box`).style.fill = "rgb(255,0,0)";
@@ -519,7 +519,7 @@ function killf2() {
 
 /**
  * Updates the status of the box of the third incorrect function.
- * @returns Nothing. Early return to ensure that the function kill is not logged twice.
+ * @returns {Execution Abortion} Nothing. Early return to ensure that the function kill is not logged twice.
  */
 function killf3() {
     document.getElementById(`f${inc_array[2]}box`).style.fill = "rgb(255,0,0)";
@@ -534,7 +534,7 @@ function killf3() {
 
 /**
  * Function called whenever the user submits their inputs and outputs.
- * @returns Nothing. Early returns to end the function early for invalid inputs and incorrect inputs.
+ * @returns {Execution Abortion} Nothing. Early returns to end the function early for invalid inputs and incorrect inputs.
  */
 function runFunc() {
     var inp = [];
