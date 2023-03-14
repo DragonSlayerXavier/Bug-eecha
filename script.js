@@ -1,5 +1,5 @@
 const MAX_HEARTS = 10;
-const MAX_QUESTIONS = 5;
+const MAX_QUESTIONS = 2;
 var killed = 0;
 var f1k = false, f2k = false, f3k = false;
 var data, rand = -1;
@@ -345,7 +345,7 @@ function runFunc() {
     out = updateOutputType(out);
     var res1 = 0, res2 = 0, res3 = 0, res4 = 0;
     res4 = function4(inp);
-    if (res4 != out) {
+    if (!resultCheck(res4, out)) {
         document.getElementById("output").value = "";
         document.getElementById("output").focus();
         hearts--;
@@ -453,6 +453,17 @@ function create_inc_array(n) {
 function isSorted(arr) {
     for (var i = 1; i < arr.length; i++) {
         if (arr[i - 1] > arr[i]) return false;
+    }
+    return true;
+}
+
+function resultCheck(a1, a2) {
+    if(data.database[rand].out == "number" || data.database[rand].out == "string") {
+        return a1 === a2;
+    }
+    if (a1.length != a2.length) return false;
+    for(var i = 0; i < a1.length; i++) {
+        if(a1[i] != a2[i]) return false;
     }
     return true;
 }

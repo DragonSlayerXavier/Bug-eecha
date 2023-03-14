@@ -2,7 +2,7 @@
     "database": [
         {
             "count": 1,
-            "futile": 3,
+            "futile": 5,
             "in": [
                 "num_array"
             ],
@@ -48,7 +48,7 @@
         },
         {
             "count": 1,
-            "futile": 3,
+            "futile": 5,
             "in": [
                 "string"
             ],
@@ -94,7 +94,7 @@
         },
         {
             "count": 1,
-            "futile": 3,
+            "futile": 5,
             "in": [
                 "num_array"
             ],
@@ -107,7 +107,7 @@
             "out": "number",
             "out_desc": "The required value.",
             "question": "Return the largest integer in a list that is strictly less than the maximum value in the list.\nYou may assume that the list has at least two distinct values.",
-            "code": "// Initialize max as the maximum value in the list\n            var max = Math.max.apply(null, list);\n            // Initialize result as the\n            // minimum possible value in the list\n            var result = Math.min.apply(null, list);\n            // Loop through the list\n            for (var i = 0; i < list.length; i++) {\n                &emsp;// If the current value is less than max\n                &emsp;// and greater than result, update result\n                &emsp;if (list[i] < max && list[i] > result) {\n                &emsp;&emsp;result = list[i];\n                &emsp;}\n            }\n            // Return the result\n            return result;",
+            "code": "// Initialize max as the maximum value in the list\n var max = Math.max.apply(null, list);\n // Initialize result as the\n // minimum possible value in the list\n var result = Math.min.apply(null, list);\n // Loop through the list\n for (var i = 0; i < list.length; i++) {\n &emsp;// If the current value is less than max\n &emsp;// and greater than result, update result\n &emsp;if (list[i] < max && list[i] > result) {\n &emsp;&emsp;result = list[i];\n &emsp;}\n }\n // Return the result\n return result;",
             "customValidate": true,
             "valFunc": {
                 "arguments": [
@@ -119,7 +119,7 @@
                 "arguments": [
                     "list"
                 ],
-                "body": "var max = Math.max.apply(null, list);\nvar result = Math.min.apply(null, list);\nfor (var i = 0; i < list.length; i++) {\nif (list[i] < max && list[i] > result) {\n                result = list[i];\n                }\n            }\nreturn result;"
+                "body": "var max = Math.max.apply(null, list);\nvar result = Math.min.apply(null, list);\nfor (var i = 0; i < list.length; i++) {\nif (list[i] < max && list[i] > result) {\n result = list[i];\n }\n }\nreturn result;"
             },
             "incorrect": [
                 {
@@ -127,27 +127,27 @@
                     "arguments": [
                         "list"
                     ],
-                    "body": "var largest = list[0];\n                    var second = list[0];\n                    for (var i = 0; i < list.length; i++) {\n                        if (list[i] > largest) {\n                            second = largest;\n                            largest = list[i];\n                        } else if (list[i] > second) {\n                            second = list[i];\n                        }\n                    }\nreturn second;"
+                    "body": "var largest = list[0];\n var second = list[0];\n for (var i = 0; i < list.length; i++) {\n if (list[i] > largest) {\n second = largest;\n largest = list[i];\n } else if (list[i] > second) {\n second = list[i];\n }\n }\nreturn second;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "list"
                     ],
-                    "body": "var max = Math.max.apply(null, list);\n                    list.splice(list.indexOf(max), 1);\n                    return Math.max.apply(null, list);\n"
+                    "body": "var max = Math.max.apply(null, list);\n list.splice(list.indexOf(max), 1);\n return Math.max.apply(null, list);\n"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "list"
                     ],
-                    "body": "var largest = list[0];\n                    for (var i = 0; i < list.length; i++) {\n                        if (list[i] > largest) {\n                        largest = list[i];\n                        }\n                    }\n                    return largest;"
+                    "body": "var largest = list[0];\n for (var i = 0; i < list.length; i++) {\n if (list[i] > largest) {\n largest = list[i];\n }\n }\n return largest;"
                 }
             ]
         },
         {
             "count": 1,
-            "futile": 3,
+            "futile": 5,
             "in": [
                 "num_array"
             ],
@@ -160,12 +160,12 @@
             "out": "number",
             "out_desc": "The number of squares in the list",
             "question": "Given a list of numbers, count the number of perfect squares in the list.",
-            "code": "var count = 0;\n            for (var i = 0; i < arr.length; i++) {\n              &emsp;if (Math.sqrt(arr[i]) % 1 === 0) {\n              &emsp;&emsp;count++;\n              &emsp;}\n            }\n            return count;",
+            "code": "var count = 0;\n for (var i = 0; i < arr.length; i++) {\n  &emsp;if (Math.sqrt(arr[i]) % 1 === 0) {\n  &emsp;&emsp;count++;\n  &emsp;}\n }\n return count;",
             "correct": {
                 "arguments": [
                     "arr"
                 ],
-                "body": "var count = 0;\n            for (var i = 0; i < arr.length; i++) {\nif (Math.sqrt(arr[i]) % 1 === 0) {\ncount++;\n}\n            }\n            return count;"
+                "body": "var count = 0;\n for (var i = 0; i < arr.length; i++) {\nif (Math.sqrt(arr[i]) % 1 === 0) {\ncount++;\n}\n }\n return count;"
             },
             "incorrect": [
                 {
@@ -173,21 +173,67 @@
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var count = 0;\n                    for (var i = 0; i < arr.length; i++) {\n                        for (var j = 0; j < arr.length; j++) {\n                            if (arr[i] == arr[j] * arr[j]) {\n                                count++;\n                            }\n                        }\n                    }\n                    return count;"
+                    "body": "var count = 0;\n for (var i = 0; i < arr.length; i++) {\n for (var j = 0; j < arr.length; j++) {\n if (arr[i] == arr[j] * arr[j]) {\n count++;\n }\n }\n }\n return count;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var valid = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100];\n                    var count = 0;\n                    for (var i = 0; i < arr.length; i++) {\n                        if (valid.indexOf(arr[i]) > -1) {\n                            count++;\n                        }\n                    }\n                    return count;"
+                    "body": "var valid = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100];\n var count = 0;\n for (var i = 0; i < arr.length; i++) {\n if (valid.indexOf(arr[i]) > -1) {\n count++;\n }\n }\n return count;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "let count = 0;\n                    for (let i = 0; i < arr.length; i++) {\n                        if (Math.sqrt(Math.abs(arr[i])) % 1 === 0) {\n                        count++;\n                        }\n                    }\n                    return count;"
+                    "body": "let count = 0;\n for (let i = 0; i < arr.length; i++) {\n if (Math.sqrt(Math.abs(arr[i])) % 1 === 0) {\n count++;\n }\n }\n return count;"
+                }
+            ]
+        },
+        {
+            "count": 1,
+            "futile": 5,
+            "in": [
+                "num_array"
+            ],
+            "in_desc": [
+                "Enter the list here."
+            ],
+            "in_label": [
+                "Array(list)"
+            ],
+            "out": "num_array",
+            "out_desc": "[positive, negative]",
+            "question": "The number of positive and negative numbers in a list, returned as a list.",
+            "code": "var len = arr.length;\n var pos = 0;\n var neg = 0;\n for(var i=0;i<len;i++){\n &emsp;if(arr[i]>0){\n &emsp;&emsp;pos++;\n &emsp;}else if(arr[i]<0){\n &emsp;&emsp;neg++;\n &emsp;}\n }\n return [pos,neg];",
+            "correct": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "var len = arr.length;\n var pos = 0;\n var neg = 0;\n for(var i=0;i<len;i++){\n if(arr[i]>0){\npos++;\n}else if(arr[i]<0){\nneg++;\n}\n }\n return [pos,neg];"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var len = arr.length;\n var pos = 0;\n var neg = 0;\n for(var i=0;i<len;i++){\n if(arr[i]>0){\n pos++;\n }else if(arr[i]<0){\n neg++;\n }\n }\n return [neg,pos];"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var len = arr.length;\n var pos = 0;\n var neg = 0;\n for(var i=0;i<len;i++){\n if(arr[i]>=0){\n pos++;\n }else if(arr[i]<0){\n neg++;\n }\n }\n return [pos,neg];"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var len = arr.length;\n var pos = 0;\n var neg = 0;\n for(var i=0;i<len;i++){\n if(arr[i]>=0){\n pos++;\n }else if(arr[i]<=0){\n neg++;\n }\n }\n return [pos,neg];"
                 }
             ]
         }
