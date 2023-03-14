@@ -1,25 +1,17 @@
-const MAX_HEARTS = 10;
-const MAX_QUESTIONS = 5;
-var killed = 0;
-var f1k = false, f2k = false, f3k = false;
-var data, rand = -1;
-var hearts = MAX_HEARTS;
-var picked = [];
-var inc_array = [];
-var logs = "$$$$$$$$$$$$$$$\r\n";
-var futile = 0;
-async function load() {
-    await fetch("data.json").then(response => response.json()).then(json => data = json);
-    heart_init();
-    qload();
-}
+const MAX_HEARTS = 10; // Change this to change the number of hearts the player starts with
+const MAX_QUESTIONS = 5; // Change this to change the number of questions the player has to answer
+var killed = 0; // Number of functions killed. Resets every round.
+var f1k = false, f2k = false, f3k = false; // Whether the function has been killed or not
+var data, rand = -1; // Data is the JSON file, rand is the random number generated.
+var hearts = MAX_HEARTS; // Number of hearts the player has. Persists through rounds.
+var picked = []; // Array of questions already picked. To ensure that random selection never picks the same question twice.
+var inc_array = []; // Array of incorrect functions: which boxes represent the incorrect functions. Resets every round.
+var logs = "$$$$$$$$$$$$$$$\r\n"; // Logs of the game. Persists through rounds.
+var futile = 0; // Number of futile attempts. Set through the JSON.
 
-function setAttributes(el, attrs) {
-    for (var key in attrs) {
-        el.setAttribute(key, attrs[key]);
-    }
-}
-
+/**
+ * Initializes number of hearts at the start of the game.
+ */
 function heart_init() {
     for (var i = 1; i <= hearts; i++) {
         var div = document.createElement("div");
@@ -32,6 +24,94 @@ function heart_init() {
     logs = logs.concat(`Started game with ${MAX_HEARTS} hearts.\r\n`);
 }
 
+/**
+ * Creates the array of which boxes to associate with incorrect functions.
+ * @param {The total number of boxes (One of which will be assigned the correct function)} n 
+ * @returns A list of length n-1, with the correct function's box number missing.
+ */
+function create_inc_array(n) {
+    var arr = [];
+    for (var i = 0; i < n; i++) {
+        arr.push(i + 1);
+    }
+    var random = Math.floor(Math.random() * arr.length);
+    var farr = [];
+    for (var i = 0; i < n; i++) {
+        if (i == random) continue;
+        farr.push(arr[i]);
+    }
+    return farr;
+}
+
+/**
+ * Ends the round and resets the UI for the next round.
+ * Also resets all variables that are supposed to reset every round.
+ */
+function end_game() {
+    document.getElementById("win").setAttribute("style", "display: none;");
+    document.getElementById("nq").setAttribute("style", "display: none;");
+    document.getElementById("execute").setAttribute("onclick", "runFunc()");
+    document.getElementById("f1box").style.fill = "rgb(0,255,0)";
+    document.getElementById("f2box").style.fill = "rgb(0,255,0)";
+    document.getElementById("f3box").style.fill = "rgb(0,255,0)";
+    document.getElementById("f4box").style.fill = "rgb(0,255,0)";
+    inc_array = create_inc_array(4);
+    const input = document.getElementById("input_div");
+    while (input.firstChild) {
+        input.removeChild(input.lastChild);
+    }
+    const past = document.getElementById("past-inputs");
+    while (past.firstChild) {
+        past.removeChild(past.lastChild);
+    }
+    past.innerHTML = "";
+    killed = 0;
+    f1k = false;
+    f2k = false;
+    f3k = false;
+    futile = 0;
+    logs = logs.concat("Round started.\r\n");
+}
+
+/**
+ * Sets the number of hearts whenever a mistake is made or a heart is awarded.
+ * Hearts can be lost for incorrect answers, or for failing to kill any functions for more than a certain number of attempts.
+ * Hearts are awarded for killing certain functions.
+ */
+function setHearts() {
+    for (var i = 1; i <= hearts; i++) {
+        document.getElementById(`heart${i}`).setAttribute("class", "fill");
+    }
+    for (var i = hearts + 1; i <= MAX_HEARTS; i++) {
+        document.getElementById(`heart${i}`).setAttribute("class", "empty");
+    }
+    if (hearts == 0) {
+        for (var i = 1; i <= data.database[rand].count; i++) {
+            document.getElementById(`input${i}`).value = "";
+        }
+        document.getElementById("output").value = "";
+        document.getElementById("execute").setAttribute("onclick", "");
+        document.getElementById("loss").setAttribute("style", "display: block;");
+        logs = logs.concat("Game over.\r\n###############\r\n");
+        console.log(logs);
+    }
+}
+
+/**
+ * Clears the input boxes and focuses on the first input box.
+ */
+function clear_and_focus() {
+    for (var i = 1; i <= data.database[rand].count; i++) {
+        document.getElementById(`input${i}`).value = "";
+    }
+    document.getElementById("output").value = "";
+    document.getElementById("input1").focus();
+}
+
+/**
+ * Sets up the page for every round.
+ * This includes questions, correct code, input boxes, output box.
+ */
 function qload() {
     end_game();
     /*do {
@@ -60,56 +140,38 @@ function qload() {
     document.getElementById("output").setAttribute("size", document.getElementById("output").getAttribute("placeholder").length);
     setHearts();
     clear_and_focus();
-    //document.getElementById("input1").focus();
 }
 
-function end_game() {
-    document.getElementById("win").setAttribute("style", "display: none;");
-    document.getElementById("nq").setAttribute("style", "display: none;");
-    document.getElementById("execute").setAttribute("onclick", "runFunc()");
-    document.getElementById("f1box").style.fill = "rgb(0,255,0)";
-    document.getElementById("f2box").style.fill = "rgb(0,255,0)";
-    document.getElementById("f3box").style.fill = "rgb(0,255,0)";
-    document.getElementById("f4box").style.fill = "rgb(0,255,0)";
-    inc_array = create_inc_array(4);
-    const input = document.getElementById("input_div");
-    while (input.firstChild) {
-        input.removeChild(input.lastChild);
-    }
-    const past = document.getElementById("past-inputs");
-    while (past.firstChild) {
-        past.removeChild(past.lastChild);
-    }
-    past.innerHTML = "";
-    killed = 0;
-    f1k = false;
-    f2k = false;
-    f3k = false;
-    futile = 0;
-    logs = logs.concat("Round started.\r\n");
+/**
+ * Loads the JSON file and initializes the game.
+ */
+async function load() {
+    await fetch("data.json").then(response => response.json()).then(json => data = json);
+    heart_init();
+    qload();
 }
 
-function setHearts() {
-    for (var i = 1; i <= hearts; i++) {
-        document.getElementById(`heart${i}`).setAttribute("class", "fill");
-    }
-    for (var i = hearts + 1; i <= MAX_HEARTS; i++) {
-        document.getElementById(`heart${i}`).setAttribute("class", "empty");
-    }
-    if (hearts == 0) {
-        for (var i = 1; i <= data.database[rand].count; i++) {
-            document.getElementById(`input${i}`).value = "";
-        }
-        document.getElementById("output").value = "";
-        document.getElementById("execute").setAttribute("onclick", "");
-        document.getElementById("loss").setAttribute("style", "display: block;");
-        logs = logs.concat("Game over.\r\n###############\r\n");
-        console.log(logs);
+/**
+ * A QOL function to set multiple attributes at once.
+ * @param {The element the attributes are being set to.} el 
+ * @param {The list of attributes to be set in the form of key-value pairs.} attrs 
+ */
+function setAttributes(el, attrs) {
+    for (var key in attrs) {
+        el.setAttribute(key, attrs[key]);
     }
 }
 
+/**
+ * A function to validate whether the input and output are of the expected types.
+ * @param {Array of inputs given by the user.} input 
+ * @param {Output given by the use.} output 
+ * @returns true or false based on whether the input and output are valid.
+ */
 function validate(input, output) {
+    //Runs a loop to validate every entry in the input array.
     for (var i = 0; i < data.database[rand].count; i++) {
+        //Checks if the input is a number using isNaN.
         if (data.database[rand].in[i] == "number") {
             if (isNaN(input[i])) {
                 document.getElementById(`input${i + 1}`).value = "";
@@ -118,6 +180,7 @@ function validate(input, output) {
                 return false;
             }
         }
+        //Checks if the input is a string surrounded with double quotes.
         if (data.database[rand].in[i] == "string") {
             var args = document.getElementById(`input${i + 1}`).value;
             if (args[0] != '"' || args[args.length - 1] != '"') {
@@ -125,6 +188,7 @@ function validate(input, output) {
                 return false;
             }
         }
+        //Checks if the input is an array surrounded with square brackets.
         if (data.database[rand].in[i] === "str_array" || data.database[rand].in[i] === "num_array" || data.database[rand].in[i] === "sorted_num_array") {
             var args = document.getElementById(`input${i + 1}`).value;
             if (args[0] != '[' || args[args.length - 1] != ']') {
@@ -132,6 +196,7 @@ function validate(input, output) {
                 return false;
             }
         }
+        //Checks if the elements of a string array are strings surrounded with double quotes.
         if (data.database[rand].in[i] == "str_array") {
             var args = document.getElementById(`input${i + 1}`).value;
             if (args[1] != '"' || args[args.length - 2] != '"') {
@@ -139,6 +204,7 @@ function validate(input, output) {
                 return false;
             }
         }
+        //Checks if the elements of a number array are numbers using isNaN.
         if (data.database[rand].in[i] === "num_array" || data.database[rand].in[i] === "sorted_num_array") {
             for (var j = 0; j < input[i].length; j++) {
                 if (isNaN(input[i][j])) {
@@ -149,6 +215,7 @@ function validate(input, output) {
                 }
             }
         }
+        //Checks if the elements of a sorted number array are sorted.
         if (data.database[rand].in[i] === "sorted_num_array") {
             for (var j = 0; j < input[i].length - 1; j++) {
                 if (parseInt(input[i][j]) > parseInt(input[i][j + 1])) {
@@ -160,6 +227,7 @@ function validate(input, output) {
             }
         }
     }
+    //Checks if the output is a number using isNaN.
     if (data.database[rand].out === "number") {
         if (isNaN(output)) {
             document.getElementById("output").value = "";
@@ -168,6 +236,7 @@ function validate(input, output) {
             return false;
         }
     }
+    //Checks if the output is a string surrounded with double quotes.
     if (data.database[rand].out === "string") {
         var args = document.getElementById("output").value;
         if (args[0] != '"' || args[args.length - 1] != '"') {
@@ -175,6 +244,7 @@ function validate(input, output) {
             return false;
         }
     }
+    //Checks if the output is an array surrounded with square brackets.
     if (data.database[rand].out === "str_array" || data.database[rand].out === "num_array" || data.database[rand].out === "sorted_num_array") {
         var args = document.getElementById("output").value;
         if (args[0] != '[' || args[args.length - 1] != ']') {
@@ -182,6 +252,7 @@ function validate(input, output) {
             return false;
         }
     }
+    //Checks if the elements of a string array are strings surrounded with double quotes.
     if (data.database[rand].out === "str_array") {
         var args = document.getElementById("output").value;
         if (args[1] != '"' || args[args.length - 2] != '"') {
@@ -189,6 +260,7 @@ function validate(input, output) {
             return false;
         }
     }
+    //Checks if the elements of a number array are numbers using isNaN.
     if (data.database[rand].out === "num_array" || data.database[rand].out === "sorted_num_array") {
         for (var j = 0; j < output.length; j++) {
             if (isNaN(output[j])) {
@@ -199,6 +271,7 @@ function validate(input, output) {
             }
         }
     }
+    //Checks if the elements of a sorted number array are sorted.
     if (data.database[rand].out === "sorted_num_array") {
         for (var j = 0; j < output.length - 1; j++) {
             if (parseInt(output[j]) > parseInt(output[j + 1])) {
@@ -212,18 +285,30 @@ function validate(input, output) {
     return true;
 }
 
+/**
+ * Function for custom validation of the input, if any.
+ * Pulls the function from the JSON.
+ * @param {Array of inputs given by the user.} input 
+ * @returns true if the input is valid, false otherwise.
+ */
 function customValidate(input) {
-    if(!data.database[rand].customValidate) {
+    if (!data.database[rand].customValidate) {
         return true;
     }
     var f = new Function(...(data.database[rand].valFunc.arguments), data.database[rand].valFunc.body);
-    if(!f(...input)){
+    if (!f(...input)) {
         alert("Please follow input specifications.");
         return false;
     }
     return true;
 }
 
+/**
+ * Removes type formatting from input values.
+ * This includes double quotes from strings and square brackets from arrays.
+ * @param {The index of the input being updated} n 
+ * @returns The updated input.
+ */
 function handleInput(n) {
     var args = document.getElementById(`input${n + 1}`).value;
     if (data.database[rand].in[n] == "number") {
@@ -237,6 +322,11 @@ function handleInput(n) {
     }
 }
 
+/**
+ * Removes type formatting from output value.
+ * This includes double quotes from strings and square brackets from arrays.
+ * @returns The updated output.
+ */
 function handleOutput() {
     var args = document.getElementById("output").value;
     if (data.database[rand].out == "number") {
@@ -250,6 +340,11 @@ function handleOutput() {
     }
 }
 
+/**
+ * Parses the input values to the correct types and creates an array of them
+ * @param {The array of inputs as given by the user after removing type formatting} input 
+ * @returns Parsed input.
+ */
 function updateInputType(input) {
     var arr = [];
     for (var i = 0; i < data.database[rand].count; i++) {
@@ -275,6 +370,11 @@ function updateInputType(input) {
     return arr;
 }
 
+/**
+ * Parses the output value to the correct type.
+ * @param {The output value as given by the user after removing type formatting.} output 
+ * @returns Parsed output.
+ */
 function updateOutputType(output) {
     if (data.database[rand].out == "number") {
         var res = parseInt(output);
@@ -296,17 +396,14 @@ function updateOutputType(output) {
     return output;
 }
 
-function clear_and_focus() {
-    for (var i = 1; i <= data.database[rand].count; i++) {
-        document.getElementById(`input${i}`).value = "";
-    }
-    document.getElementById("output").value = "";
-    document.getElementById("input1").focus();
-}
-
+/**
+ * Appends input values to the logs.
+ * @param {The current logs array} arr 
+ * @returns Updated logs.
+ */
 function appendInputToLogs(arr) {
     res = "";
-    if(!arr.length) return arr;
+    if (!arr.length) return arr;
     for (var i = 0; i < arr.length; i++) {
         if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "str_array" || data.database[rand].in[i] == "sorted_num_array") {
             res += `[${arr[i]}],`;
@@ -317,9 +414,14 @@ function appendInputToLogs(arr) {
     return res.substring(0, res.length - 1);
 }
 
+/**
+ * Appends output value to the logs.
+ * @param {The current logs array} arr 
+ * @returns Updated logs.
+ */
 function appendOutputToLogs(arr) {
     res = "";
-    if(!arr.length) return arr;
+    if (!arr.length) return arr;
     if (data.database[rand].out == "num_array" || data.database[rand].out == "str_array" || data.database[rand].out == "sorted_num_array") {
         res += `[${arr}]`;
     } else {
@@ -328,6 +430,112 @@ function appendOutputToLogs(arr) {
     return res;
 }
 
+/**
+ * Used to check equality between user output and expected output.
+ * @param {The first of the values being compared.} a1 
+ * @param {The second of the values being compared.} a2 
+ * @returns If the values are equal.
+ */
+function resultCheck(a1, a2) {
+    if (data.database[rand].out == "number" || data.database[rand].out == "string") {
+        return a1 === a2;
+    }
+    if (a1.length != a2.length) return false;
+    for (var i = 0; i < a1.length; i++) {
+        if (a1[i] != a2[i]) return false;
+    }
+    return true;
+}
+
+/**
+ * The first incorrrect function.
+ * @param {The input after parsing.} input 
+ * @returns The function's output.
+ */
+function function1(input) {
+    var f = new Function(...(data.database[rand].incorrect[0].arguments), data.database[rand].incorrect[0].body);
+    return f(...input);
+}
+
+/**
+ * The second incorrect function.
+ * @param {The input after parsing.} input 
+ * @returns The function's output.
+ */
+function function2(input) {
+    var f = new Function(...(data.database[rand].incorrect[1].arguments), data.database[rand].incorrect[1].body);
+    return f(...input);
+}
+
+/**
+ * The third incorrect function.
+ * @param {The input after parsing.} input 
+ * @returns The function's output.
+ */
+function function3(input) {
+    var f = new Function(...(data.database[rand].incorrect[2].arguments), data.database[rand].incorrect[2].body);
+    return f(...input);
+}
+
+/**
+ * The correct function.
+ * @param {The input after parsing.} input 
+ * @returns The function's output.
+ */
+function function4(input) {
+    var f = new Function(...(data.database[rand].correct.arguments), data.database[rand].correct.body);
+    return f(...input);
+}
+
+/**
+ * Updates the status of the box of the first incorrect function.
+ * @returns Nothing. Early return to ensure that the function kill is not logged twice.
+ */
+function killf1() {
+    document.getElementById(`f${inc_array[0]}box`).style.fill = "rgb(255,0,0)";
+    futile = 0;
+    if (data.database[rand].incorrect[0].heart) {
+        hearts = (hearts < MAX_HEARTS) ? hearts + 1 : MAX_HEARTS;
+        setHearts();
+        return logs = logs.concat("Function 1 killed. Heart awarded.\r\n");
+    }
+    logs = logs.concat("Function 1 killed.\r\n");
+}
+
+/**
+ * Updates the status of the box of the second incorrect function.
+ * @returns Nothing. Early return to ensure that the function kill is not logged twice.
+ */
+function killf2() {
+    document.getElementById(`f${inc_array[1]}box`).style.fill = "rgb(255,0,0)";
+    futile = 0;
+    if (data.database[rand].incorrect[1].heart) {
+        hearts = (hearts < MAX_HEARTS) ? hearts + 1 : MAX_HEARTS;
+        setHearts();
+        return logs = logs.concat("Function 2 killed. Heart awarded.\r\n");
+    }
+    logs = logs.concat("Function 2 killed.\r\n");
+}
+
+/**
+ * Updates the status of the box of the third incorrect function.
+ * @returns Nothing. Early return to ensure that the function kill is not logged twice.
+ */
+function killf3() {
+    document.getElementById(`f${inc_array[2]}box`).style.fill = "rgb(255,0,0)";
+    futile = 0;
+    if (data.database[rand].incorrect[2].heart) {
+        hearts = (hearts < MAX_HEARTS) ? hearts + 1 : MAX_HEARTS;
+        setHearts();
+        return logs = logs.concat("Function 3 killed. Heart awarded.\r\n");
+    }
+    logs = logs.concat("Function 3 killed.\r\n")
+}
+
+/**
+ * Function called whenever the user submits their inputs and outputs.
+ * @returns Nothing. Early returns to end the function early for invalid inputs and incorrect inputs.
+ */
 function runFunc() {
     var inp = [];
     var i;
@@ -338,7 +546,7 @@ function runFunc() {
     if (!validate(inp, out)) {
         return logs = logs.concat(`Input: ${appendInputToLogs(inp)}. Output: ${appendOutputToLogs(out)}. Invalid.\r\n`);
     }
-    if(!customValidate(inp)) {
+    if (!customValidate(inp)) {
         return logs = logs.concat(`Input: ${appendInputToLogs(inp)}. Output: ${appendOutputToLogs(out)}. Invalid.\r\n`);
     }
     inp = updateInputType(inp);
@@ -350,8 +558,7 @@ function runFunc() {
         document.getElementById("output").focus();
         hearts--;
         setHearts();
-        logs = logs.concat(`Input: ${appendInputToLogs(inp)}. Output: ${appendOutputToLogs(out)}. Incorrect. Heart lost.\r\n`);
-        return;
+        return logs = logs.concat(`Input: ${appendInputToLogs(inp)}. Output: ${appendOutputToLogs(out)}. Incorrect. Heart lost.\r\n`);
     }
     logs = logs.concat(`Input: ${appendInputToLogs(inp)}. Output: ${appendOutputToLogs(out)}. Accepted.\r\n`);
     document.getElementById("past-inputs").innerHTML = document.getElementById("past-inputs").innerHTML.concat(appendInputToLogs(inp));
@@ -381,89 +588,4 @@ function runFunc() {
             console.log(logs);
         }
     }
-}
-
-function function1(input) {
-    var f = new Function(...(data.database[rand].incorrect[0].arguments), data.database[rand].incorrect[0].body);
-    return f(...input);
-}
-
-function function2(input) {
-    var f = new Function(...(data.database[rand].incorrect[1].arguments), data.database[rand].incorrect[1].body);
-    return f(...input);
-}
-
-function function3(input) {
-    var f = new Function(...(data.database[rand].incorrect[2].arguments), data.database[rand].incorrect[2].body);
-    return f(...input);
-}
-
-function function4(input) {
-    var f = new Function(...(data.database[rand].correct.arguments), data.database[rand].correct.body);
-    return f(...input);
-}
-
-function killf1() {
-    document.getElementById(`f${inc_array[0]}box`).style.fill = "rgb(255,0,0)";
-    futile = 0;
-    if (data.database[rand].incorrect[0].heart) {
-        hearts = (hearts < MAX_HEARTS) ? hearts + 1 : MAX_HEARTS;
-        setHearts();
-        return logs = logs.concat("Function 1 killed. Heart awarded.\r\n");
-    }
-    logs = logs.concat("Function 1 killed.\r\n");
-}
-
-function killf2() {
-    document.getElementById(`f${inc_array[1]}box`).style.fill = "rgb(255,0,0)";
-    futile = 0;
-    if (data.database[rand].incorrect[1].heart) {
-        hearts = (hearts < MAX_HEARTS) ? hearts + 1 : MAX_HEARTS;
-        setHearts();
-        return logs = logs.concat("Function 2 killed. Heart awarded.\r\n");
-    }
-    logs = logs.concat("Function 2 killed.\r\n");
-}
-
-function killf3() {
-    document.getElementById(`f${inc_array[2]}box`).style.fill = "rgb(255,0,0)";
-    futile = 0;
-    if (data.database[rand].incorrect[2].heart) {
-        hearts = (hearts < MAX_HEARTS) ? hearts + 1 : MAX_HEARTS;
-        setHearts();
-        return logs = logs.concat("Function 3 killed. Heart awarded.\r\n");
-    }
-    logs = logs.concat("Function 3 killed.\r\n")
-}
-
-function create_inc_array(n) {
-    var arr = [];
-    for (var i = 0; i < n; i++) {
-        arr.push(i + 1);
-    }
-    var random = Math.floor(Math.random() * arr.length);
-    var farr = [];
-    for (var i = 0; i < n; i++) {
-        if (i == random) continue;
-        farr.push(arr[i]);
-    }
-    return farr;
-}
-
-function isSorted(arr) {
-    for (var i = 1; i < arr.length; i++) {
-        if (arr[i - 1] > arr[i]) return false;
-    }
-    return true;
-}
-
-function resultCheck(a1, a2) {
-    if(data.database[rand].out == "number" || data.database[rand].out == "string") {
-        return a1 === a2;
-    }
-    if (a1.length != a2.length) return false;
-    for(var i = 0; i < a1.length; i++) {
-        if(a1[i] != a2[i]) return false;
-    }
-    return true;
 }
