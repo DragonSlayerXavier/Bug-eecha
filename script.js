@@ -1,5 +1,5 @@
 const MAX_HEARTS = 10;
-const MAX_QUESTIONS = 2;
+const MAX_QUESTIONS = 5;
 var killed = 0;
 var f1k = false, f2k = false, f3k = false;
 var data, rand = -1;
