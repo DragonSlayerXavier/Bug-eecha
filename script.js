@@ -218,7 +218,7 @@ function validate(input, output) {
         //Checks if the elements of a sorted number array are sorted.
         if (data.database[rand].in[i] === "sorted_num_array") {
             for (var j = 0; j < input[i].length - 1; j++) {
-                if (parseInt(input[i][j]) > parseInt(input[i][j + 1])) {
+                if (Number(input[i][j]) > Number(input[i][j + 1])) {
                     document.getElementById(`input${i + 1}`).value = "";
                     document.getElementById(`input${i + 1}`).focus();
                     alert(`Input ${i + 1} must be a sorted array of numbers.`);
@@ -274,7 +274,7 @@ function validate(input, output) {
     //Checks if the elements of a sorted number array are sorted.
     if (data.database[rand].out === "sorted_num_array") {
         for (var j = 0; j < output.length - 1; j++) {
-            if (parseInt(output[j]) > parseInt(output[j + 1])) {
+            if (Number(output[j]) > Number(output[j + 1])) {
                 document.getElementById("output").value = "";
                 document.getElementById("output").focus();
                 alert("Output must be a sorted array of numbers.");
@@ -349,14 +349,14 @@ function updateInputType(input) {
     var arr = [];
     for (var i = 0; i < data.database[rand].count; i++) {
         if (data.database[rand].in[i] == "number") {
-            arr.push(parseInt(input[i]));
+            arr.push(Number(input[i]));
             continue;
         }
         if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "sorted_num_array") {
             arr[i] = [];
             for (var j = 0; j < input[i].length; j++) {
-                if (!isNaN(parseInt(input[i][j]))) {
-                    arr[i].push(parseInt(input[i][j]));
+                if (!isNaN(Number(input[i][j]))) {
+                    arr[i].push(Number(input[i][j]));
                 }
             }
             continue;
@@ -377,14 +377,14 @@ function updateInputType(input) {
  */
 function updateOutputType(output) {
     if (data.database[rand].out == "number") {
-        var res = parseInt(output);
+        var res = Number(output);
         return res;
     }
     if (data.database[rand].out == "num_array" || data.database[rand].out == "sorted_num_array") {
         var res = [];
         for (var j = 0; j < output.length; j++) {
-            if (!isNaN(parseInt(output[j]))) {
-                res.push(parseInt(output[j]));
+            if (!isNaN(Number(output[j]))) {
+                res.push(Number(output[j]));
             }
         }
         return res;
@@ -397,9 +397,9 @@ function updateOutputType(output) {
 }
 
 /**
- * Appends input values to the logs.
- * @param {Array} arr The current logs array
- * @returns {Array} Updated logs.
+ * Formats input values for appending to the logs.
+ * @param {Array} arr The input array.
+ * @returns {Array} Formatted input.
  */
 function appendInputToLogs(arr) {
     res = "";
@@ -415,9 +415,9 @@ function appendInputToLogs(arr) {
 }
 
 /**
- * Appends output value to the logs.
- * @param {Array} arr The current logs array
- * @returns {Array} Updated logs.
+ * Formats output values for appending to the logs.
+ * @param {Array} arr The output array.
+ * @returns {Array} Formatted output.
  */
 function appendOutputToLogs(arr) {
     res = "";
