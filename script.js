@@ -346,6 +346,7 @@ function handleOutput() {
  * @returns {Array} Parsed input.
  */
 function updateInputType(input) {
+    console.log(input);
     var arr = [];
     for (var i = 0; i < data.database[rand].count; i++) {
         if (data.database[rand].in[i] == "number") {
@@ -355,7 +356,7 @@ function updateInputType(input) {
         if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "sorted_num_array") {
             arr[i] = [];
             for (var j = 0; j < input[i].length; j++) {
-                if (!isNaN(Number(input[i][j]))) {
+                if (!isNaN(Number(input[i][j])) && input[i][j] != "") {
                     arr[i].push(Number(input[i][j]));
                 }
             }
@@ -383,7 +384,7 @@ function updateOutputType(output) {
     if (data.database[rand].out == "num_array" || data.database[rand].out == "sorted_num_array") {
         var res = [];
         for (var j = 0; j < output.length; j++) {
-            if (!isNaN(Number(output[j]))) {
+            if (!isNaN(Number(output[j])) && output[j] != "") {
                 res.push(Number(output[j]));
             }
         }
@@ -492,7 +493,6 @@ function function4(input) {
 
 /**
  * Updates the status of the box of the first incorrect function.
- * @returns {Execution Abortion} Nothing. Early return to ensure that the function kill is not logged twice.
  */
 function killf1() {
     document.getElementById(`f${inc_array[0]}box`).style.fill = "rgb(255,0,0)";
@@ -507,7 +507,6 @@ function killf1() {
 
 /**
  * Updates the status of the box of the second incorrect function.
- * @returns {Execution Abortion} Nothing. Early return to ensure that the function kill is not logged twice.
  */
 function killf2() {
     document.getElementById(`f${inc_array[1]}box`).style.fill = "rgb(255,0,0)";
@@ -522,7 +521,6 @@ function killf2() {
 
 /**
  * Updates the status of the box of the third incorrect function.
- * @returns {Execution Abortion} Nothing. Early return to ensure that the function kill is not logged twice.
  */
 function killf3() {
     document.getElementById(`f${inc_array[2]}box`).style.fill = "rgb(255,0,0)";
@@ -537,7 +535,6 @@ function killf3() {
 
 /**
  * Function called whenever the user submits their inputs and outputs.
- * @returns {Execution Abortion} Nothing. Early returns to end the function early for invalid inputs and incorrect inputs.
  */
 function runFunc() {
     var inp = [];
