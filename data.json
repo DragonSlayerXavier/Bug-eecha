@@ -16,6 +16,13 @@
             "out_desc": "Return value (number)",
             "question": "Given an array of three numbers \"list\", return its median.",
             "code": "copy=[...list];\ncopy.sort();\nreturn copy[1];",
+            "customValidate": true,
+            "valFunc": {
+                "arguments": [
+                    "list"
+                ],
+                "body": "if(list.length === 3){\n return true;\n}\n return false;"
+            },
             "correct": {
                 "arguments": [
                     "list"
