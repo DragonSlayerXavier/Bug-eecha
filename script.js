@@ -346,7 +346,6 @@ function handleOutput() {
  * @returns {Array} Parsed input.
  */
 function updateInputType(input) {
-    console.log(input);
     var arr = [];
     for (var i = 0; i < data.database[rand].count; i++) {
         if (data.database[rand].in[i] == "number") {
