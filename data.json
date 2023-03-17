@@ -27,7 +27,7 @@
                 "arguments": [
                     "list"
                 ],
-                "body": "copy=[...list];\ncopy.sort();\nreturn copy[1];"
+                "body": "copy=[...list];\ncopy.sort((a,b) => a-b);\nreturn copy[1];"
             },
             "incorrect": [
                 {
