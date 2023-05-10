@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <script src="script.js"></script>
   <title>Bug-eecha | UENG101 | IISc Bangalore</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,60 +10,51 @@
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 
-<body onload="load()">
-  <section class="header">
-    <div id="textbox_div" style="float: left;">
-      <h1 style="text-align: center"><u>Input History</u></h1>
-      <p id="past-inputs"></p>
+<body>
+  <div id="ques_div" class="">
+    <p id="ques">Given an array of three numbers "list", return its median.</p>
+  </div>
+  <div id="code_div" class="">
+    <p id="code">def median(list):<br>
+      return list.sort()[1]</p>
+  </div>
+  <div id="function_div" class="">
+    <div id="fun_name_div" class="function">
+      <p id="fun_name">median</p>
     </div>
-    <div id="code_div" style="float: left;">
-      <h1 style="text-align: center"><u>Correct Code</u></h1>
-      <p id="correct-code"></p>
+    <div id="fun_open_div" class="function">
+      <p id="fun_open">(</p>
     </div>
-    <div id="heart_div" style="float: right;"></div>
-    <div class="question">
-      <div id="question"></div>
-      <div id="input_div"></div>
+    <div id="fun_input_div" class="function"></div>
+    <div id="fun_close_div" class="function">
+      <p id="fun_close">)</p>
     </div>
-    <div>
-      <div class="output_div">
-        <label for="output">Output:</label><br>
-        <input type="text" id="output" name="output" class="output_box"><br><br><br>
-        <button type="button" onclick="runFunc()" id="execute">Submit!</button>
-      </div>
+    <div id="fun_equals_div" class="function">
+      <p id="fun_equals">==</p>
     </div>
-    <div class="boxes1">
-      <div id="f1div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0, 255, 0);stroke-width:3;stroke:rgb(0,0,0)" id="f1box" />
-        </svg>
-      </div>
-      <div id="f2div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f2box" />
-        </svg>
-      </div>
+    <div id="fun_output_div" class="function"></div>
+    <div id="fun_check_div" class="function">
+      <button id="fun_check" type="button">Check</button>
     </div>
-    <div class="boxes2">
-      <div id="f3div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f3box" />
-        </svg>
-      </div>
-      <div id="f4div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f4box" />
-        </svg>
-      </div>
-    </div>
-    <div class="win">
-      <p id="win" style="display: none;">You win!</p>
-      <button type="button" id="nq" onclick="qload()" style="display: none;">Next Question!</button>
-    </div>
-    <div class="loss">
-      <p id="loss" style="display: none;">You lose! Please try again.</p>
-    </div>
-  </section>
+  </div>
+  <div id="history_div" class="">
+    <button id="history" type="button">Show History</button>
+  </div>
+  <div id="bugs_div" class="">
+    <p id="bugs">0/3 bugs found!</p>
+  </div>  
+  <div id="garden_div" class="">
+    <img src="assets/flower_png.png" id="flower1">
+    <img src="assets/flower_png.png" id="flower2">
+    <img src="assets/flower_png.png" id="flower3">
+    <img src="assets/flower_png.png" id="flower4">
+    <img src="assets/flower_png.png" id="flower5">
+    <img src="assets/flower_png.png" id="flower6">
+    <img src="assets/flower_png.png" id="flower7">
+    <img src="assets/flower_png.png" id="flower8">
+    <img src="assets/flower_png.png" id="flower9">
+    <img src="assets/flower_png.png" id="flower10">
+  </div>
 </body>
 
 
