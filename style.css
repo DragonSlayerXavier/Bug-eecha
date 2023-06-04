@@ -30,6 +30,7 @@ body{
 #code_div{
     border: #A6A6A6;
     border-style: solid;
+    border-radius: 10px;
     height: 22%;
     overflow-y: auto;
     overflow-x: auto;
@@ -51,7 +52,7 @@ body{
     color: #000000;
     position: absolute;
     padding-top: 0%;
-    top: 35%;
+    top: 40%;
     font-family: monospace, monospace;
     font-size: 18px;
     display: inline;
@@ -121,7 +122,7 @@ body{
 }
 
 #fun_output{
-    
+    width: 20%;
 }
 
 #fun_check_div{
@@ -151,28 +152,53 @@ body{
     transition: 0.1s;
 }
 
-#bugs_div{
-    
+#scoreboard{
+    border: #775548;
+    border-style: solid;
+    border-radius: 10px;
+    height: 15%;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 0.5% 0.5% 0.5% 0.5%;
+    left: 77%;
+    right: 1%;
+    top: 37%;
+    position: absolute;
 }
 
-#bugs{
+#bugs1{
+    color: #FD6666;
+    position: absolute;
+    padding-top: 0%;
+    top: 1%;
+    left: 1%;
+    right: 1%;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 90px;
+}
+
+#bugs2{
     color: #000000;
     position: absolute;
     padding-top: 0%;
-    top: 40%;
+    top: 70%;
     left: 1%;
     right: 1%;
-    font-family: monospace, monospace;
-    text-align: justify;
-    font-size: 18px;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 25px;
+}
+
+#leaf_with_bug{
+    position: absolute;
+    padding-top: 0%;
+    top: 35%;
+    left: 75%;
 }
 
 #history_div{
-    position: absolute;
-    padding-top: 0%;
-    top: 45%;
-    display: inline;
-    padding-left: 1%;
+    
 }
 
 #history{
@@ -182,13 +208,28 @@ body{
     padding: 1px 1px;
     font-size: 18px;
     background: #C1FF72;
-    position: absolute;
     cursor: pointer;
     text-align: center;
     width: max-content;
-    margin-left:10px;
     font-family:sans-serif;
     border-radius: 5px;
+    position: absolute;
+    top: 52%;
+    left:1%;
+}
+
+#input_history{
+    border: #A6A6A6;
+    border-style: solid;
+    border-radius: 10px;
+    height: 17%;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 0.5% 0.5% 0.5% 0.5%;
+    left: 1%;
+    width: 30%;
+    top: 57%;
+    position: absolute;   
 }
 
 #history:hover{
@@ -197,15 +238,18 @@ body{
     transition: 0.1s;
 }
 
-
+#history_p{
+    font-family: monospace, monospace;
+    text-align: justify;
+    font-size: 18px;
+}
 
 #garden_div{
     position: absolute;
     padding-top: 0%;
-    top: 70%;
+    top: 80%;
     display: inline;
     padding-left: 1%;
-
 }
 
 #garden_p{
