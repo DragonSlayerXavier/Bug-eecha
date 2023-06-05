@@ -3,7 +3,8 @@
     "MAX_QUESTIONS": 0,
     "database": [
         {
-            "count": 1,
+            "name": "median",
+            "count": 3,
             "numFunc": 3,
             "futile": 5,
             "in": [
@@ -11,7 +12,7 @@
             ],
             "out": "number",
             "question": "Given an array of three numbers \"list\", return its median.",
-            "code": "copy=[...list];\ncopy.sort();\nreturn copy[1];",
+            "code": "function median(list){\n\tcopy=[...list];\n\tcopy.sort();\n\treturn copy[1];\n}",
             "customValidate": true,
             "valFunc": {
                 "arguments": [
@@ -21,7 +22,7 @@
             },
             "correct": {
                 "arguments": [
-                    "list"
+                    "list", "a", "b"
                 ],
                 "body": "copy=[...list];\ncopy.sort((a,b) => a-b);\nreturn copy[1];"
             },
