@@ -13,6 +13,9 @@ function setAttributes(el, attrs) {
     }
 }
 
+/**
+ * Initializes lives at the start of the game.
+ */
 function lives_init() {
     MAX_LIVES = data.MAX_LIVES;
     lives = MAX_LIVES;
@@ -24,8 +27,24 @@ function lives_init() {
     }
 }
 
+function end_round() {
+    /*
+    TO DO:
+    
+    */
+}
+
+function qload() {
+    end_round();
+    /*
+    TO DO:
+    - End the previous game
+    - Load the question
+    */
+}
+
 async function load() {
     await fetch("data.json").then(response => response.json()).then(json => data = json);
     lives_init();
-    //qload();
+    qload();
 }
