@@ -15,6 +15,22 @@ body{
     
 }
 
+.tab {
+    display: inline-block;
+    margin-left: 2em;
+}
+
+input {
+    font-size: 18px;
+    text-align: right;
+}
+
+input::placeholder {
+    text-align: right;
+    font-size: 18px;
+    margin-right: 3%;
+}
+
 #ques{
     color: #000000;
     position: absolute;
@@ -87,7 +103,7 @@ body{
 }
 
 .input{
-  
+    width: 15%;
 }
 
 .p_input{
@@ -122,7 +138,7 @@ body{
 }
 
 #fun_output{
-    width: 20%;
+    width: 15%;
 }
 
 #fun_check_div{
@@ -160,9 +176,9 @@ body{
     overflow-y: auto;
     overflow-x: auto;
     padding: 0.5% 0.5% 0.5% 0.5%;
-    left: 77%;
+    left: 80%;
     right: 1%;
-    top: 37%;
+    top: 47%;
     position: absolute;
 }
 
@@ -193,8 +209,8 @@ body{
 #leaf_with_bug{
     position: absolute;
     padding-top: 0%;
-    top: 35%;
-    left: 75%;
+    top: 44%;
+    left: 78%;
 }
 
 #history_div{
