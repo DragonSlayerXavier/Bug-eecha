@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <script src="script.js"></script>
   <title>Bug-eecha | UENG101 | IISc Bangalore</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,7 +11,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 
-<body>
+<body onload = "load()">
   <div id="ques_div" class="">
     <p id="ques">Given an array of three numbers "list", return its median.</p>
   </div>
@@ -52,7 +53,7 @@
   </div>
   <div id="bugs_div">
   <div id="scoreboard" class="">
-    <span id="bugs1">03/20</span>
+    <span id="bugs1"></span>
     <span id="bugs2">bugs found!</span>
   </div>
   <img src="assets/bug_on_leaf.png" alt="" id="leaf_with_bug">
@@ -77,18 +78,7 @@
   </div>
   
   <div id="garden_div" class="">
-    <span id="garden_p">
-      <img id="flower1" class="alive">
-      <img id="flower2" class="alive">
-      <img id="flower3" class="alive">
-      <img id="flower4" class="alive">
-      <img id="flower5" class="alive">
-      <img id="flower6" class="alive">
-      <img id="flower7" class="dead">
-      <img id="flower8" class="dead">
-      <img id="flower9" class="dead">
-      <img id="flower10" class="dead">
-    </span>
+    <span id="garden_p"></span>
   </div>
 </body>
 
