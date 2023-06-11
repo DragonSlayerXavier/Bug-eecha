@@ -1,6 +1,8 @@
 {
     "MAX_LIVES": 10,
     "MAX_QUESTIONS": 0,
+    "winMessage": "You win!",
+    "lossMessage": "You lose! Please try again.",
     "database": [
         {
             "name": "median",
