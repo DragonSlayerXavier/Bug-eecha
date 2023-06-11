@@ -3,7 +3,22 @@ var MAX_LIVES; // The maximum number of lives
 var lives; // The current number of lives
 var rand = -1;
 var picked = [];
+var killed = [];
 var logs = "$$$$$$$$$$$$$$$\r\n";
+var displayHistory = false;
+var futile = 0;
+
+function toggleHistory() {
+    if(displayHistory) {
+        document.getElementById("input_history").setAttribute("style", "display: none;");
+        document.getElementById("history").innerHTML = "Show History";
+        displayHistory = false;
+    } else {
+        document.getElementById("input_history").setAttribute("style", "display: block;");
+        document.getElementById("history").innerHTML = "Hide History";
+        displayHistory = true;
+    }
+}
 
 /**
  * A QOL function to set multiple attributes at once.
@@ -32,14 +47,44 @@ function lives_init() {
 }
 
 function end_round() {
+    document.getElementById("result").setAttribute("style", "display: none;");
+    document.getElementById("fun_check").setAttribute("onclick", "execute();");
+    const input = document.getElementById("fun_input_div");
+    while (input.firstChild) {
+        input.removeChild(input.lastChild);
+    }
+    document.getElementById("history_p").innerHTML = "";
+    killed = [];
+    futile = 0;
+    logs = logs.concat("Round started.\r\n");
 }
 
 function setLives() {
-
+    for (var i = 1; i <= lives; i++) {
+        document.getElementById(`flower${i}`).setAttribute("class", "alive");
+    }
+    for (var i = lives + 1; i <= MAX_LIVES; i++) {
+        document.getElementById(`flower${i}`).setAttribute("class", "dead");
+    }
+    if (lives == 0) {
+        for (var i = 1; i <= data.database[rand].count; i++) {
+            document.getElementById(`input${i}`).value = "";
+        }
+        document.getElementById("output").value = "";
+        document.getElementById("fun_check").setAttribute("onclick", "");
+        document.getElementById("result").setAttribute("style", "display: block;");
+        document.getElementById("result").innerHTML = data.lossMessage;
+        logs = logs.concat("Game over.\r\n###############\r\n");
+        console.log(logs);
+    }
 }
 
 function clear_and_focus() {
-
+    for (var i = 1; i <= data.database[rand].count; i++) {
+        document.getElementById(`input${i}`).value = "";
+    }
+    document.getElementById("output").value = "";
+    document.getElementById("input1").focus();
 }
 
 function qload() {
@@ -76,4 +121,8 @@ async function load() {
     await fetch("data.json").then(response => response.json()).then(json => data = json);
     lives_init();
     qload();
+}
+
+function execute() {
+
 }
