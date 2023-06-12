@@ -381,4 +381,5 @@ function execute() {
     args = updateInputType(args);
     output = updateOutputType(output);
     correctOutput = correct(args);
+    console.log(correctOutput);
 }

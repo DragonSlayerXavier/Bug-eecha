@@ -6,7 +6,7 @@
     "database": [
         {
             "name": "median",
-            "count": 3,
+            "count": 1,
             "numFunc": 3,
             "futile": 5,
             "in": [
@@ -24,7 +24,7 @@
             },
             "correct": {
                 "arguments": [
-                    "list", "a", "b"
+                    "list"
                 ],
                 "body": "copy=[...list];\ncopy.sort((a,b) => a-b);\nreturn copy[1];"
             },
