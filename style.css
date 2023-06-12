@@ -78,6 +78,8 @@ input {
     font-size: 17px;
     text-align: right;
     font-family: monospace, monospace;
+    margin-bottom: 0.5%;
+    width: 10%
 }
 
 input::placeholder {
@@ -85,10 +87,6 @@ input::placeholder {
     font-size: 17px;
     margin-right: 3%;
     font-family: monospace, monospace;
-}
-
-.input{
-    width: 15%;
 }
 
 #fun_close_div{   
@@ -101,10 +99,6 @@ input::placeholder {
 
 #fun_output_div{    
     display: inline;    
-}
-
-#fun_output{
-    width: 15%;
 }
 
 #fun_check_div{   
