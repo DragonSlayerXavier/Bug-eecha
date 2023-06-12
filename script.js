@@ -4,7 +4,7 @@ var lives; // The current number of lives
 var rand = -1;
 var picked = [];
 var killed = [];
-var logs = "$$$$$$$$$$$$$$$\r\n";
+//var logs = "$$$$$$$$$$$$$$$\r\n";
 var displayHistory = false;
 var futile = 0;
 
@@ -43,7 +43,7 @@ function lives_init() {
         setAttributes(flower, { "class": "alive", "id": `flower${MAX_LIVES - i + 1}` });
         document.getElementById("garden_p").appendChild(flower);
     }
-    logs = logs.concat(`Started game with ${MAX_LIVES} lives.\r\n`);
+    //logs = logs.concat(`Started game with ${MAX_LIVES} lives.\r\n`);
 }
 
 function end_round() {
@@ -56,7 +56,7 @@ function end_round() {
     document.getElementById("history_p").innerHTML = "";
     killed = [];
     futile = 0;
-    logs = logs.concat("Round started.\r\n");
+    //logs = logs.concat("Round started.\r\n");
 }
 
 function setLives() {
@@ -74,8 +74,8 @@ function setLives() {
         document.getElementById("fun_check").setAttribute("onclick", "");
         document.getElementById("result").setAttribute("style", "display: block;");
         document.getElementById("result").innerHTML = data.lossMessage;
-        logs = logs.concat("Game over.\r\n###############\r\n");
-        console.log(logs);
+        //logs = logs.concat("Game over.\r\n###############\r\n");
+        //console.log(logs);
     }
 }
 
@@ -97,7 +97,7 @@ function qload() {
     document.getElementById("ques").innerHTML = data.database[rand].question.split("\n").join("<br />");
     var code = data.database[rand].code.split("\n").join("<br />");
     document.getElementById("code").innerHTML = code.split("\t").join("<span class=\"tab\"></span>");
-    logs = logs.concat(`Question: ${data.database[rand].question}\r\n`);
+    //logs = logs.concat(`Question: ${data.database[rand].question}\r\n`);
     for (var i = 1; i <= data.database[rand].count; i++) {
         var span = document.createElement("span");
         setAttributes(span, { "class": "p_input", "id": `p_input${i}` });
@@ -123,6 +123,262 @@ async function load() {
     qload();
 }
 
-function execute() {
+function handleInput(n) {
+    var args = document.getElementById(`input${n}`).value;
+    if(data.database[rand].in[n-1] == "boolean") {
+        if(args == "true") {
+            return true;
+        } else if(args == "false") {
+            return false;
+        } else {
+            return args;
+        }
+    }
+    if (data.database[rand].in[n-1] == "number") {
+        return (args.toString());
+    }
+    if (data.database[rand].in[n-1] == "string") {
+        return (args.substring(1, args.length - 1));
+    }
+    if (data.database[rand].in[n-1] == "num_array" || data.database[rand].in[n-1] == "sorted_num_array" || data.database[rand].in[n-1] == "str_array") {
+        return (args.substring(1, args.length - 1).split(","));
+    }
+}
 
+function handleOutput() {
+    var args = document.getElementById(`output`).value;
+    if(data.database[rand].out == "boolean") {
+        return (args.toString().toLowerCase());
+    }
+    if (data.database[rand].out == "number") {
+        return (args.toString());
+    }
+    if (data.database[rand].out == "string") {
+        return (args.substring(1, args.length - 1));
+    }
+    if (data.database[rand].out == "num_array" || data.database[rand].out == "sorted_num_array" || data.database[rand].out == "str_array") {
+        return (args.substring(1, args.length - 1).split(","));
+    }
+}
+
+function validate(input, output) {
+    //Runs a loop to validate every entry in the input array.
+    for (var i = 0; i < data.database[rand].count; i++) {
+        if (data.database[rand].in[i] == "boolean") {
+            if (!(input[i] == "true" || input[i] == "false")) {
+                document.getElementById(`input${i + 1}`).value = "";
+                document.getElementById(`input${i + 1}`).focus();
+                alert(`Input ${i + 1} must be a boolean (true or false).`);
+                return false;
+            }
+        }
+        //Checks if the input is a number using isNaN.
+        if (data.database[rand].in[i] == "number") {
+            if (isNaN(input[i])) {
+                document.getElementById(`input${i + 1}`).value = "";
+                document.getElementById(`input${i + 1}`).focus();
+                alert(`Input ${i + 1} must be a number.`);
+                return false;
+            }
+        }
+        //Checks if the input is a string surrounded with double quotes.
+        if (data.database[rand].in[i] == "string") {
+            var args = document.getElementById(`input${i + 1}`).value;
+            if (args[0] != '"' || args[args.length - 1] != '"') {
+                alert(`Please follow valid string formatting for Input ${i + 1}.`);
+                return false;
+            }
+        }
+        //Checks if the input is an array surrounded with square brackets.
+        if (data.database[rand].in[i] === "str_array" || data.database[rand].in[i] === "num_array" || data.database[rand].in[i] === "sorted_num_array") {
+            var args = document.getElementById(`input${i + 1}`).value;
+            if (args[0] != '[' || args[args.length - 1] != ']') {
+                alert(`Please follow valid array formatting for Input ${i + 1}.`);
+                return false;
+            }
+        }
+        //Checks if the elements of a string array are strings surrounded with double quotes.
+        if (data.database[rand].in[i] == "str_array") {
+            var args = document.getElementById(`input${i + 1}`).value;
+            if (args[1] != '"' || args[args.length - 2] != '"') {
+                alert(`Please follow valid string formatting for Input ${i + 1}.`);
+                return false;
+            }
+        }
+        //Checks if the elements of a number array are numbers using isNaN.
+        if (data.database[rand].in[i] === "num_array" || data.database[rand].in[i] === "sorted_num_array") {
+            for (var j = 0; j < input[i].length; j++) {
+                if (isNaN(input[i][j])) {
+                    document.getElementById(`input${i + 1}`).value = "";
+                    document.getElementById(`input${i + 1}`).focus();
+                    alert(`Input ${i + 1} must be an array of numbers.`);
+                    return false;
+                }
+            }
+        }
+        //Checks if the elements of a sorted number array are sorted.
+        if (data.database[rand].in[i] === "sorted_num_array") {
+            for (var j = 0; j < input[i].length - 1; j++) {
+                if (Number(input[i][j]) > Number(input[i][j + 1])) {
+                    document.getElementById(`input${i + 1}`).value = "";
+                    document.getElementById(`input${i + 1}`).focus();
+                    alert(`Input ${i + 1} must be a sorted array of numbers.`);
+                    return false;
+                }
+            }
+        }
+    }
+    //Checks if the output is a boolean.
+    if (data.database[rand].out === "boolean") {
+        if (!(output === "true" || output === "false")) {
+            document.getElementById("output").value = "";
+            document.getElementById("output").focus();
+            alert("Output must be a boolean (true or false).");
+            return false;
+        }
+    }
+    //Checks if the output is a number using isNaN.
+    if (data.database[rand].out === "number") {
+        if (isNaN(output)) {
+            document.getElementById("output").value = "";
+            document.getElementById("output").focus();
+            alert("Output must be a number.");
+            return false;
+        }
+    }
+    //Checks if the output is a string surrounded with double quotes.
+    if (data.database[rand].out === "string") {
+        var args = document.getElementById("output").value;
+        if (args[0] != '"' || args[args.length - 1] != '"') {
+            alert("Please follow valid string formatting for Output.");
+            return false;
+        }
+    }
+    //Checks if the output is an array surrounded with square brackets.
+    if (data.database[rand].out === "str_array" || data.database[rand].out === "num_array" || data.database[rand].out === "sorted_num_array") {
+        var args = document.getElementById("output").value;
+        if (args[0] != '[' || args[args.length - 1] != ']') {
+            alert("Please follow valid array formatting for Output.");
+            return false;
+        }
+    }
+    //Checks if the elements of a string array are strings surrounded with double quotes.
+    if (data.database[rand].out === "str_array") {
+        var args = document.getElementById("output").value;
+        if (args[1] != '"' || args[args.length - 2] != '"') {
+            alert("Please follow valid string formatting for Output.");
+            return false;
+        }
+    }
+    //Checks if the elements of a number array are numbers using isNaN.
+    if (data.database[rand].out === "num_array" || data.database[rand].out === "sorted_num_array") {
+        for (var j = 0; j < output.length; j++) {
+            if (isNaN(output[j])) {
+                document.getElementById("output").value = "";
+                document.getElementById("output").focus();
+                alert("Output must be an array of numbers.");
+                return false;
+            }
+        }
+    }
+    //Checks if the elements of a sorted number array are sorted.
+    if (data.database[rand].out === "sorted_num_array") {
+        for (var j = 0; j < output.length - 1; j++) {
+            if (Number(output[j]) > Number(output[j + 1])) {
+                document.getElementById("output").value = "";
+                document.getElementById("output").focus();
+                alert("Output must be a sorted array of numbers.");
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function customValidate(input) {
+    if (!data.database[rand].customValidate) {
+        return true;
+    }
+    var f = new Function(...(data.database[rand].valFunc.arguments), data.database[rand].valFunc.body);
+    if (!f(...input)) {
+        alert("Please follow input specifications.");
+        return false;
+    }
+    return true;
+}
+
+function updateInputType(input) {
+    var arr = [];
+    for (var i = 0; i < data.database[rand].count; i++) {
+        if (data.database[rand].in[i] == "boolean") {
+            arr.push(input[i] == "true");
+            continue;
+        }
+        if (data.database[rand].in[i] == "number") {
+            arr.push(Number(input[i]));
+            continue;
+        }
+        if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "sorted_num_array") {
+            arr[i] = [];
+            for (var j = 0; j < input[i].length; j++) {
+                if (!isNaN(Number(input[i][j])) && input[i][j] != "") {
+                    arr[i].push(Number(input[i][j]));
+                }
+            }
+            continue;
+        }
+        if (data.database[rand].in[i] == "str_array") {
+            arr.push(JSON.parse(`[${input[i]}]`));
+            continue;
+        }
+        arr.push(input[i]);
+    }
+    return arr;
+}
+
+function updateOutputType(output) {
+    if (data.database[rand].out == "boolean") {
+        var res = (output == "true");
+        return res;
+    }
+    if (data.database[rand].out == "number") {
+        var res = Number(output);
+        return res;
+    }
+    if (data.database[rand].out == "num_array" || data.database[rand].out == "sorted_num_array") {
+        var res = [];
+        for (var j = 0; j < output.length; j++) {
+            if (!isNaN(Number(output[j])) && output[j] != "") {
+                res.push(Number(output[j]));
+            }
+        }
+        return res;
+    }
+    if (data.database[rand].in[i] == "str_array") {
+        res = JSON.parse(`[${output}]`);
+        return res;
+    }
+    return output;
+}
+
+function correct(input) {
+    var f = new Function(...(data.database[rand].correct.arguments), data.database[rand].correct.body);
+    return f(...input);
+}
+
+function execute() {
+    var args = [];
+    for (var i = 1; i <= data.database[rand].count; i++) {
+        args.push(handleInput(i));
+    }
+    var output = handleOutput();
+    if (!validate(args, output)) {
+        return //logs = logs.concat(`Input: ${appendInputToLogs(args)}. Output: ${appendOutputToLogs(output)}. Invalid.\r\n`);
+    }
+    if (!customValidate(args)) {
+        return //logs = logs.concat(`Input: ${appendInputToLogs(args)}. Output: ${appendOutputToLogs(output)}. Invalid.\r\n`);
+    }
+    args = updateInputType(args);
+    output = updateOutputType(output);
+    correctOutput = correct(args);
 }
