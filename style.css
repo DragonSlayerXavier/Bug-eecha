@@ -1,14 +1,22 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
     min-height: 100vh;
     width: 100%;
     background-image: url(assets/background.png);
-    background-position:center;
+    background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
 
 .tab {
@@ -16,7 +24,7 @@ body{
     margin-left: 2em;
 }
 
-#ques{
+#ques {
     color: #000000;
     position: absolute;
     padding-top: 0%;
@@ -28,7 +36,7 @@ body{
     font-size: 18px;
 }
 
-#code_div{
+#code_div {
     border: #A6A6A6;
     border-style: solid;
     border-radius: 10px;
@@ -43,13 +51,13 @@ body{
     background-color: white;
 }
 
-#code{
+#code {
     font-family: monospace, monospace;
     text-align: justify;
     font-size: 18px;
 }
 
-#function_div{
+#function_div {
     color: #000000;
     position: absolute;
     padding-top: 0%;
@@ -62,16 +70,16 @@ body{
 }
 
 
-#fun_name_div{   
-    display: inline;    
-}
-
-
-#fun_open_div{    
+#fun_name_div {
     display: inline;
 }
 
-#fun_input_div{
+
+#fun_open_div {
+    display: inline;
+}
+
+#fun_input_div {
     display: inline;
 }
 
@@ -90,23 +98,23 @@ input::placeholder {
     font-family: monospace, monospace;
 }
 
-#fun_close_div{   
-    display: inline;    
+#fun_close_div {
+    display: inline;
 }
 
-#fun_equals_div{    
-    display: inline;    
+#fun_equals_div {
+    display: inline;
 }
 
-#fun_output_div{    
-    display: inline;    
+#fun_output_div {
+    display: inline;
 }
 
-#fun_check_div{   
-    display: inline;    
+#fun_check_div {
+    display: inline;
 }
 
-#fun_check{
+#fun_check {
     text-decoration: none;
     color: black;
     border: 2px solid #A6A6A6;
@@ -117,18 +125,18 @@ input::placeholder {
     cursor: pointer;
     text-align: center;
     width: 5%;
-    margin-left:10px;
-    font-family:sans-serif;
+    margin-left: 10px;
+    font-family: sans-serif;
     border-radius: 5px;
 }
 
-#fun_check:hover{
+#fun_check:hover {
     border: 2px solid pink;
     background: transparent;
     transition: 0.1s;
 }
 
-#scoreboard{
+#scoreboard {
     border: #775548;
     border-style: solid;
     border-radius: 10px;
@@ -142,7 +150,7 @@ input::placeholder {
     position: absolute;
 }
 
-#bugs1{
+#bugs1 {
     color: #FD6666;
     position: absolute;
     padding-top: 0%;
@@ -154,7 +162,7 @@ input::placeholder {
     font-size: 90px;
 }
 
-#bugs2{
+#bugs2 {
     color: #000000;
     position: absolute;
     padding-top: 0%;
@@ -166,7 +174,7 @@ input::placeholder {
     font-size: 25px;
 }
 
-#leaf_with_bug{
+#leaf_with_bug {
     position: absolute;
     padding-top: 0%;
     top: 44%;
@@ -174,7 +182,7 @@ input::placeholder {
 }
 
 
-#result{
+#result {
     color: #000000;
     font-family: sans-serif;
     font-size: 23px;
@@ -188,7 +196,7 @@ input::placeholder {
 }
 
 
-#history{
+#history {
     text-decoration: none;
     color: black;
     border: 2px solid #A6A6A6;
@@ -198,20 +206,20 @@ input::placeholder {
     cursor: pointer;
     text-align: center;
     width: 9%;
-    font-family:sans-serif;
+    font-family: sans-serif;
     border-radius: 5px;
     position: absolute;
     top: 52%;
-    left:1%;
+    left: 1%;
 }
 
-#history:hover{
+#history:hover {
     border: 2px solid #73D216;
     background: transparent;
     transition: 0.1s;
 }
 
-#input_history{
+#input_history {
     border: #A6A6A6;
     border-style: solid;
     border-radius: 10px;
@@ -222,16 +230,16 @@ input::placeholder {
     left: 1%;
     width: 30%;
     top: 57%;
-    position: absolute;   
+    position: absolute;
 }
 
-#history_p{
+#history_p {
     font-family: monospace, monospace;
     text-align: justify;
     font-size: 18px;
 }
 
-#fun_next{
+#fun_next {
     text-decoration: none;
     color: black;
     border: 2px solid #A6A6A6;
@@ -242,35 +250,36 @@ input::placeholder {
     cursor: pointer;
     text-align: center;
     width: 10%;
-    font-family:sans-serif;
+    font-family: sans-serif;
     border-radius: 5px;
     left: 34%;
     top: 73%;
 }
 
-#fun_next:hover{
+#fun_next:hover {
     border: 2px solid #FFBD59;
     background: transparent;
     transition: 0.1s;
 }
 
-#garden_div{
+#garden_div {
     position: absolute;
     padding-top: 0%;
     top: 80%;
     display: inline;
     padding-left: 1%;
+    width: 100%;
 }
 
-img{
-    width:5%;
+img {
+    width: 5%;
     padding-right: 1%;
 }
 
-.alive{
-    content:url('assets/alive_flower.png');
+.alive {
+    content: url('assets/alive_flower.png');
 }
 
-.dead{
-    content:url('assets/dead_flower.png'); 
+.dead {
+    content: url('assets/dead_flower.png');
 }

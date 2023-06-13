@@ -1,13 +1,13 @@
 {
     "MAX_LIVES": 10,
-    "MAX_QUESTIONS": 0,
+    "MAX_QUESTIONS": 10,
     "winMessage": "You win!",
     "lossMessage": "You lose! Please try again.",
     "database": [
         {
             "name": "median",
             "count": 1,
-            "numFunc": 3,
+            "numFunc": 6,
             "futile": 5,
             "in": [
                 "num_array"
@@ -49,6 +49,27 @@
                         "list"
                     ],
                     "body": "var max = Math.max.apply(null, list);\nreturn list.filter(function(x) { return x < max; })[0];"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "list"
+                    ],
+                    "body": "list.sort();\nvar median = (list[0] + list[2])/2;\nreturn median;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "list"
+                    ],
+                    "body": "list.sort();\nif(list[1]==(list[0]+list[2])/2){\nreturn list[1];\n}\nelse{\nreturn list[0];\n}"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "list"
+                    ],
+                    "body": "return list[2];"
                 }
             ]
         }

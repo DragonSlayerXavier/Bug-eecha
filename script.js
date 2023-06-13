@@ -6,9 +6,10 @@ var picked = [];
 var killed = [];
 var displayHistory = false;
 var futile = 0;
+var found = 0;
 
 function toggleHistory() {
-    if(displayHistory) {
+    if (displayHistory) {
         document.getElementById("input_history").setAttribute("style", "display: none;");
         document.getElementById("history").innerHTML = "Show History";
         displayHistory = false;
@@ -39,7 +40,7 @@ function lives_init() {
     for (var i = 0; i < lives; i++) {
         var flower = document.createElement("img");
         flower.setAttribute("class", "dead");
-        setAttributes(flower, { "class": "alive", "id": `flower${MAX_LIVES - i + 1}` });
+        setAttributes(flower, { "class": "alive", "id": `flower${i + 1}` });
         document.getElementById("garden_p").appendChild(flower);
     }
 }
@@ -53,6 +54,7 @@ function end_round() {
     }
     document.getElementById("history_p").innerHTML = "";
     killed = [];
+    found = 0;
     futile = 0;
 }
 
@@ -96,10 +98,10 @@ function qload() {
         var span = document.createElement("span");
         setAttributes(span, { "class": "p_input", "id": `p_input${i}` });
         var textbox = document.createElement("input");
-        setAttributes(textbox, { "type": "text", "class": "input", "name": "input", "id": `input${i}` , "placeholder": `(${data.database[rand].correct.arguments[i - 1]})`});
+        setAttributes(textbox, { "type": "text", "class": "input", "name": "input", "id": `input${i}`, "placeholder": `(${data.database[rand].correct.arguments[i - 1]})` });
         span.appendChild(textbox);
         document.getElementById("fun_input_div").appendChild(span);
-        if(i != data.database[rand].count) {
+        if (i != data.database[rand].count) {
             var comma = document.createElement("span");
             comma.innerHTML = ", ";
             document.getElementById("fun_input_div").appendChild(comma);
@@ -119,29 +121,29 @@ async function load() {
 
 function handleInput(n) {
     var args = document.getElementById(`input${n}`).value;
-    if(data.database[rand].in[n-1] == "boolean") {
-        if(args == "true") {
+    if (data.database[rand].in[n - 1] == "boolean") {
+        if (args == "true") {
             return true;
-        } else if(args == "false") {
+        } else if (args == "false") {
             return false;
         } else {
             return args;
         }
     }
-    if (data.database[rand].in[n-1] == "number") {
+    if (data.database[rand].in[n - 1] == "number") {
         return (args.toString());
     }
-    if (data.database[rand].in[n-1] == "string") {
+    if (data.database[rand].in[n - 1] == "string") {
         return (args.substring(1, args.length - 1));
     }
-    if (data.database[rand].in[n-1] == "num_array" || data.database[rand].in[n-1] == "sorted_num_array" || data.database[rand].in[n-1] == "str_array") {
+    if (data.database[rand].in[n - 1] == "num_array" || data.database[rand].in[n - 1] == "sorted_num_array" || data.database[rand].in[n - 1] == "str_array") {
         return (args.substring(1, args.length - 1).split(","));
     }
 }
 
 function handleOutput() {
     var args = document.getElementById(`output`).value;
-    if(data.database[rand].out == "boolean") {
+    if (data.database[rand].out == "boolean") {
         return (args.toString().toLowerCase());
     }
     if (data.database[rand].out == "number") {
@@ -360,6 +362,50 @@ function correct(input) {
     return f(...input);
 }
 
+function incorrect(input, output) {
+    var foundInst = 0;
+    for (i = 0; i < data.database[rand].numFunc; i++) {
+        if (i in killed) continue;
+        var f = new Function(...(data.database[rand].incorrect[i].arguments), data.database[rand].incorrect[i].body);
+        if (f(...input) != output) {
+            killed.push(i);
+            foundInst++;
+        }
+    }
+    found += foundInst;
+    if (foundInst == 0) {
+        futile++;
+    }
+    futile = 0;
+}
+
+function resCheck(a1, a2) {
+    if (data.database[rand].out == "number") {
+        return a1 == a2;
+    }
+    if (data.database[rand].out == "string") {
+        return a1 === a2;
+    }
+    if (a1.length != a2.length) return false;
+    for (var i = 0; i < a1.length; i++) {
+        if (a1[i] != a2[i]) return false;
+    }
+    return true;
+}
+
+function formatInput(arr) {
+    res = "";
+    if (!arr.length) return arr;
+    for (var i = 0; i < arr.length; i++) {
+        if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "str_array" || data.database[rand].in[i] == "sorted_num_array") {
+            res += `[${arr[i]}],`;
+        } else {
+            res += `${arr[i]},`;
+        }
+    }
+    return res.substring(0, res.length - 1);
+}
+
 function execute() {
     var args = [];
     for (var i = 1; i <= data.database[rand].count; i++) {
@@ -375,4 +421,30 @@ function execute() {
     args = updateInputType(args);
     output = updateOutputType(output);
     correctOutput = correct(args);
+    if (!resCheck(output, correctOutput)) {
+        document.getElementById("output").value = "";
+        document.getElementById("output").focus();
+        lives--;
+        setLives();
+        return;
+    }
+    incorrect(args, correctOutput);
+
+    document.getElementById("bugs1").innerHTML = `${found}/${data.database[rand].numFunc}`;
+    if (futile > data.database[rand].futile) {
+        lives--;
+        setLives();
+    }
+    if (found == data.database[rand].numFunc) {
+        document.getElementById("fun_next")
+        //if (picked.length < data.database.length - 1 && picked.length < data.MAX_QUESTIONS) {
+            document.getElementById("fun_next_div").setAttribute("style", "display: block;");
+        //}
+        document.getElementById("result").setAttribute("style", "display: block;");
+        document.getElementById("result").innerHTML = data.winMessage;
+        document.getElementById("fun_check").setAttribute("onclick", "");
+    }
+    document.getElementById("history_p").innerHTML = document.getElementById("history_p").innerHTML.concat(formatInput(args));
+    document.getElementById("history_p").appendChild(document.createElement("br"));
+    clear_and_focus();
 }
