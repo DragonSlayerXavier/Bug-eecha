@@ -4,7 +4,6 @@ var lives; // The current number of lives
 var rand = -1;
 var picked = [];
 var killed = [];
-//var logs = "$$$$$$$$$$$$$$$\r\n";
 var displayHistory = false;
 var futile = 0;
 
@@ -43,7 +42,6 @@ function lives_init() {
         setAttributes(flower, { "class": "alive", "id": `flower${MAX_LIVES - i + 1}` });
         document.getElementById("garden_p").appendChild(flower);
     }
-    //logs = logs.concat(`Started game with ${MAX_LIVES} lives.\r\n`);
 }
 
 function end_round() {
@@ -56,7 +54,6 @@ function end_round() {
     document.getElementById("history_p").innerHTML = "";
     killed = [];
     futile = 0;
-    //logs = logs.concat("Round started.\r\n");
 }
 
 function setLives() {
@@ -74,8 +71,6 @@ function setLives() {
         document.getElementById("fun_check").setAttribute("onclick", "");
         document.getElementById("result").setAttribute("style", "display: block;");
         document.getElementById("result").innerHTML = data.lossMessage;
-        //logs = logs.concat("Game over.\r\n###############\r\n");
-        //console.log(logs);
     }
 }
 
@@ -97,7 +92,6 @@ function qload() {
     document.getElementById("ques").innerHTML = data.database[rand].question.split("\n").join("<br />");
     var code = data.database[rand].code.split("\n").join("<br />");
     document.getElementById("code").innerHTML = code.split("\t").join("<span class=\"tab\"></span>");
-    //logs = logs.concat(`Question: ${data.database[rand].question}\r\n`);
     for (var i = 1; i <= data.database[rand].count; i++) {
         var span = document.createElement("span");
         setAttributes(span, { "class": "p_input", "id": `p_input${i}` });
@@ -373,10 +367,10 @@ function execute() {
     }
     var output = handleOutput();
     if (!validate(args, output)) {
-        return //logs = logs.concat(`Input: ${appendInputToLogs(args)}. Output: ${appendOutputToLogs(output)}. Invalid.\r\n`);
+        return;
     }
     if (!customValidate(args)) {
-        return //logs = logs.concat(`Input: ${appendInputToLogs(args)}. Output: ${appendOutputToLogs(output)}. Invalid.\r\n`);
+        return;
     }
     args = updateInputType(args);
     output = updateOutputType(output);

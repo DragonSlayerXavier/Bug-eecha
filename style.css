@@ -58,6 +58,7 @@ body{
     font-size: 18px;
     display: inline;
     padding-left: 1%;
+    width: 100%;
 }
 
 
@@ -79,7 +80,7 @@ input {
     text-align: right;
     font-family: monospace, monospace;
     margin-bottom: 0.5%;
-    width: 10%
+    width: 10%;
 }
 
 input::placeholder {
@@ -115,7 +116,7 @@ input::placeholder {
     position: absolute;
     cursor: pointer;
     text-align: center;
-    width: 10%;
+    width: 5%;
     margin-left:10px;
     font-family:sans-serif;
     border-radius: 5px;
