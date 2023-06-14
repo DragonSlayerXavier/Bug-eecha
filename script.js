@@ -119,6 +119,18 @@ async function load() {
     qload();
 }
 
+function reload() {
+    picked = [];
+    rand = -1;
+    const garden = document.getElementById("garden_p");
+    while (garden.firstChild) {
+        garden.removeChild(garden.lastChild);
+    }
+    end_round();
+    lives_init();
+    qload();
+}
+
 function handleInput(n) {
     var args = document.getElementById(`input${n}`).value;
     if (data.database[rand].in[n - 1] == "boolean") {
@@ -365,7 +377,7 @@ function correct(input) {
 function incorrect(input, output) {
     var foundInst = 0;
     for (i = 0; i < data.database[rand].numFunc; i++) {
-        if (i in killed) continue;
+        if (killed.includes(i)) continue;
         var f = new Function(...(data.database[rand].incorrect[i].arguments), data.database[rand].incorrect[i].body);
         if (f(...input) != output) {
             killed.push(i);
@@ -375,8 +387,9 @@ function incorrect(input, output) {
     found += foundInst;
     if (foundInst == 0) {
         futile++;
+    } else {
+        futile = 0;
     }
-    futile = 0;
 }
 
 function resCheck(a1, a2) {
