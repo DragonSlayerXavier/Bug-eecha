@@ -91,9 +91,9 @@ function qload() {
     } while (picked.includes(rand));*/ // Uncomment this to enable random question selection
     rand = rand + 1; // Comment this to enable random question selection
     picked.push(rand);
-    document.getElementById("ques").innerHTML = data.database[rand].question.split("\n").join("<br />");
-    var code = data.database[rand].code.split("\n").join("<br />");
-    document.getElementById("code").innerHTML = code.split("\t").join("<span class=\"tab\"></span>");
+    document.getElementById("ques").innerHTML = data.database[rand].question.split("\\n").join("\n").split("\n").join("<br />");
+    var code = data.database[rand].code.split("\\n").join("\n").split("\n").join("<br />");
+    document.getElementById("code").innerHTML = code.split("\\t").join("\t").split("\t").join("<span class=\"tab\"></span>");
     for (var i = 1; i <= data.database[rand].count; i++) {
         var span = document.createElement("span");
         setAttributes(span, { "class": "p_input", "id": `p_input${i}` });
@@ -362,7 +362,7 @@ function updateOutputType(output) {
         }
         return res;
     }
-    if (data.database[rand].in[i] == "str_array") {
+    if (data.database[rand].out == "str_array") {
         res = JSON.parse(`[${output}]`);
         return res;
     }
