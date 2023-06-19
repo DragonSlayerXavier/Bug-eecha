@@ -13,7 +13,7 @@
                 "num_array"
             ],
             "out": "number",
-            "question": "Given an array of three numbers \"list\", return its median.",
+            "question": "Given an ***array*** of three numbers \"list\", return its median.",
             "code": "function median(list){\n\tcopy=[...list];\n\tcopy.sort();\n\treturn copy[1];\n}",
             "customValidate": true,
             "valFunc": {
