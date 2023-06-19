@@ -8,11 +8,11 @@ var displayHistory = false;
 var futile = 0;
 var found = 0;
 const markdownParser = (text) => {
-	const toHTML = text
-		.replace(/\*\*(.*)\*\*/gim, '<b>$1</b>') // bold text
-		.replace(/\*(.*)\*/gim, '<i>$1</i>') // italic text
+    const toHTML = text
+        .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>') // bold text
+        .replace(/\*(.*)\*/gim, '<i>$1</i>') // italic text
         .replace(/\[([^\[]+)\](\(([^)]*))\)/gim, '<a href="$3">$1</a>'); // anchor tags
-	return toHTML.trim(); // using trim method to remove whitespace
+    return toHTML.trim(); // using trim method to remove whitespace
 }
 
 function toggleHistory() {
@@ -458,7 +458,7 @@ function execute() {
     if (found == data.database[rand].numFunc) {
         document.getElementById("fun_next")
         //if (picked.length < data.database.length - 1 && picked.length < data.MAX_QUESTIONS) {
-            document.getElementById("fun_next_div").setAttribute("style", "display: block;");
+        document.getElementById("fun_next_div").setAttribute("style", "display: block;");
         //}
         document.getElementById("result").setAttribute("style", "display: block;");
         document.getElementById("result").innerHTML = data.winMessage;
