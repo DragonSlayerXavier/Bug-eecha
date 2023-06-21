@@ -21,7 +21,6 @@ const markdownParser = (text) => {
         .replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>') // strikethrough text
         .replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>') // inline code text
         ; 
-    console.log(toHTML)
     return toHTML.trim(); // using trim method to remove whitespace
 }
 
