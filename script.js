@@ -8,10 +8,21 @@ var displayHistory = false;
 var futile = 0;
 var found = 0;
 const markdownParser = (text) => {
+    console.log(text);
     const toHTML = text
-        .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>') // bold text
-        .replace(/\*(.*)\*/gim, '<i>$1</i>') // italic text
-        .replace(/\[([^\[]+)\](\(([^)]*))\)/gim, '<a href="$3">$1</a>'); // anchor tags
+        .replace(/^\s*\n-/gm, '<ul>\n-')
+        .replace(/^(\*.+)\s*\n([^-])/gm, '$1\n</ul>\n\n$2')
+        .replace(/^-(.+)/gm, '<li>$1</li>') // Unordered Lists
+        .replace(/^\s*\n\d\./gm, '<ol>\n1.')
+        .replace(/^(\d\..+)\s*\n([^\d\.])/gm, '$1\n</ol>\n\n$2')
+        .replace(/^\d\.(.+)/gm, '<li>$1</li>') // Ordered Lists
+        .replace(/[\[]{1}([^\]]+)[\]]{1}[\(]{1}([^\)\"]+)(\"(.+)\")?[\)]{1}/g, '<a href="$2" title="$4">$1</a>')  // anchor tags
+        .replace(/[\*\_]{2}([^\*\_]+)[\*\_]{2}/g, '<b>$1</b>') // bold text
+        .replace(/[\*\_]{1}([^\*\_]+)[\*\_]{1}/g, '<i>$1</i>') // italic text
+        .replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>') // strikethrough text
+        .replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>') // inline code text
+        ; 
+    console.log(toHTML);
     return toHTML.trim(); // using trim method to remove whitespace
 }
 
@@ -98,7 +109,7 @@ function qload() {
     } while (picked.includes(rand));*/ // Uncomment this to enable random question selection
     rand = rand + 1; // Comment this to enable random question selection
     picked.push(rand);
-    document.getElementById("ques").innerHTML = markdownParser(data.database[rand].question.split("\\n").join("\n").split("\n").join("<br />").split("\\t").join("\t").split("\t").join("<span class=\"tab\"></span>").split("\\*").join("&ast;"));
+    document.getElementById("ques").innerHTML = markdownParser(data.database[rand].question.split("\\*").join("&ast;")).split("\\n").join("\n").split("\n").join("<br />").split("\\t").join("\t").split("\t").join("<span class=\"tab\"></span>");
     var code = data.database[rand].code.split("\\n").join("\n").split("\n").join("<br />");
     document.getElementById("code").innerHTML = code.split("\\t").join("\t").split("\t").join("<span class=\"tab\"></span>");
     for (var i = 1; i <= data.database[rand].count; i++) {
