@@ -10,7 +10,7 @@ var found = 0;
 const markdownParser = (text) => {
     const toHTML = text
         .replace(/^\s*\n-/gm, '<ul>\n-')
-        .replace(/^(\*.+)\s*\n([^-])/gm, '$1\n</ul>\n\n$2')
+        .replace(/^(-.+)\s*\n([^-])/gm, '$1\n</ul>\n\n$2')
         .replace(/^-(.+)/gm, '<li>$1</li>') // Unordered Lists
         .replace(/^\s*\n\d\./gm, '<ol>\n1.')
         .replace(/^(\d\..+)\s*\n([^\d\.])/gm, '$1\n</ol>\n\n$2')
@@ -21,6 +21,7 @@ const markdownParser = (text) => {
         .replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>') // strikethrough text
         .replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>') // inline code text
         ; 
+    console.log(toHTML)
     return toHTML.trim(); // using trim method to remove whitespace
 }
 
