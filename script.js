@@ -8,7 +8,6 @@ var displayHistory = false;
 var futile = 0;
 var found = 0;
 const markdownParser = (text) => {
-    console.log(text);
     const toHTML = text
         .replace(/^\s*\n-/gm, '<ul>\n-')
         .replace(/^(\*.+)\s*\n([^-])/gm, '$1\n</ul>\n\n$2')
@@ -22,7 +21,6 @@ const markdownParser = (text) => {
         .replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>') // strikethrough text
         .replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>') // inline code text
         ; 
-    console.log(toHTML);
     return toHTML.trim(); // using trim method to remove whitespace
 }
 
