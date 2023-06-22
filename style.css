@@ -32,8 +32,12 @@ ul br, ol br {
     display: none;
 }
 
-ul, ol {
+ul {
     padding-left: 7%;
+}
+
+ol {
+    padding-left: 10%;
 }
 
 #ques_div {

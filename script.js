@@ -20,7 +20,7 @@ const markdownParser = (text) => {
         .replace(/[\*\_]{1}([^\*\_]+)[\*\_]{1}/g, '<i>$1</i>') // italic text
         .replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>') // strikethrough text
         .replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>') // inline code text
-        ; 
+        ;
     return toHTML.trim(); // using trim method to remove whitespace
 }
 
