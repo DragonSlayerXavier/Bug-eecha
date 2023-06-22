@@ -28,21 +28,27 @@ br+br {
     margin-left: 2em;
 }
 
-ul br {
+ul br, ol br {
     display: none;
 }
 
-ol br {
-    display: none;
+ul, ol {
+    padding-left: 7%;
+}
+
+#ques_div {
+    height: 10%;
+    overflow-y: auto;
+    overflow-x: auto;
+    left: 1%;
+    right: 1%;
+    top: 1%;
+    position: absolute;
 }
 
 #ques {
     color: #000000;
     position: absolute;
-    padding-top: 0%;
-    top: 1%;
-    left: 2.5%;
-    right: 1%;
     font-family: monospace, monospace;
     text-align: justify;
     font-size: 18px;
@@ -58,7 +64,7 @@ ol br {
     padding: 0.5% 0.5% 0.5% 0.5%;
     left: 1%;
     right: 1%;
-    top: 8%;
+    top: 12%;
     position: absolute;
     background-color: white;
 }
