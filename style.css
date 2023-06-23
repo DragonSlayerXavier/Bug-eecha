@@ -28,7 +28,8 @@ br+br {
     margin-left: 2em;
 }
 
-ul br, ol br {
+ul br,
+ol br {
     display: none;
 }
 
@@ -62,10 +63,8 @@ ol {
     border: #A6A6A6;
     border-style: solid;
     border-radius: 10px;
-    height: 22%;
-    overflow-y: auto;
+    height: 23%;
     overflow-x: auto;
-    padding: 0.5% 0.5% 0.5% 0.5%;
     left: 1%;
     right: 1%;
     top: 12%;
@@ -73,10 +72,51 @@ ol {
     background-color: white;
 }
 
+.y_scroll {
+    overflow-y: auto;
+}
+
+.y_scroll_lock {
+    overflow-y: hidden;
+}
+
 #code {
     font-family: monospace, monospace;
     text-align: justify;
     font-size: 18px;
+    white-space: pre-wrap;
+}
+
+code {
+    display: block
+}
+
+#code::before {
+    counter-reset: listing;
+}
+
+#code code {
+    counter-increment: listing;
+}
+
+#code code::before {
+    background-color: #C0C0C0;
+    content: counter(listing) " ";
+    display: inline-block;
+    width: 2em;
+    padding-left: 0%;
+    margin-left: 0%;
+    text-align: right;
+}
+
+#code .filler::before {
+    background-color: #C0C0C0;
+    content: " ";
+    display: inline-block;
+    width: 2em;
+    padding-left: 0%;
+    margin-left: 0%;
+    text-align: right;
 }
 
 #function_div {
