@@ -107,17 +107,17 @@ function qload() {
     } while (picked.includes(rand));*/ // Uncomment this to enable random question selection
     rand = rand + 1; // Comment this to enable random question selection
     picked.push(rand);
-    document.getElementById("ques").innerHTML = markdownParser(data.database[rand].question.split("\\*").join("&ast;")).split("\\n").join("\n").split("\n").join("<br />").split("\\t").join("\t").split("\t").join("    ");
-    var code = data.database[rand].code.split("\\n").join("\n").split("\n").join("<br />").split("\\t").join("\t").split("\t").join("    ");
-    if (code.split("<br />").length > 8) {
-        document.getElementById("code").innerHTML = ("<code>" + code).split("<br />").join("</code><code>") + "</code>";
+    document.getElementById("ques").innerHTML = markdownParser(data.database[rand].question.split("\\*").join("&ast;")).split("\\n").join("\n").split("\n").join("<br>").split("\\t").join("\t").split("\t").join("    ").split("<").join("&lt;").split(">").join("&gt;");
+    var code = data.database[rand].code.split("\\n").join("\n").split("\n").join("<br>").split("\\t").join("\t").split("\t").join("    ");
+    if (code.split("<br>").length > 8) {
+        document.getElementById("code").innerHTML = ("<code>" + code).split("<br>").join("</code><code>") + "</code>";
         document.getElementById("code_div").setAttribute("class", "y_scroll");
     } else {
         filler = "";
-        for (var i = 0; i < 8 - code.split("<br />").length; i++) {
+        for (var i = 0; i < 8 - code.split("<br>").length; i++) {
             filler += "<code class =\"filler\"></code>"
         }
-        document.getElementById("code").innerHTML = ("<code>" + code).split("<br />").join("</code><code>") + "</code>" + filler;
+        document.getElementById("code").innerHTML = ("<code>" + code).split("<br>").join("</code><code>") + "</code>" + filler;
         document.getElementById("code_div").setAttribute("class", "y_scroll_lock");
     }
     for (var i = 1; i <= data.database[rand].count; i++) {
