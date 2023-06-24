@@ -110,14 +110,14 @@ function qload() {
     document.getElementById("ques").innerHTML = markdownParser(data.database[rand].question.split("\\*").join("&ast;")).split("\\n").join("\n").split("\n").join("<br />").split("\\t").join("\t").split("\t").join("<span class=\"tab\"></span>");
     var code = data.database[rand].code.split("\\n").join("\n").split("\n").join("<br />").split("\\t").join("\t").split("\t").join("<span class=\"tab\"></span>");
     if (code.split("<br />").length > 8) {
-        document.getElementById("code").innerHTML = ("<code class=\"actual_code\">" + code).split("<br />").join("</code><code class =\"actual_code\">") + "</code>";
+        document.getElementById("code").innerHTML = ("<code>" + code).split("<br />").join("</code><code>") + "</code>";
         document.getElementById("code_div").setAttribute("class", "y_scroll");
     } else {
         filler = "";
         for (var i = 0; i < 8 - code.split("<br />").length; i++) {
             filler += "<code class =\"filler\"></code>"
         }
-        document.getElementById("code").innerHTML = ("<code class=\"actual_code\">" + code).split("<br />").join("</code><code class=\"actual_code\">") + "</code>" + filler;
+        document.getElementById("code").innerHTML = ("<code>" + code).split("<br />").join("</code><code>") + "</code>" + filler;
         document.getElementById("code_div").setAttribute("class", "y_scroll_lock");
     }
     for (var i = 1; i <= data.database[rand].count; i++) {
