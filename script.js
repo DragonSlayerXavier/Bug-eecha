@@ -117,7 +117,7 @@ function qload() {
         for (var i = 0; i < 8 - code.split("<br />").length; i++) {
             filler += "<code class =\"filler\"></code>"
         }
-        document.getElementById("code").innerHTML = ("<code>" + code).split("<br />").join("</code><code>") + "</code>" + filler;
+        document.getElementById("code").innerHTML = ("<code class=\"actual_code\">" + code).split("<br />").join("</code><code class=\"actual_code\">") + "</code>" + filler;
         document.getElementById("code_div").setAttribute("class", "y_scroll_lock");
     }
     for (var i = 1; i <= data.database[rand].count; i++) {
