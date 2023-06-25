@@ -410,6 +410,9 @@ function incorrect(input, output) {
         if (killed.includes(i)) continue;
         var f = new Function(...(data.database[rand].incorrect[i].arguments), data.database[rand].incorrect[i].body);
         if (f(...input) != output) {
+            if(data.database[rand].incorrect[i].heart) {
+                lives = Math.min(lives + 1, MAX_LIVES)
+            }
             killed.push(i);
             foundInst++;
         }
