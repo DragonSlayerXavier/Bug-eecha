@@ -19,10 +19,6 @@ body {
     overflow: hidden;
 }
 
-br+br {
-    display: none;
-}
-
 .tab {
     display: inline-block;
     margin-left: 2em;
@@ -89,6 +85,10 @@ ol {
 
 code {
     display: block
+}
+
+.code br+br {
+    display: none;
 }
 
 #code::before {
