@@ -74,6 +74,7 @@ function lives_init() {
  * Ends the previous round and resets all variables and elements.
  */
 function end_round() {
+    document.getElementById("fun_next_div").setAttribute("style", "display: none;");
     document.getElementById("result").setAttribute("style", "display: none;");
     document.getElementById("fun_check").setAttribute("onclick", "execute();");
     const input = document.getElementById("fun_input_div");
@@ -565,8 +566,7 @@ function execute() {
         setLives();
     }
     if (found == data.database[rand].numFunc) {
-        document.getElementById("fun_next")
-        if (picked.length < data.database.length - 1 && data.MAX_QUESTIONS != 0 && picked.length < data.MAX_QUESTIONS) {
+        if (picked.length != data.database.length && picked.length != MAX_QUESTIONS) {
             document.getElementById("fun_next_div").setAttribute("style", "display: block;");
         }
         document.getElementById("result").setAttribute("style", "display: block;");
