@@ -1,6 +1,6 @@
 {
     "MAX_LIVES": 10,
-    "MAX_QUESTIONS": 10,
+    "MAX_QUESTIONS": 0,
     "winMessage": "You win!",
     "lossMessage": "You lose! Please try again.",
     "database": [
@@ -724,6 +724,250 @@
                         "arr"
                     ],
                     "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return newArr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                }
+            ]
+        },
+        {
+            "name": "longestPrefixend",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string s, find the longest prefix that also occurs at the end (so that s = p + t + p), and return t, the string without the beginning and the end.",
+            "code": "def longestPrefixend(s):\n \\t n = len(s)\n \\t prefix=''\n \\t for i in range(n//2+1):\n \\t\\t if s[:i] in s[i:]:\n \\t\\t\\t prefix = s[:i]\n \\t return s[len(prefix):n-len(prefix)]",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "str"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "str"
+                ],
+                "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=0;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=0;i<parseInt(n/2);i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": " var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=0;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length-1) + str[n-1];\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=1;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
+                }
+            ]
+        },
+        {
+            "name": "swapHalves",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string, return the string with the first and second half swapped.",
+            "code": "function swapHalves(str){\n \\t var n = str.length;\n \\t var newStr = \"\";\n \\t if(n%2==0){newStr = str.substring(n/2,n) + str.substring(0,n/2);}\n \\t else{newStr = str.substring(parseInt(n/2)+1,n) + str[parseInt(n/2)] + str.substring(0,parseInt(n/2));}\n \\t return newStr;\n}",
+            "language": "javascript",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "str"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "str"
+                ],
+                "body": "var n = str.length;\n var newStr = \"\";\n if(n%2==0){newStr = str.substring(n/2,n) + str.substring(0,n/2);}\n else{newStr = str.substring(parseInt(n/2)+1,n) + str[parseInt(n/2)] + str.substring(0,parseInt(n/2));}\n return newStr;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n newStr = str.substring(parseInt(n/2),n) + str.substring(0,parseInt(n/2));\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n if(n==1){return newStr;}\n else if(n%2==0){newStr = str.substring(n/2,n) + str.substring(0,n/2);}\n else{newStr = str.substring(parseInt(n/2)+1,n) + str[parseInt(n/2)] + str.substring(0,parseInt(n/2));}\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n if(n%2!=0){newStr = str.substring(n/2,n) + str.substring(0,n/2);}\n else{newStr = str.substring(parseInt(n/2)+1,n) + str[parseInt(n/2)] + str.substring(0,parseInt(n/2));}\n return newStr;"
+                }
+            ]
+        },
+        {
+            "name": "reverseAround",
+            "count": 1,
+            "numFunc": 2,
+            "futile": null,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string s and a character c, return a string with the characters surrounding any occurrence of c reversed. For example, if s is 'Hello beautiful world' and c is a space, return 'Hellb oeautifuw lorld'. Skip any positions where c occurs twice in a row.",
+            "code": "function reverseAround(str, c){\n \\t new_str = \"\";\n \\t var i = 0;\n \\t while(i<str.length-2){\n \\t\\t if(str[i]!=c && str[i+1]!=c){\n \\t\\t\\t new_str += str[i];\n \\t\\t\\t i += 1;\n \\t\\t }\n \\t\\t else if (str[i] != c && str[i+1] == c && str[i+2] != c){\n \\t\\t\\t new_str += str[i+2] + s[i+1] + s[i];\n \\t\\t\\t i = i + 3;\n \\t\\t }\n \\t\\t else{\n \\t\\t\\t new_str += str[i]\n \\t\\t\\t i += 1;\n \\t\\t\\t while(str[i]==c){\n \\t\\t\\t\\t new_str += str[i];\n \\t\\t\\t\\t i += 1;\n \\t\\t\\t }\n \\t\\t }\n \\t }\n new_str += str.substring(i,str.length);\n}",
+            "language": "javascript",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "str"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "str"
+                ],
+                "body": "new_str = \"\";\n var i = 0;\n while(i<str.length-2){\n if(str[i]!=c && str[i+1]!=c){\n new_str += str[i];\n i += 1;\n }\n else if (str[i] != c && str[i+1] == c && str[i+2] != c){\n new_str += str[i+2] + s[i+1] + s[i];\n i = i + 3;\n }\n else{\n new_str += str[i]\n i += 1;\n while(str[i]==c){\n new_str += str[i];\n i += 1;\n }\n }\n }\n new_str += str.substring(i,str.length);"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "new_str = \"\";\n var i = 0;\n while(i<str.length-2){\n if(str[i]!=c && str[i+1]!=c){\n new_str += str[i];\n i += 1;\n }\n else if (str[i] != c && str[i+1] == c && str[i+2] != c){\n new_str += str[i+2] + s[i+1] + s[i];\n i = i + 3;\n }\n else{\n new_str += str[i]+str[i+1];\n i+=2;\n }\n }\n new_str += str.substring(i,str.length);"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "new_str = \"\";\n var i = 0;\n while(i<str.length-3){\n if(str[i]!=c && str[i+1]!=c){\n new_str += str[i];\n i += 1;\n }\n else if (str[i] != c && str[i+1] == c && str[i+2] != c){\n new_str += str[i+2] + s[i+1] + s[i];\n i = i + 3;\n }\n else{\n new_str += str[i]+str[i+1];\n i += 2;\n while(str[i]==c){\n new_str += str[i];\n i += 1;\n }\n }\n }\n new_str += str.substring(i,str.length);"
+                }
+            ]
+        },
+        {
+            "name": "averageWithoutMinMax",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "num_array"
+            ],
+            "out": "number",
+            "question": "Given a list of integers, return the average of all elements that are not the maximum or minimum.",
+            "code": "def averageWithoutMinMax(arr):\n \\t arr.sort()\n \\t arr_max = arr[-1]\n \\t arr_min = arr[0]\n \\t sum,c=0,0\n \\t for i in range(1,len(arr)-1):\n \\t\\t if arr[i] == arr_min:\n \\t\\t\\t continue\n \\t\\t elif arr[i] == arr_max:\n \\t\\t\\t break\n \\t\\t else:\n \\t\\t\\t sum += arr[i]\n \\t\\t\\t c+=1\n \\t return sum/c",
+            "language": "python",
+            "customValidate": true,
+            "valFunc": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "return arr.length>=3;"
+            },
+            "correct": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(i=1;i<n-1;i++){\n if arr[i]==arr_min{\n continue;\n }\n else if arr[i]==arr_max{\n break;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n for(i=1;i<n-1;i++){\n sum += arr[i];\n c += 1;\n }"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(i=1;i<n-1;i++){\n if arr[i]==arr_min{\n continue;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(i=1;i<n-1;i++){\n if arr[i]==arr_max{\n break;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
+                }
+            ]
+        },
+        {
+            "name": "removeCharacters",
+            "count": 2,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "string",
+                "string"
+            ],
+            "out": "string",
+            "question": "Given strings s and t, return a string in which all characters in t are removed from s.",
+            "code": "#include<iostream>\n#include<string>\n\nstring removeCharacters (string s, string t){\n\\t string new_s = \"\";\n\\t for(int i=0;i<s.length();i++){\n\\t\\t if(t.find(s[i])!=string::npos){\n\\t\\t\\t continue;\n\\t\\t }\n\\t\\t else{new_s+=s[i];}\n\\t }\n\\t return new_s;\n}",
+            "language": "cpp",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "s",
+                    "t"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "s",
+                    "t"
+                ],
+                "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n }\n return new_str;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "t"
+                    ],
+                    "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n else{\n new_str += s[i];\n }\n }\n return new_str;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "t"
+                    ],
+                    "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n-1;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n }\n new_str += s[n-1];\n return new_str;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "t"
+                    ],
+                    "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n;i++){\n if(t.includes(s[i])){\n new_str += s[i];\n }\n }\n return new_str;"
                 }
             ]
         }
