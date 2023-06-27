@@ -73,6 +73,659 @@
                     "body": "return list[2];"
                 }
             ]
+        },
+        {
+            "name": "duplicatehalves",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string, return the string with the first half and the second half doubled. For example, Java becomes JaJavava and Hello becomes HelHellolo.",
+            "code": "def duplicatehalves(string): \\n\n \\t n=len(string) \\n\n \\t if n%2==0: \\n\n \\t \\t string = string[:n//2]*2 + string[n//2:]*2 \\n\n \\t else:\n \\t \\t string = string[:n//2 + 1]*2 + string[n//2 + 1:]*2 \\n\n \\t return string",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "string"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "string"
+                ],
+                "body": "var n = string.length;\n let new_string = \"\";\n if(n<=2){\n new_string = string;\n }\n else{\n if(n%2==0){\n let first = string.slice(0,parseInt(n/2));\n let second = string.slice(parseInt(n/2),n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n \n else{\n let first = string.slice(0,parseInt(n/2)+1);\n let second = string.slice(parseInt(n/2)+1,n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n }\n \n return new_string;"
+            },
+            "incorrect": [
+                {
+                    "heart": true,
+                    "arguments": [
+                        "string"
+                    ],
+                    "body": "function buggy1(string){\n var n = string.length;\n let new_string = \"\";\n if(n%2==0){\n let first = string.slice(0,parseInt(n/2));\n let second = string.slice(parseInt(n/2),n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n \n else{\n let first = string.slice(0,parseInt(n/2)+1);\n let second = string.slice(parseInt(n/2)+1,n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n console.log(new_string);\n\n}"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "string"
+                    ],
+                    "body": "var n = string.length;\n let new_string = \"\";\n if(n%2==0){\n let first = string.slice(0,parseInt(n/2));\n let second = string.slice(parseInt(n/2),n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n \n else{\n let first = string.slice(0,parseInt(n/2));\n let second = string.slice(parseInt(n/2),n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n return new_string;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "string"
+                    ],
+                    "body": "var n = string.length;\n let new_string = \"\";\n if(n<=2){\n new_string = string;\n }\n else{\n if(n%2==0){\n let first = string.slice(0,parseInt(n/2)+1);\n let second = string.slice(parseInt(n/2)+1,n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n \n else{\n let first = string.slice(0,parseInt(n/2)+1);\n let second = string.slice(parseInt(n/2)+1,n);\n new_string = first.repeat(2) + second.repeat(2);\n }\n }\n \n return new_string;"
+                }
+            ]
+        },
+        {
+            "name": "countFrontBackMatches",
+            "count": 1,
+            "numFunc": 4,
+            "futile": null,
+            "in": [
+                "string"
+            ],
+            "out": "number",
+            "question": "Given a string s, count how many times the ith character from the front equals the ith character from the back.",
+            "code": "def countFrontBackMatches(s): \\n\n \\t count = 0 \\n\n \\t for i in range(len(s)//2): \\n\n \\t \\t if s[i] == s[-i-1]: \\n\n \\t \\t \\t count += 1 \\n\n \\t return count ",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "s"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "s"
+                ],
+                "body": "var n = s.length;\n var count = 0;\n if (n%2==0){\n for(var i=0;i < parseInt(n/2);i++){\n if(s[i]==s[n-i-1]){\n count++;\n }\n }\n }\n else{\n for(var i=0;i < parseInt(n/2)+1;i++){\n if(s[i]==s[n-i-1]){\n count++;\n }\n }\n }\n return count;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var count = 0;\n for(var i=0;i < parseInt(n/2);i++){\n if(s[i]==s[n-i-1]){\n count++;\n }\n }\n return count;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var count = 0;\n for(var i=0;i < parseInt(n/2)+1;i++){\n if(s[i]==s[n-i-1]){\n count++;\n }\n }\n return count;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": " var n = s.length;\n var count = 0;\n for(var i=0;i < parseInt(n/2);i++){\n if(s[i]==s[n-i]){\n count++;\n }\n }\n return count;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var count = 0;\n if (n%2==0){\n for(var i=0;i < parseInt(n/2)+1;i++){\n if(s[i]==s[n-i-1]){\n count++;\n }\n }\n }\n else{\n for(var i=0;i < parseInt(n/2);i++){\n if(s[i]==s[n-i-1]){\n count++;\n }\n }\n }\n return count;"
+                }
+            ]
+        },
+        {
+            "name": "longestPrefix",
+            "count": 1,
+            "numFunc": 4,
+            "futile": null,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string s, return the longest prefix that is repeated somewhere else in the string. Do not use find method.",
+            "code": "def longestPrefix(s): \\n\n \\t n = len(s) \\n\n \\t prefix='' \\n\n \\t for i in range(n//2+1): \\n\n \\t \\t if s[:i] in s[i:]: \\n\n \\t \\t \\t prefix = s[:i] \\n\n \\t return prefix",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "s"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "s"
+                ],
+                "body": " var n = s.length;\n var prefix = \"\";\n for(i=1;i < parseInt(n/2) + 1;i++){\n if (s.substring(i,n+1).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n for(i=1;i < parseInt(n/2);i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n return s.substring(0,i);\n }\n }\n return \"\";"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var prefix = \"\";\n for(i=1;i < parseInt(n/2);i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var prefix = \"\";\n for(i=1;i < n ;i++){\n if (s.substring(0,n+1).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": " var n = s.length;\n var prefix = \"\";\n if(n%2==0){\n for(i=1;i < parseInt(n/2)+1;i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n\n }\n else{\n for(i=1;i < parseInt(n/2)-1;i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n\n }\n return prefix;"
+                }
+            ]
+        },
+        {
+            "name": "swapwords",
+            "count": 3,
+            "numFunc": 2,
+            "futile": null,
+            "in": [
+                "string",
+                "string",
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string in which words are separated by spaces, and two words a and b, interchange all occurrences of a and b.",
+            "code": "def swapwords(s, a, b): \\n\n \\t s = s.split() \\n\n \\t for i in range(len(s)): \\n\n \\t\\t if s[i] == a: \\n\n \\t\\t\\t s[i] = b \\n\n \\t\\t elif s[i] == b: \\n\n \\t\\t\\t s[i] = a \\n\n \\t return ' '.join(s) \\n",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "s",
+                    "a",
+                    "b"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "s",
+                    "a",
+                    "b"
+                ],
+                "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(words[i]==a){\n words[i] = b;\n }\n else if(words[i]==b){\n words[i] = a;\n }\n }\n new_string = words.join(\" \");\n return new_string;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "a",
+                        "b"
+                    ],
+                    "body": "var n = s.length;\n s.toLowerCase();\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(words[i]==a){\n words[i] = b;\n }\n else if(words[i]==b){\n words[i] = a;\n }\n }\n new_string = words.join(\"\");\n return new_string;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "a",
+                        "b"
+                    ],
+                    "body": "s=s.replace(a,b);\n return s;"
+                }
+            ]
+        },
+        {
+            "name": "findIntegers",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string, find all integers inside and return a string that separates them by commas. Words and Integers will be separated by single space.",
+            "code": "def findIntegers(s): \\n\n \\t s = s.split() \\n\n \\t integers = [] \\n\n \\t for i in s: \\n\n \\t\\t if i.isdigit(): \\n\n \\t\\t\\t integers.append(i) \\n\n \\t return ','.join(integers)",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "s"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "s"
+                ],
+                "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n n=new_string.length;\n return new_string.substring(0,n-1);"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n return new_string;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = \",\" + new_string + words[i] ;\n }\n }\n n=new_string.length;\n return new_string;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s"
+                    ],
+                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n n=new_string.length;\n if(n==0){\n return \"No integer found\";\n }\n return new_string.substring(0,n);"
+                }
+            ]
+        },
+        {
+            "name": "changeChar",
+            "count": 3,
+            "numFunc": 4,
+            "futile": null,
+            "in": [
+                "string",
+                "string",
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string and two characters x and y, change all occurrences of x to the value of y.\n",
+            "code": "def changeChar(s, x, y): \\n\n \\t for i in s: \\n\n \\t if i == x: \\n\n \\t\\t s=s.replace(i,y) \\n\n \\t return s",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "s",
+                    "x",
+                    "y"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "s",
+                    "x",
+                    "y"
+                ],
+                "body": "var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n return new_string;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "x",
+                        "y"
+                    ],
+                    "body": " var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else if (s[i]==y){\n new_string = new_string + x;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n return new_string;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "x",
+                        "y"
+                    ],
+                    "body": "var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "x",
+                        "y"
+                    ],
+                    "body": "var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==y){\n new_string = new_string + x;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "s",
+                        "x",
+                        "y"
+                    ],
+                    "body": " var n = s.length;\n var new_string = \"\";\n for(i=0;i<n-1;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string + s[n-1];"
+                }
+            ]
+        },
+        {
+            "name": "evenNumbers",
+            "count": 2,
+            "numFunc": 4,
+            "futile": null,
+            "in": [
+                "number",
+                "number"
+            ],
+            "out": "num_array",
+            "question": "Given integers a and b, return a list containing all even numbers that are at least a and at most b.",
+            "code": "def evenNumbers(a, b): \\n\n \\t even = [] \\n\n \\t if b>a: \\n\n \\t\\t for i in range(a,b+1): \\n\n \\t\\t\\t if i%2==0: \\n\n \\t\\t\\t\\t even.append(i) \\n\n \\t return even",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "a",
+                    "b"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "a",
+                    "b"
+                ],
+                "body": "var even_numbers = [];\n for(i=a;i<=b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "a",
+                        "b"
+                    ],
+                    "body": "var even_numbers = [];\n for(i=a;i<b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "a",
+                        "b"
+                    ],
+                    "body": "var even_numbers = [];\n for(i=a+1;i<=b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "a",
+                        "b"
+                    ],
+                    "body": "var even_numbers = [];\n for(i=a+1;i<b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "a",
+                        "b"
+                    ],
+                    "body": "var even_numbers = [];\n for(i=a;i<=b;i++){\n if(i%2!=0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                }
+            ]
+        },
+        {
+            "name": "smallestDifference",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "num_array"
+            ],
+            "out": "number",
+            "question": "Given a list of elements, find the smallest difference between two consecutive elements. Note, the distance between elements cannot be negative.",
+            "code": "def smallestDifference(arr): \\n\n \\t if len(arr) <= 1: \\n\n \\t\\t return 0 \\n\n \\t else: \\n\n \\t\\t smallest = abs(arr[0] - arr[1]) \\n\n \\t\\t for i in range(len(arr)-1): \\n\n \\t\\t\\t if abs(arr[i] - arr[i+1]) < smallest: \\n\n \\t\\t\\t\\t smallest = abs(arr[i] - arr[i+1]) \\n\n \\t return smallest",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])<min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n return min;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": " var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(arr[i+1]-arr[i]<min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n return min;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])>min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n if(Math.abs(arr[n-1]-arr[1])<min){\n min = Math.abs(arr[n-1]-arr[1]);\n }\n return min;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])<min){\n min = arr[i+1]-arr[i];\n }\n }\n return min;"
+                }
+            ]
+        },
+        {
+            "name": "firstDifference",
+            "count": 2,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "num_array",
+                "num_array"
+            ],
+            "out": "number",
+            "question": "Given two lists of integers of the same length, return the first position where their elements differ. If they match completely, return -1",
+            "code": "def firstDifference(arr1, arr2): \\n\n \\t for i in range(len(arr1)): \\n\n \\t\\t if arr1[i] != arr2[i]: \\n\n \\t\\t\\t return i \\n\n \\t return -1",
+            "language": "python",
+            "customValidate": true,
+            "valFunc": {
+                "arguments": [
+                    "arr1",
+                    "arr2"
+                ],
+                "body": " return arr1.length==arr2.length;"
+            },
+            "correct": {
+                "arguments": [
+                    "arr1",
+                    "arr2"
+                ],
+                "body": "var n = arr1.length;\n for(i=0;i<n;i++){\n if(arr1[i]!=arr2[i]){\n return i;\n }\n }\n return -1;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr1",
+                        "arr2"
+                    ],
+                    "body": "var n = arr1.length;\n for(i=0;i<n;i++){\n if(arr1[i]==arr2[i]){\n return i;\n }\n }\n return -1;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr1",
+                        "arr2"
+                    ],
+                    "body": "var n = arr1.length;\n for(i=0;i<n-1;i++){\n if(arr1[i]!=arr2[i]){\n return i;\n }\n }\n return -1;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr1",
+                        "arr2"
+                    ],
+                    "body": "var n = arr1.length;\n for(i=0;i<n;i++){\n if(arr1[i]!=arr2[i]){\n return i+1;\n }\n }\n return -1;"
+                }
+            ]
+        },
+        {
+            "name": "countFrontBackMatches",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "num_array"
+            ],
+            "out": "number",
+            "question": "Given a list lst, count how many times the ith element from the front equals the ith element from the back.",
+            "code": "def countFrontBackMatches(lst): \\n\n \\t count = 0 \\n\n \\t for i in range(len(lst)//2): \\n\n \\t\\t if lst[i] == lst[-i-1]: \\n\n \\t\\t\\t count += 1 \\n\n \\t return count",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "lst"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "lst"
+                ],
+                "body": "var n = lst.length;\n var count = 0;\n for(i=0;i<parseInt(n/2);i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "lst"
+                    ],
+                    "body": " var n = lst.length;\n var count = 0;\n for(i=0;i<n;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "lst"
+                    ],
+                    "body": "var n = lst.length;\n var count = 0;\n for(i=0;i<parseInt(n/2)+1;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "lst"
+                    ],
+                    "body": "var n = lst.length;\n var count = 0;\n if(n%2==0){\n for(i=0;i<parseInt(n/2);i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n }\n else{\n for(i=0;i<parseInt(n/2)+1;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n }\n \n return count;"
+                }
+            ]
+        },
+        {
+            "name": "replaceNeighbours",
+            "count": 1,
+            "numFunc": 3,
+            "futile": null,
+            "in": [
+                "num_array"
+            ],
+            "out": "num_array",
+            "question": "Given a list of integers, replace each element with the average of its neighbors. If an item is at the beginning or end, the average is the value of a single neighbor.",
+            "code": "def replaceNeighbors(arr): \\n\n \\t new_arr=[] \\n\n \\t new_arr.append(arr[1]) \\n\n \\t for i in range(1,len(arr)-1): \\n\n \\t\\t new_arr.append((arr[i-1] + arr[i+1])/2) \\n\n \\t new_arr.append(arr[-2]) \\n\n \\t return new_arr",
+            "language": "python",
+            "customValidate": true,
+            "valFunc": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "return arr.length>=2;"
+            },
+            "correct": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i]);\n }\n else if(i==n-1){\n newArr.push(arr[i]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n arr[i] = (arr[i-1]+arr[i+1])/2;\n }\n }\n return arr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n-1;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
+                }
+            ]
+        },
+        {
+            "name": "removeAdjacentDuplicates",
+            "count": 1,
+            "numFunc": 4,
+            "futile": null,
+            "in": [
+                "num_array"
+            ],
+            "out": "num_array",
+            "question": "Given a list of integers, remove all adjacent duplicates.Three items in a row, such as [2,2,2,1] is considered 2 pairs of duplicates, and should return [1].",
+            "code": "def removeAdjacentDuplicates(arr): \\n\n \\t new_arr = [] \\n\n \\t if len(arr) == 1: \\n\n \\t\\t return arr \\n\n \\t else: \\n\n \\t\\t for i in range(len(arr)-1): \\n\n \\t\\t\\t if arr[i+1] != arr[i] and arr[i]!=arr[i-1] and i!=0: \\n\n \\t\\t\\t\\t new_arr.append(arr[i]) \\n\n \\t\\t\\t elif i==0 and arr[i] != arr[i+1]: \\n\n \\t\\t\\t\\t new_arr.append(arr[i]) \\n\n \\t\\t if arr[-1] != arr[-2]: \\n\n \\t\\t\\t new_arr.append(arr[-1]) \\n\n \\t return new_arr",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": " var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n }\n\n\n return newArr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return newArr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                }
+            ]
         }
     ]
 }

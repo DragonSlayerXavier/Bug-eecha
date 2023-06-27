@@ -25,7 +25,7 @@ const markdownParser = (text) => {
         .replace(/[\*\_]{2}([^\*\_]+)[\*\_]{2}/g, '<b>$1</b>') // bold text
         .replace(/[\*\_]{1}([^\*\_]+)[\*\_]{1}/g, '<i>$1</i>') // italic text
         .replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>') // strikethrough text
-        .replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code class=\"language-javascript\">$1</code>') // inline code text
+        .replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>') // inline code text
         ;
     return toHTML.trim(); // using trim method to remove whitespace
 }
@@ -129,9 +129,9 @@ function qload() {
     rand = rand + 1; // Comment this to enable random question selection
     picked.push(rand);
     document.getElementById("ques").innerHTML = markdownParser(data.database[rand].question.split("\\*").join("&ast;")).split("\\n").join("\n").split("\n").join("<br>").split("\\t").join("\t").split("\t").join("    ").split("<").join("&lt;").split(">").join("&gt;");
-    var code = data.database[rand].code.split("\\n").join("\n").split("\n").join("<br>").split("\\t").join("\t").split("\t").join("    ");
+    var code = data.database[rand].code.split("\\n").join("\n").replace(/(\r\n|\r|\n)+/g, "$1").split("\n").join("<br>").split("\\t").join("\t").split("\t").join("    ");
     setTimeout(() => {
-        if (code.split("<br>").length > 8) {
+        if (code.split("<br>").length > 5) {
             document.getElementById("code").innerHTML = (`<code class = "language-${data.database[rand].language}">` + code).split("<br>").join(`</code><code class="language-${data.database[rand].language}">`) + "</code>";
             document.getElementById("code_div").setAttribute("class", "y_scroll");
         } else {
