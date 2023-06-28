@@ -566,7 +566,7 @@ function execute() {
         setLives();
     }
     if (found == data.database[rand].numFunc) {
-        if (picked.length != data.database.length && picked.length != MAX_QUESTIONS) {
+        if (picked.length != data.database.length && picked.length != data.MAX_QUESTIONS) {
             document.getElementById("fun_next_div").setAttribute("style", "display: block;");
         }
         document.getElementById("result").setAttribute("style", "display: block;");
