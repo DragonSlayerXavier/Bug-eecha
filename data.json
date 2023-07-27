@@ -14,8 +14,8 @@
             ],
             "out": "number",
             "question": "Given an array of three numbers \"list\", return its median.",
-            "code": "function median(list){\n\tcopy=[...list];\n\tcopy.sort();\n\treturn copy[1];\n}",
-            "language": "javascript",
+            "code": "def median(list: list[int]) -> int:\n\treturn list.sort()[1]",
+            "language": "python",
             "customValidate": true,
             "valFunc": {
                 "arguments": [
@@ -75,7 +75,7 @@
             ]
         },
         {
-            "name": "duplicatehalves",
+            "name": "duplicate_halves",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -84,8 +84,7 @@
             ],
             "out": "string",
             "question": "Given a string, return the string with the first half and the second half doubled. For example, Java becomes JaJavava and Hello becomes HelHellolo.",
-            "code": "def duplicatehalves(string): \\n\n \\t n=len(string) \\n\n \\t if n%2==0: \\n\n \\t \\t string = string[:n//2]*2 + string[n//2:]*2 \\n\n \\t else:\n \\t \\t string = string[:n//2 + 1]*2 + string[n//2 + 1:]*2 \\n\n \\t return string",
-            "language": "python",
+            "code": "def duplicate_halves(string:str)->str: \\n\n \\t n=len(string) \\n\n \\t if n%2==0: \\n\n \\t \\t string = string[:n//2]*2 + string[n//2:]*2 \\n\n \\t else:\n \\t \\t string = string[:n//2 + 1]*2 + string[n//2 + 1:]*2 \\n\n \\t return string \\n",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -124,7 +123,7 @@
             ]
         },
         {
-            "name": "countFrontBackMatches",
+            "name": "count_front_back_matches",
             "count": 1,
             "numFunc": 4,
             "futile": null,
@@ -133,8 +132,7 @@
             ],
             "out": "number",
             "question": "Given a string s, count how many times the ith character from the front equals the ith character from the back.",
-            "code": "def countFrontBackMatches(s): \\n\n \\t count = 0 \\n\n \\t for i in range(len(s)//2): \\n\n \\t \\t if s[i] == s[-i-1]: \\n\n \\t \\t \\t count += 1 \\n\n \\t return count ",
-            "language": "python",
+            "code": "def count_front_back_matches(s:str)->str: \\n\n \\t count = 0 \\n\n \\t for i in range(len(s)//2): \\n\n \\t \\t if s[i] == s[-i-1]: \\n\n \\t \\t \\t count += 1 \\n\n \\t return count ",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -180,7 +178,7 @@
             ]
         },
         {
-            "name": "longestPrefix",
+            "name": "longest_prefix",
             "count": 1,
             "numFunc": 4,
             "futile": null,
@@ -189,8 +187,7 @@
             ],
             "out": "string",
             "question": "Given a string s, return the longest prefix that is repeated somewhere else in the string. Do not use find method.",
-            "code": "def longestPrefix(s): \\n\n \\t n = len(s) \\n\n \\t prefix='' \\n\n \\t for i in range(n//2+1): \\n\n \\t \\t if s[:i] in s[i:]: \\n\n \\t \\t \\t prefix = s[:i] \\n\n \\t return prefix",
-            "language": "python",
+            "code": "def longest_prefix(s:str)->str: \\n\n \\t n = len(s) \\n\n \\t prefix='' \\n\n \\t for i in range(n//2+1): \\n\n \\t \\t if s[:i] in s[i:]: \\n\n \\t \\t \\t prefix = s[:i] \\n\n \\t return prefix",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -236,7 +233,7 @@
             ]
         },
         {
-            "name": "swapwords",
+            "name": "swap_words",
             "count": 3,
             "numFunc": 2,
             "futile": null,
@@ -247,8 +244,7 @@
             ],
             "out": "string",
             "question": "Given a string in which words are separated by spaces, and two words a and b, interchange all occurrences of a and b.",
-            "code": "def swapwords(s, a, b): \\n\n \\t s = s.split() \\n\n \\t for i in range(len(s)): \\n\n \\t\\t if s[i] == a: \\n\n \\t\\t\\t s[i] = b \\n\n \\t\\t elif s[i] == b: \\n\n \\t\\t\\t s[i] = a \\n\n \\t return ' '.join(s) \\n",
-            "language": "python",
+            "code": "def swap_words(s:str, a:str, b:str)->str: \\n\n \\t s = s.split() \\n\n \\t for i in range(len(s)): \\n\n \\t\\t if s[i] == a: \\n\n \\t\\t\\t s[i] = b \\n\n \\t\\t elif s[i] == b: \\n\n \\t\\t\\t s[i] = a \\n\n \\t return ' '.join(s) \\n",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -288,7 +284,7 @@
             ]
         },
         {
-            "name": "findIntegers",
+            "name": "find_integers",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -297,8 +293,7 @@
             ],
             "out": "string",
             "question": "Given a string, find all integers inside and return a string that separates them by commas. Words and Integers will be separated by single space.",
-            "code": "def findIntegers(s): \\n\n \\t s = s.split() \\n\n \\t integers = [] \\n\n \\t for i in s: \\n\n \\t\\t if i.isdigit(): \\n\n \\t\\t\\t integers.append(i) \\n\n \\t return ','.join(integers)",
-            "language": "python",
+            "code": "def find_integers(s:str)->str: \\n\n \\t s = s.split() \\n\n \\t integers = [] \\n\n \\t for i in s: \\n\n \\t\\t if i.isdigit(): \\n\n \\t\\t\\t integers.append(i) \\n\n \\t return ','.join(integers)",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -337,7 +332,7 @@
             ]
         },
         {
-            "name": "changeChar",
+            "name": "change_char",
             "count": 3,
             "numFunc": 4,
             "futile": null,
@@ -348,8 +343,7 @@
             ],
             "out": "string",
             "question": "Given a string and two characters x and y, change all occurrences of x to the value of y.\n",
-            "code": "def changeChar(s, x, y): \\n\n \\t for i in s: \\n\n \\t if i == x: \\n\n \\t\\t s=s.replace(i,y) \\n\n \\t return s",
-            "language": "python",
+            "code": "def change_char(s:str, x:str, y:str)->str: \\n\n \\t for i in s: \\n\n \\t if i == x: \\n\n \\t\\t s=s.replace(i,y) \\n\n \\t return s",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -407,7 +401,7 @@
             ]
         },
         {
-            "name": "evenNumbers",
+            "name": "even_numbers",
             "count": 2,
             "numFunc": 4,
             "futile": null,
@@ -417,8 +411,7 @@
             ],
             "out": "num_array",
             "question": "Given integers a and b, return a list containing all even numbers that are at least a and at most b.",
-            "code": "def evenNumbers(a, b): \\n\n \\t even = [] \\n\n \\t if b>a: \\n\n \\t\\t for i in range(a,b+1): \\n\n \\t\\t\\t if i%2==0: \\n\n \\t\\t\\t\\t even.append(i) \\n\n \\t return even",
-            "language": "python",
+            "code": "def even_numbers(a:int, b:int)->int: \\n\n \\t even = [] \\n\n \\t if b>a: \\n\n \\t\\t for i in range(a,b+1): \\n\n \\t\\t\\t if i%2==0: \\n\n \\t\\t\\t\\t even.append(i) \\n\n \\t return even",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -470,7 +463,7 @@
             ]
         },
         {
-            "name": "smallestDifference",
+            "name": "smallest_difference",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -479,8 +472,7 @@
             ],
             "out": "number",
             "question": "Given a list of elements, find the smallest difference between two consecutive elements. Note, the distance between elements cannot be negative.",
-            "code": "def smallestDifference(arr): \\n\n \\t if len(arr) <= 1: \\n\n \\t\\t return 0 \\n\n \\t else: \\n\n \\t\\t smallest = abs(arr[0] - arr[1]) \\n\n \\t\\t for i in range(len(arr)-1): \\n\n \\t\\t\\t if abs(arr[i] - arr[i+1]) < smallest: \\n\n \\t\\t\\t\\t smallest = abs(arr[i] - arr[i+1]) \\n\n \\t return smallest",
-            "language": "python",
+            "code": "def smallest_difference(arr:list[int])->int: \\n\n \\t if len(arr) <= 1: \\n\n \\t\\t return 0 \\n\n \\t else: \\n\n \\t\\t smallest = abs(arr[0] - arr[1]) \\n\n \\t\\t for i in range(len(arr)-1): \\n\n \\t\\t\\t if abs(arr[i] - arr[i+1]) < smallest: \\n\n \\t\\t\\t\\t smallest = abs(arr[i] - arr[i+1]) \\n\n \\t return smallest",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -519,7 +511,7 @@
             ]
         },
         {
-            "name": "firstDifference",
+            "name": "first_difference",
             "count": 2,
             "numFunc": 3,
             "futile": null,
@@ -529,8 +521,7 @@
             ],
             "out": "number",
             "question": "Given two lists of integers of the same length, return the first position where their elements differ. If they match completely, return -1",
-            "code": "def firstDifference(arr1, arr2): \\n\n \\t for i in range(len(arr1)): \\n\n \\t\\t if arr1[i] != arr2[i]: \\n\n \\t\\t\\t return i \\n\n \\t return -1",
-            "language": "python",
+            "code": "def first_difference(arr1:list[int], arr2:list[int])->int: \\n\n \\t for i in range(len(arr1)): \\n\n \\t\\t if arr1[i] != arr2[i]: \\n\n \\t\\t\\t return i \\n\n \\t return -1",
             "customValidate": true,
             "valFunc": {
                 "arguments": [
@@ -574,7 +565,7 @@
             ]
         },
         {
-            "name": "countFrontBackMatches",
+            "name": "count_front_back_matches",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -583,8 +574,7 @@
             ],
             "out": "number",
             "question": "Given a list lst, count how many times the ith element from the front equals the ith element from the back.",
-            "code": "def countFrontBackMatches(lst): \\n\n \\t count = 0 \\n\n \\t for i in range(len(lst)//2): \\n\n \\t\\t if lst[i] == lst[-i-1]: \\n\n \\t\\t\\t count += 1 \\n\n \\t return count",
-            "language": "python",
+            "code": "def count_front_back_matches(lst:list[int])->int: \\n\n \\t count = 0 \\n\n \\t for i in range(len(lst)//2): \\n\n \\t\\t if lst[i] == lst[-i-1]: \\n\n \\t\\t\\t count += 1 \\n\n \\t return count",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -623,7 +613,7 @@
             ]
         },
         {
-            "name": "replaceNeighbours",
+            "name": "replace_neighbours",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -632,8 +622,7 @@
             ],
             "out": "num_array",
             "question": "Given a list of integers, replace each element with the average of its neighbors. If an item is at the beginning or end, the average is the value of a single neighbor.",
-            "code": "def replaceNeighbors(arr): \\n\n \\t new_arr=[] \\n\n \\t new_arr.append(arr[1]) \\n\n \\t for i in range(1,len(arr)-1): \\n\n \\t\\t new_arr.append((arr[i-1] + arr[i+1])/2) \\n\n \\t new_arr.append(arr[-2]) \\n\n \\t return new_arr",
-            "language": "python",
+            "code": "def replace_neighbors(arr:list[int])->list[int]: \\n\n \\t new_arr=[] \\n\n \\t new_arr.append(arr[1]) \\n\n \\t for i in range(1,len(arr)-1): \\n\n \\t\\t new_arr.append((arr[i-1] + arr[i+1])/2) \\n\n \\t new_arr.append(arr[-2]) \\n\n \\t return new_arr",
             "customValidate": true,
             "valFunc": {
                 "arguments": [
@@ -672,7 +661,7 @@
             ]
         },
         {
-            "name": "removeAdjacentDuplicates",
+            "name": "remove_adjacent_duplicates",
             "count": 1,
             "numFunc": 4,
             "futile": null,
@@ -681,8 +670,7 @@
             ],
             "out": "num_array",
             "question": "Given a list of integers, remove all adjacent duplicates.Three items in a row, such as [2,2,2,1] is considered 2 pairs of duplicates, and should return [1].",
-            "code": "def removeAdjacentDuplicates(arr): \\n\n \\t new_arr = [] \\n\n \\t if len(arr) == 1: \\n\n \\t\\t return arr \\n\n \\t else: \\n\n \\t\\t for i in range(len(arr)-1): \\n\n \\t\\t\\t if arr[i+1] != arr[i] and arr[i]!=arr[i-1] and i!=0: \\n\n \\t\\t\\t\\t new_arr.append(arr[i]) \\n\n \\t\\t\\t elif i==0 and arr[i] != arr[i+1]: \\n\n \\t\\t\\t\\t new_arr.append(arr[i]) \\n\n \\t\\t if arr[-1] != arr[-2]: \\n\n \\t\\t\\t new_arr.append(arr[-1]) \\n\n \\t return new_arr",
-            "language": "python",
+            "code": "def remove_adjacent_duplicates(arr:list[int])->list[int]: \\n\n \\t new_arr = [] \\n\n \\t if len(arr) == 1: \\n\n \\t\\t return arr \\n\n \\t else: \\n\n \\t\\t for i in range(len(arr)-1): \\n\n \\t\\t\\t if arr[i+1] != arr[i] and arr[i]!=arr[i-1] and i!=0: \\n\n \\t\\t\\t\\t new_arr.append(arr[i]) \\n\n \\t\\t\\t elif i==0 and arr[i] != arr[i+1]: \\n\n \\t\\t\\t\\t new_arr.append(arr[i]) \\n\n \\t\\t if arr[-1] != arr[-2]: \\n\n \\t\\t\\t new_arr.append(arr[-1]) \\n\n \\t return new_arr",
             "customValidate": false,
             "valFunc": {
                 "arguments": [
@@ -728,7 +716,7 @@
             ]
         },
         {
-            "name": "longestPrefixend",
+            "name": "longest_prefix_end",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -737,7 +725,7 @@
             ],
             "out": "string",
             "question": "Given a string s, find the longest prefix that also occurs at the end (so that s = p + t + p), and return t, the string without the beginning and the end.",
-            "code": "def longestPrefixend(s):\n \\t n = len(s)\n \\t prefix=''\n \\t for i in range(n//2+1):\n \\t\\t if s[:i] in s[i:]:\n \\t\\t\\t prefix = s[:i]\n \\t return s[len(prefix):n-len(prefix)]",
+            "code": "def longest_prefixend(s:str)->str:\n \\t n = len(s)\n \\t prefix=''\n \\t for i in range(n//2+1):\n \\t\\t if s[:i] in s[i:]:\n \\t\\t\\t prefix = s[:i]\n \\t return s[len(prefix):n-len(prefix)]",
             "language": "python",
             "customValidate": false,
             "valFunc": {
@@ -777,7 +765,7 @@
             ]
         },
         {
-            "name": "swapHalves",
+            "name": "swap_halves",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -786,7 +774,7 @@
             ],
             "out": "string",
             "question": "Given a string, return the string with the first and second half swapped.",
-            "code": "function swapHalves(str){\n \\t var n = str.length;\n \\t var newStr = \"\";\n \\t if(n%2==0){newStr = str.substring(n/2,n) + str.substring(0,n/2);}\n \\t else{newStr = str.substring(parseInt(n/2)+1,n) + str[parseInt(n/2)] + str.substring(0,parseInt(n/2));}\n \\t return newStr;\n}",
+            "code": "function swap_halves(str:str)->str{\n \\t var n = str.length;\n \\t var newStr = \"\";\n \\t if(n%2==0){newStr = str.substring(n/2,n) + str.substring(0,n/2);}\n \\t else{newStr = str.substring(parseInt(n/2)+1,n) + str[parseInt(n/2)] + str.substring(0,parseInt(n/2));}\n \\t return newStr;\n}",
             "language": "javascript",
             "customValidate": false,
             "valFunc": {
@@ -826,7 +814,7 @@
             ]
         },
         {
-            "name": "reverseAround",
+            "name": "reverse_around",
             "count": 1,
             "numFunc": 2,
             "futile": null,
@@ -835,7 +823,7 @@
             ],
             "out": "string",
             "question": "Given a string s and a character c, return a string with the characters surrounding any occurrence of c reversed. For example, if s is 'Hello beautiful world' and c is a space, return 'Hellb oeautifuw lorld'. Skip any positions where c occurs twice in a row.",
-            "code": "function reverseAround(str, c){\n \\t new_str = \"\";\n \\t var i = 0;\n \\t while(i<str.length-2){\n \\t\\t if(str[i]!=c && str[i+1]!=c){\n \\t\\t\\t new_str += str[i];\n \\t\\t\\t i += 1;\n \\t\\t }\n \\t\\t else if (str[i] != c && str[i+1] == c && str[i+2] != c){\n \\t\\t\\t new_str += str[i+2] + s[i+1] + s[i];\n \\t\\t\\t i = i + 3;\n \\t\\t }\n \\t\\t else{\n \\t\\t\\t new_str += str[i]\n \\t\\t\\t i += 1;\n \\t\\t\\t while(str[i]==c){\n \\t\\t\\t\\t new_str += str[i];\n \\t\\t\\t\\t i += 1;\n \\t\\t\\t }\n \\t\\t }\n \\t }\n new_str += str.substring(i,str.length);\n}",
+            "code": "function reverse_around(str, c){\n \\t new_str = \"\";\n \\t var i = 0;\n \\t while(i<str.length-2){\n \\t\\t if(str[i]!=c && str[i+1]!=c){\n \\t\\t\\t new_str += str[i];\n \\t\\t\\t i += 1;\n \\t\\t }\n \\t\\t else if (str[i] != c && str[i+1] == c && str[i+2] != c){\n \\t\\t\\t new_str += str[i+2] + s[i+1] + s[i];\n \\t\\t\\t i = i + 3;\n \\t\\t }\n \\t\\t else{\n \\t\\t\\t new_str += str[i]\n \\t\\t\\t i += 1;\n \\t\\t\\t while(str[i]==c){\n \\t\\t\\t\\t new_str += str[i];\n \\t\\t\\t\\t i += 1;\n \\t\\t\\t }\n \\t\\t }\n \\t }\n new_str += str.substring(i,str.length);\n}",
             "language": "javascript",
             "customValidate": false,
             "valFunc": {
@@ -868,7 +856,7 @@
             ]
         },
         {
-            "name": "averageWithoutMinMax",
+            "name": "average_without_minmax",
             "count": 1,
             "numFunc": 3,
             "futile": null,
@@ -877,7 +865,7 @@
             ],
             "out": "number",
             "question": "Given a list of integers, return the average of all elements that are not the maximum or minimum.",
-            "code": "def averageWithoutMinMax(arr):\n \\t arr.sort()\n \\t arr_max = arr[-1]\n \\t arr_min = arr[0]\n \\t sum,c=0,0\n \\t for i in range(1,len(arr)-1):\n \\t\\t if arr[i] == arr_min:\n \\t\\t\\t continue\n \\t\\t elif arr[i] == arr_max:\n \\t\\t\\t break\n \\t\\t else:\n \\t\\t\\t sum += arr[i]\n \\t\\t\\t c+=1\n \\t return sum/c",
+            "code": "def average_without_minmax(arr:list[int])->float:\n \\t arr.sort()\n \\t arr_max = arr[-1]\n \\t arr_min = arr[0]\n \\t sum,c=0,0\n \\t for i in range(1,len(arr)-1):\n \\t\\t if arr[i] == arr_min:\n \\t\\t\\t continue\n \\t\\t elif arr[i] == arr_max:\n \\t\\t\\t break\n \\t\\t else:\n \\t\\t\\t sum += arr[i]\n \\t\\t\\t c+=1\n \\t return sum/c",
             "language": "python",
             "customValidate": true,
             "valFunc": {
@@ -917,7 +905,7 @@
             ]
         },
         {
-            "name": "removeCharacters",
+            "name": "remove_characters",
             "count": 2,
             "numFunc": 3,
             "futile": null,
@@ -968,6 +956,320 @@
                         "t"
                     ],
                     "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n;i++){\n if(t.includes(s[i])){\n new_str += s[i];\n }\n }\n return new_str;"
+                }
+            ]
+        },
+        {
+            "name": "closer_to_target",
+            "count": 3,
+            "numFunc": 4,
+            "futile": 0,
+            "in": [
+                "number",
+                "number",
+                "number"
+            ],
+            "out": "number",
+            "question": "Given numbers x, y, and target, return whichever of x and y is closer to the target. If they have the same distance, return the smaller of the two.",
+            "code": "def closer_to_target(x:int, y:int, target:int)->int: \\n\n \\t if abs(x-target) < abs(y-target): \\n\n \\t\\t return x \\n\n \\t elif abs(x-target) > abs(y-target): \\n\n \\t\\t return y \\n\n \\t else: \\n\n \\t\\t return min(x,y)",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "x",
+                    "y",
+                    "target"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "x",
+                    "y",
+                    "target"
+                ],
+                "body": "if(Math.abs(x-target)<Math.abs(y-target)){\n return x;\n }\n else if(Math.abs(x-target)>Math.abs(y-target)){\n return y;\n }\n else{\n return Math.min(x,y);\n }"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "x",
+                        "y",
+                        "target"
+                    ],
+                    "body": "if((x-target)<(y-target)){\n return x;\n }\n else if((x-target)>(y-target)){\n return y;\n }\n else{\n return Math.min(x,y);\n }"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "x",
+                        "y",
+                        "target"
+                    ],
+                    "body": "if(Math.abs(x-target)<Math.abs(y-target)){\n return x;\n }\n else if(Math.abs(x-target)>Math.abs(y-target)){\n return y;\n }\n else{\n return Math.max(x,y);\n }"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "x",
+                        "y",
+                        "target"
+                    ],
+                    "body": "if(Math.abs(x-target)<Math.abs(y-target)){\n return x;\n }\n else if((x-target)>(y-target)){\n return y;\n }\n else{\n return Math.min(x,y);\n }"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "x",
+                        "y",
+                        "target"
+                    ],
+                    "body": "if((x-target)<(y-target)){\n return x;\n }\n else if(Math.abs(x-target)>Math.abs(y-target)){\n return y;\n }\n else{\n return Math.min(x,y);\n }"
+                }
+            ]
+        },
+        {
+            "name": "swap_middle",
+            "count": 1,
+            "numFunc": 3,
+            "futile": 0,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "If the given string has even length, return the string with the middle two characters swapped. If it has odd length, reverse the middle three characters.",
+            "code": "def swap_middle(s:str)->str: \\n\n \\t n:int = len(s) \\n\n \\t if n <= 3: \\n\n \\t\\t return s \\n\n \\t elif n%2 == 0: \\n\n \\t\\t return s[:n//2-1] + s[n//2] + s[n//2-1] + s[n//2+1:] \\n\n \\t else: \\n\n \\t\\t return s[:n//2-1] + s[n//2+1] + s[n//2] + s[n//2-1] + s[n//2+2:]",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "str"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "str"
+                ],
+                "body": " var n = str.length;\n var newStr = \"\";\n if(n<=3){\n return str;\n }\n else if(n%2==0){\n newStr = str.substring(0,n/2-1) + str[n/2] + str[n/2-1] + str.substring(n/2+1,n);\n }\n else{\n newStr = str.substring(0,parseInt(n/2)-1) + str[parseInt(n/2)+1] + str[parseInt(n/2)] + str[parseInt(n/2)-1] + str.substring(parseInt(n/2)+2,n);\n }\n return newStr;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n if(n<=3){\n return str;\n }\n else if(n%2==0){\n newStr = str.substring(0,n/2-1) + str[n/2-1] + str[n/2] + str.substring(n/2+1,n);\n }\n else{\n newStr = str.substring(0,parseInt(n/2)-1) + str[parseInt(n/2)+1] + str[parseInt(n/2)] + str[parseInt(n/2)-1] + str.substring(parseInt(n/2)+2,n);\n }\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n if(n<=3){\n return str;\n }\n else if(n%2==0){\n newStr = str.substring(0,n/2-1) + str[n/2] + str[n/2-1] + str.substring(n/2+1,n);\n }\n else{\n newStr = str.substring(0,parseInt(n/2)-1) + str[parseInt(n/2)] + str[parseInt(n/2)+1] + str[parseInt(n/2)-1] + str.substring(parseInt(n/2)+2,n);\n }\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n if(n<=3){\n return str;\n }\n else if(n%2==0){\n newStr = str.substring(0,n/2-1) + str[n/2] + str[n/2-1] + str.substring(n/2+1,n);\n }\n else{\n newStr = str.substring(0,parseInt(n/2)-1) + str[parseInt(n/2)-1] + str[parseInt(n/2)] + str[parseInt(n/2)+1] + str.substring(parseInt(n/2)+2,n);\n }\n return newStr;"
+                }
+            ]
+        },
+        {
+            "name": "sum_integers",
+            "count": 1,
+            "numFunc": 2,
+            "futile": 0,
+            "in": [
+                "string"
+            ],
+            "out": "number",
+            "question": "Given a string, find the sum of all integers inside. Return 0 if there is no integer inside.",
+            "code": "def sum_integers(s:str)->int: \\n\n \\t s = s.split() \\n\n \\t sum:int = 0 \\n\n \\t for i in s: \\n\n \\t\\t j:int=0 \\n\n \\t\\t while j < len(i): \\n\n \\t\\t\\t if i[j].isdigit(): \\n\n \\t\\t\\t\\t k:int=j+1 \\n\n \\t\\t\\t\\t while(k<len(i) and i[k].isdigit()): \\n\n \\t\\t\\t\\t\\t k+=1 \\n\n \\t\\t\\t\\t sum += int(i[j:k]) \\n\n \\t\\t\\t\\t j=k+1 \\n\n \\t\\t\\t else: \\n\n \\t\\t\\t\\t j+=1 \\n\n \\t return sum",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "str"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "str"
+                ],
+                "body": "var n = str.length;\n var sum = 0;\n var i = 0;\n var j = 0;\n while(i<n){\n if(!isNaN(str[i])){\n j=i+1;\n while(!isNaN(str[j]) && str[j]!=\" \"){\n j++;\n }\n sum += parseInt(str.substring(i,j));\n i=j+1;\n }\n else{\n i++;\n }\n \n}\nreturn sum;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var sum = 0;\n var i = 0;\n var j = 0;\n while(i<n){\n if(!isNaN(str[i])){\n j=i+1;\n while(!isNaN(str[j])){\n j++;\n }\n sum += parseInt(str.substring(i,j));\n i=j+1;\n }\n else{\n i++;\n }\n \n}\nreturn sum;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var sum = 0;\n var i = 0;\n var j = 0;\n while(i<n){\n if(!isNaN(str[i])){\n j=i+1;\n while(!isNaN(str[j]) && str[j]!=\" \"){\n j++;\n }\n sum += parseInt(str.substring(i,j-1));\n i=j;\n }\n else{\n i++;\n }\n \n}\nreturn sum;"
+                }
+            ]
+        },
+        {
+            "name": "even_then_odd",
+            "count": 1,
+            "numFunc": 3,
+            "futile": 0,
+            "in": [
+                "string"
+            ],
+            "out": "string",
+            "question": "Given a string, return a string composed first of all characters at even positions and then of all characters at odd positions.",
+            "code": "def even_then_ddd(s:str)->str: \\n\n \\t even:str = '' \\n\n \\t odd:str = '' \\n\n \\t for i in range(len(s)): \\n\n \\t\\t if i%2 == 0: \\n\n \\t\\t\\t even += s[i] \\n\n \\t\\t else: \\n\n \\t\\t\\t odd += s[i] \\n\n \\t return even + odd",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "str"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "str"
+                ],
+                "body": "var n = str.length;\n var newStr = \"\";\n for(i=0;i<n;i+=2){\n newStr += str[i];\n }\n for(i=1;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n for(i=1;i<n;i+=2){\n newStr += str[i];\n }\n for(i=0;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n for(i=0;i<n;i+=2){\n newStr += str[i];\n }\n for(i=1;i<n-1;i+=2){\n newStr += str[i];\n }\n return newStr;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "str"
+                    ],
+                    "body": "var n = str.length;\n var newStr = \"\";\n for(i=0;i<n-1;i+=2){\n newStr += str[i];\n }\n for(i=1;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
+                }
+            ]
+        },
+        {
+            "name": "first_repeated_index",
+            "count": 1,
+            "numFunc": 3,
+            "futile": 0,
+            "in": [
+                "num_array"
+            ],
+            "out": "number",
+            "question": "Given a list of integers, return the position of the first element that occurs more than once, or -1 if all elements occur exactly once.",
+            "code": "def first_repeated_index(arr:list[int])->int: \\n\n \\t for i in range(len(arr)): \\n\n \\t\\t if arr[i] in arr[i+1:]: \\n\n \\t\\t\\t return i \\n\n \\t return -1",
+            "language": "python",
+            "customValidate": false,
+            "valFunc": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": ""
+            },
+            "correct": {
+                "arguments": [
+                    "arr"
+                ],
+                "body": "var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return -1;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": " var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return j;\n }\n }\n }\n return -1;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return -1;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr"
+                    ],
+                    "body": "var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return 1;"
+                }
+            ]
+        },
+        {
+            "name": "binary_search",
+            "count": 2,
+            "numFunc": 3,
+            "futile": 0,
+            "in": [
+                "num_array",
+                "number"
+            ],
+            "out": "number",
+            "question": "Given a list of sorted integers, find the target element via binary search. Return -1 is target not present in list.",
+            "code": "def binary_search(arr:list[int], target:int)->int: \\n\n \\t low:int = 0\n \\t high:int = len(arr)-1\n \\t while low<=high:\n \\t\\t mid:int = (low+high)//2\n \\t\\t if arr[mid] == target:\n \\t\\t\\t return mid\n \\t\\t elif arr[mid] < target:\n \\t\\t\\t low = mid+1\n \\t\\t else:\n \\t\\t\\t high = mid-1\n \\t return -1",
+            "language": "python",
+            "customValidate": true,
+            "valFunc": {
+                "arguments": [
+                    "arr",
+                    "target"
+                ],
+                "body": "var n = arr.length;\n for(i=0;i<n-1;i++){\n if(arr[i]>arr[i+1]){\n return false;\n }\n }\n return true;"
+            },
+            "correct": {
+                "arguments": [
+                    "arr",
+                    "target"
+                ],
+                "body": "var n = arr.length;\n var low = 0;\n var high = n-1;\n var mid = 0;\n while(low<=high){\n mid = parseInt((low+high)/2);\n if(arr[mid]==target){\n return mid;\n }\n else if(arr[mid]>target){\n high = mid-1;\n }\n else{\n low = mid+1;\n }\n }\n return -1;"
+            },
+            "incorrect": [
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr",
+                        "target"
+                    ],
+                    "body": "var n = arr.length;\n var low = 0;\n var high = n-1;\n var mid = 0;\n while(low<=high){\n mid = parseInt((low+high)/2);\n if(arr[mid]==target){\n return mid;\n }\n else if(arr[mid]>target){\n high = mid-2;\n }\n else{\n low = mid;\n }\n }\n return -1;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr",
+                        "target"
+                    ],
+                    "body": "var n = arr.length;\n var low = 0;\n var high = n-1;\n var mid = 0;\n while(low<=high){\n mid = parseInt((low+high)/2);\n if(arr[mid]==target){\n return mid;\n }\n else if(arr[mid]>target){\n high = mid-1;\n }\n else{\n low = mid-1;\n }\n }\n return -1;"
+                },
+                {
+                    "heart": false,
+                    "arguments": [
+                        "arr",
+                        "target"
+                    ],
+                    "body": "var n = arr.length;\n var low = 0;\n var high = n-1;\n var mid = 0;\n while(low<=high){\n mid = parseInt((low+high)/2);\n if(arr[mid]==target){\n return mid;\n }\n else if(arr[mid]>target){\n high = mid-1;\n }\n else{\n low = mid+1;\n }\n }\n return 1;"
                 }
             ]
         }
