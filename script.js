@@ -137,7 +137,7 @@ function qload() {
         document.getElementById("code_div").setAttribute("class", "y_scroll");
     } else {
         filler = "";
-        for (var i = 0; i < 8 - code.split("<br>").length; i++) {
+        for (var i = 0; i < 10 - code.split("<br>").length; i++) {
             filler += "<code class =\"filler\"></code>"
         }
         document.getElementById("code").innerHTML = (`<code class = "language-${data.database[rand].language}">` + code).split("<br>").join(`</code><code class="language-${data.database[rand].language}">`) + "</code>" + filler;
