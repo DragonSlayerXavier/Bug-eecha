@@ -14,7 +14,7 @@
             ],
             "out": "number",
             "question": "Given an array of three numbers \"list\", return its median.",
-            "code": "def median(list: list[int]) -> int:\n\treturn list.sort()[1]",
+            "code": "def median(list: list[int]) -> int:\n\tlist.sort()\n\treturn list[1]",
             "language": "python",
             "customValidate": true,
             "valFunc": {
