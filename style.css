@@ -100,7 +100,8 @@ code {
 }
 
 #code code::before {
-    background-color: #C0C0C0;
+    background-color: #E6E6E6;
+    font-family: monospace, monospace;
     content: counter(listing) " ";
     display: inline-block;
     width: 2em;
@@ -110,7 +111,7 @@ code {
 }
 
 #code .filler::before {
-    background-color: #C0C0C0;
+    background-color: #E6E6E6;
     content: " ";
     display: inline-block;
     width: 2em;
