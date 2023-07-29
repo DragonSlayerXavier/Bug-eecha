@@ -211,7 +211,7 @@ function handleInput(n) {
     if (data.database[rand].in[n - 1] == "string") {
         return (args.substring(1, args.length - 1));
     }
-    if (data.database[rand].in[n - 1] == "num_array" || data.database[rand].in[n - 1] == "sorted_num_array" || data.database[rand].in[n - 1] == "str_array") {
+    if (data.database[rand].in[n - 1] == "num_array" || data.database[rand].in[n - 1] == "str_array") {
         return (args.substring(1, args.length - 1).split(","));
     }
 }
@@ -232,7 +232,7 @@ function handleOutput() {
     if (data.database[rand].out == "string") {
         return (args.substring(1, args.length - 1));
     }
-    if (data.database[rand].out == "num_array" || data.database[rand].out == "sorted_num_array" || data.database[rand].out == "str_array") {
+    if (data.database[rand].out == "num_array" || data.database[rand].out == "str_array") {
         return (args.substring(1, args.length - 1).split(","));
     }
 }
@@ -272,7 +272,7 @@ function validate(input, output) {
             }
         }
         //Checks if the input is an array surrounded with square brackets.
-        if (data.database[rand].in[i] === "str_array" || data.database[rand].in[i] === "num_array" || data.database[rand].in[i] === "sorted_num_array") {
+        if (data.database[rand].in[i] === "str_array" || data.database[rand].in[i] === "num_array") {
             var args = document.getElementById(`input${i + 1}`).value;
             if (args[0] != '[' || args[args.length - 1] != ']') {
                 alert(`Please follow valid array formatting for Input ${i + 1}.`);
@@ -288,23 +288,12 @@ function validate(input, output) {
             }
         }
         //Checks if the elements of a number array are numbers using isNaN.
-        if (data.database[rand].in[i] === "num_array" || data.database[rand].in[i] === "sorted_num_array") {
+        if (data.database[rand].in[i] === "num_array") {
             for (var j = 0; j < input[i].length; j++) {
                 if (isNaN(input[i][j])) {
                     document.getElementById(`input${i + 1}`).value = "";
                     document.getElementById(`input${i + 1}`).focus();
                     alert(`Input ${i + 1} must be an array of numbers.`);
-                    return false;
-                }
-            }
-        }
-        //Checks if the elements of a sorted number array are sorted.
-        if (data.database[rand].in[i] === "sorted_num_array") {
-            for (var j = 0; j < input[i].length - 1; j++) {
-                if (Number(input[i][j]) > Number(input[i][j + 1])) {
-                    document.getElementById(`input${i + 1}`).value = "";
-                    document.getElementById(`input${i + 1}`).focus();
-                    alert(`Input ${i + 1} must be a sorted array of numbers.`);
                     return false;
                 }
             }
@@ -337,7 +326,7 @@ function validate(input, output) {
         }
     }
     //Checks if the output is an array surrounded with square brackets.
-    if (data.database[rand].out === "str_array" || data.database[rand].out === "num_array" || data.database[rand].out === "sorted_num_array") {
+    if (data.database[rand].out === "str_array" || data.database[rand].out === "num_array") {
         var args = document.getElementById("output").value;
         if (args[0] != '[' || args[args.length - 1] != ']') {
             alert("Please follow valid array formatting for Output.");
@@ -353,23 +342,12 @@ function validate(input, output) {
         }
     }
     //Checks if the elements of a number array are numbers using isNaN.
-    if (data.database[rand].out === "num_array" || data.database[rand].out === "sorted_num_array") {
+    if (data.database[rand].out === "num_array") {
         for (var j = 0; j < output.length; j++) {
             if (isNaN(output[j])) {
                 document.getElementById("output").value = "";
                 document.getElementById("output").focus();
                 alert("Output must be an array of numbers.");
-                return false;
-            }
-        }
-    }
-    //Checks if the elements of a sorted number array are sorted.
-    if (data.database[rand].out === "sorted_num_array") {
-        for (var j = 0; j < output.length - 1; j++) {
-            if (Number(output[j]) > Number(output[j + 1])) {
-                document.getElementById("output").value = "";
-                document.getElementById("output").focus();
-                alert("Output must be a sorted array of numbers.");
                 return false;
             }
         }
@@ -411,7 +389,7 @@ function updateInputType(input) {
             arr.push(Number(input[i]));
             continue;
         }
-        if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "sorted_num_array") {
+        if (data.database[rand].in[i] == "num_array") {
             arr[i] = [];
             for (var j = 0; j < input[i].length; j++) {
                 if (!isNaN(Number(input[i][j])) && input[i][j] != "") {
@@ -443,7 +421,7 @@ function updateOutputType(output) {
         var res = Number(output);
         return res;
     }
-    if (data.database[rand].out == "num_array" || data.database[rand].out == "sorted_num_array") {
+    if (data.database[rand].out == "num_array") {
         var res = [];
         for (var j = 0; j < output.length; j++) {
             if (!isNaN(Number(output[j])) && output[j] != "") {
@@ -524,7 +502,7 @@ function formatInput(arr) {
     res = "";
     if (!arr.length) return arr;
     for (var i = 0; i < arr.length; i++) {
-        if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "str_array" || data.database[rand].in[i] == "sorted_num_array") {
+        if (data.database[rand].in[i] == "num_array" || data.database[rand].in[i] == "str_array") {
             res += `[${arr[i]}],`;
         } else {
             res += `${arr[i]},`;
