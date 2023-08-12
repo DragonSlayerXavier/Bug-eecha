@@ -5,66 +5,62 @@
   <script src="script.js"></script>
   <title>Bug-eecha | UENG101 | IISc Bangalore</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="prism/prism.css">
+  <script src="prism/prism.js"></script>
 </head>
 
 <body onload="load()">
-  <section class="header">
-    <div id="textbox_div" style="float: left;">
-      <h1 style="text-align: center"><u>Input History</u></h1>
-      <p id="past-inputs"></p>
+  <div id="ques_div">
+    <p id="ques"></p>
+  </div>
+  <div id="code_div">
+    <pre id="code"></pre>
+  </div>
+  <div id="function_div">
+    <div id="fun_name_div" class="function">
+      <span id="fun_name"></span>
     </div>
-    <div id="code_div" style="float: left;">
-      <h1 style="text-align: center"><u>Correct Code</u></h1>
-      <p id="correct-code"></p>
+    <div id="fun_open_div" class="function">
+      <span id="fun_open">(</span>
     </div>
-    <div id="heart_div" style="float: right;"></div>
-    <div class="question">
-      <div id="question"></div>
-      <div id="input_div"></div>
+    <div id="fun_input_div" class="function"></div>
+    <div id="fun_close_div" class="function">
+      <span id="fun_close">)</span>
     </div>
-    <div>
-      <div class="output_div">
-        <label for="output">Output:</label><br>
-        <input type="text" id="output" name="output" class="output_box"><br><br><br>
-        <button type="button" onclick="runFunc()" id="execute">Submit!</button>
-      </div>
+    <div id="fun_equals_div" class="function">
+      <span id="fun_equals">==</span>
     </div>
-    <div class="boxes1">
-      <div id="f1div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0, 255, 0);stroke-width:3;stroke:rgb(0,0,0)" id="f1box" />
-        </svg>
-      </div>
-      <div id="f2div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f2box" />
-        </svg>
-      </div>
+    <div id="fun_output_div" class="function">
+      <span class="p_output">
+        <input type="text" id="output" name="output" placeholder="(output)">
+      </span>
     </div>
-    <div class="boxes2">
-      <div id="f3div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f3box" />
-        </svg>
-      </div>
-      <div id="f4div" style="display: inline;">
-        <svg width="400" height="110">
-          <rect width="250" height="75" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" id="f4box" />
-        </svg>
-      </div>
+    <div id="fun_check_div" class="function">
+      <span>
+        <button id="fun_check" type="button" onclick="execute()">Check</button></span>
     </div>
-    <div class="win">
-      <p id="win" style="display: none;">You win!</p>
-      <button type="button" id="nq" onclick="qload()" style="display: none;">Next Question!</button>
+  </div>
+  <div id="bugs_div">
+    <div id="scoreboard">
+      <span id="bugs1"></span>
+      <span id="bugs2">bugs found!</span>
     </div>
-    <div class="loss">
-      <p id="loss" style="display: none;">You lose! Please try again.</p>
+    <img src="assets/bug_on_leaf.png" id="leaf_with_bug">
+    <span id="result" style="display: none;"></span>
+  </div>
+  <div id="history_div">
+    <button id="history" type="button" onclick="toggleHistory()">Show History</button>
+    <div id="input_history" style="display: none;">
+      <p id="history_p"></p>
     </div>
-  </section>
+  </div>
+  <div id="fun_next_div" style="display: none;">
+    <button id="fun_next" type="button" onclick="qload()">Next Question</button>
+  </div>
+  <div id="garden_div">
+    <span id="garden_p"></span>
+  </div>
 </body>
 
 </html>
