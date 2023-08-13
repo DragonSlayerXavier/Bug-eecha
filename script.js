@@ -528,6 +528,7 @@ function execute() {
     }
     args = updateInputType(args);
     output = updateOutputType(output);
+    history_display = formatInput(args);
     correctOutput = correct(args);
     if (!resCheck(output, correctOutput)) {
         document.getElementById("output").value = "";
@@ -551,7 +552,7 @@ function execute() {
         document.getElementById("result").innerHTML = data.winMessage;
         document.getElementById("fun_check").setAttribute("onclick", "");
     }
-    document.getElementById("history_p").innerHTML = document.getElementById("history_p").innerHTML.concat(formatInput(args));
+    document.getElementById("history_p").innerHTML = document.getElementById("history_p").innerHTML.concat(history_display);
     document.getElementById("history_p").appendChild(document.createElement("br"));
     clear_and_focus();
 }
