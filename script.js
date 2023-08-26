@@ -457,7 +457,15 @@ function incorrect(input, output) {
     for (i = 0; i < data.database[rand].numFunc; i++) {
         if (killed.includes(i)) continue;
         var f = new Function(...(data.database[rand].incorrect[i].arguments), data.database[rand].incorrect[i].body);
-        if (f(...input) != output) {
+        try {
+            if (f(...input) != output) {
+                if (data.database[rand].incorrect[i].heart) {
+                    lives = Math.min(lives + 1, MAX_LIVES)
+                }
+                killed.push(i);
+                foundInst++;
+            }
+        } catch (e) {
             if (data.database[rand].incorrect[i].heart) {
                 lives = Math.min(lives + 1, MAX_LIVES)
             }
@@ -538,6 +546,7 @@ function execute() {
         return;
     }
     incorrect(args, correctOutput);
+    setLives();
 
     document.getElementById("bugs1").innerHTML = `${found}/${data.database[rand].numFunc}`;
     if (data.database[rand].futile > 0 && futile > data.database[rand].futile) {
