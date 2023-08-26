@@ -540,7 +540,7 @@ function execute() {
     incorrect(args, correctOutput);
 
     document.getElementById("bugs1").innerHTML = `${found}/${data.database[rand].numFunc}`;
-    if (futile > data.database[rand].futile) {
+    if (data.database[rand].futile > 0 && futile > data.database[rand].futile) {
         lives--;
         setLives();
     }
