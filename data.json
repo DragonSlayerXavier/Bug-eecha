@@ -199,7 +199,7 @@
                 "arguments": [
                     "s"
                 ],
-                "body": " var n = s.length;\n var prefix = \"\";\n for(i=1;i < parseInt(n/2) + 1;i++){\n if (s.substring(i,n+1).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
+                "body": " var n = s.length;\n var prefix = \"\";\n for(var i=1;i < parseInt(n/2) + 1;i++){\n if (s.substring(i,n+1).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
             },
             "incorrect": [
                 {
@@ -207,28 +207,28 @@
                     "arguments": [
                         "s"
                     ],
-                    "body": "var n = s.length;\n for(i=1;i < parseInt(n/2);i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n return s.substring(0,i);\n }\n }\n return \"\";"
+                    "body": "var n = s.length;\n for(var i=1;i < parseInt(n/2);i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n return s.substring(0,i);\n }\n }\n return \"\";"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "s"
                     ],
-                    "body": "var n = s.length;\n var prefix = \"\";\n for(i=1;i < parseInt(n/2);i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
+                    "body": "var n = s.length;\n var prefix = \"\";\n for(var i=1;i < parseInt(n/2);i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "s"
                     ],
-                    "body": "var n = s.length;\n var prefix = \"\";\n for(i=1;i < n ;i++){\n if (s.substring(0,n+1).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
+                    "body": "var n = s.length;\n var prefix = \"\";\n for(var i=1;i < n ;i++){\n if (s.substring(0,n+1).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n return prefix;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "s"
                     ],
-                    "body": " var n = s.length;\n var prefix = \"\";\n if(n%2==0){\n for(i=1;i < parseInt(n/2)+1;i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n\n }\n else{\n for(i=1;i < parseInt(n/2)-1;i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n\n }\n return prefix;"
+                    "body": " var n = s.length;\n var prefix = \"\";\n if(n%2==0){\n for(var i=1;i < parseInt(n/2)+1;i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n\n }\n else{\n for(var i=1;i < parseInt(n/2)-1;i++){\n if (s.substring(i,n).includes(s.substring(0,i))){\n prefix = s.substring(0,i);\n }\n }\n\n }\n return prefix;"
                 }
             ]
         },
@@ -260,7 +260,7 @@
                     "a",
                     "b"
                 ],
-                "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(words[i]==a){\n words[i] = b;\n }\n else if(words[i]==b){\n words[i] = a;\n }\n }\n new_string = words.join(\" \");\n return new_string;"
+                "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(var i=0;i<words.length;i++){\n if(words[i]==a){\n words[i] = b;\n }\n else if(words[i]==b){\n words[i] = a;\n }\n }\n new_string = words.join(\" \");\n return new_string;"
             },
             "incorrect": [
                 {
@@ -270,7 +270,7 @@
                         "a",
                         "b"
                     ],
-                    "body": "var n = s.length;\n s.toLowerCase();\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(words[i]==a){\n words[i] = b;\n }\n else if(words[i]==b){\n words[i] = a;\n }\n }\n new_string = words.join(\"\");\n return new_string;"
+                    "body": "var n = s.length;\n s.toLowerCase();\n var new_string = \"\";\n var words = s.split(\" \");\n for(var i=0;i<words.length;i++){\n if(words[i]==a){\n words[i] = b;\n }\n else if(words[i]==b){\n words[i] = a;\n }\n }\n new_string = words.join(\"\");\n return new_string;"
                 },
                 {
                     "heart": false,
@@ -305,7 +305,7 @@
                 "arguments": [
                     "s"
                 ],
-                "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n n=new_string.length;\n return new_string.substring(0,n-1);"
+                "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(var i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n n=new_string.length;\n return new_string.substring(0,n-1);"
             },
             "incorrect": [
                 {
@@ -313,21 +313,21 @@
                     "arguments": [
                         "s"
                     ],
-                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n return new_string;"
+                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(var i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n return new_string;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "s"
                     ],
-                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = \",\" + new_string + words[i] ;\n }\n }\n n=new_string.length;\n return new_string;"
+                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(var i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = \",\" + new_string + words[i] ;\n }\n }\n n=new_string.length;\n return new_string;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "s"
                     ],
-                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n n=new_string.length;\n if(n==0){\n return \"No integer found\";\n }\n return new_string.substring(0,n);"
+                    "body": "var n = s.length;\n var new_string = \"\";\n var words = s.split(\" \");\n for(var i=0;i<words.length;i++){\n if(!isNaN(words[i])){\n new_string = new_string + words[i] + \",\";\n }\n }\n n=new_string.length;\n if(n==0){\n return \"No integer found\";\n }\n return new_string.substring(0,n);"
                 }
             ]
         },
@@ -359,7 +359,7 @@
                     "x",
                     "y"
                 ],
-                "body": "var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n return new_string;"
+                "body": "var n = s.length;\n var new_string = \"\";\n for(var i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n return new_string;"
             },
             "incorrect": [
                 {
@@ -369,7 +369,7 @@
                         "x",
                         "y"
                     ],
-                    "body": " var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else if (s[i]==y){\n new_string = new_string + x;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n return new_string;"
+                    "body": " var n = s.length;\n var new_string = \"\";\n for(var i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else if (s[i]==y){\n new_string = new_string + x;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n return new_string;"
                 },
                 {
                     "heart": false,
@@ -378,7 +378,7 @@
                         "x",
                         "y"
                     ],
-                    "body": "var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string;"
+                    "body": "var n = s.length;\n var new_string = \"\";\n for(var i=0;i<n;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string;"
                 },
                 {
                     "heart": false,
@@ -387,7 +387,7 @@
                         "x",
                         "y"
                     ],
-                    "body": "var n = s.length;\n var new_string = \"\";\n for(i=0;i<n;i++){\n if(s[i]==y){\n new_string = new_string + x;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string;"
+                    "body": "var n = s.length;\n var new_string = \"\";\n for(var i=0;i<n;i++){\n if(s[i]==y){\n new_string = new_string + x;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string;"
                 },
                 {
                     "heart": false,
@@ -396,7 +396,7 @@
                         "x",
                         "y"
                     ],
-                    "body": " var n = s.length;\n var new_string = \"\";\n for(i=0;i<n-1;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string + s[n-1];"
+                    "body": " var n = s.length;\n var new_string = \"\";\n for(var i=0;i<n-1;i++){\n if(s[i]==x){\n new_string = new_string + y;\n }\n else{\n new_string = new_string + s[i];\n }\n }\n if(new_string.length==0){\n return \"No character found\";\n }\n return new_string + s[n-1];"
                 }
             ]
         },
@@ -425,7 +425,7 @@
                     "a",
                     "b"
                 ],
-                "body": "var even_numbers = [];\n for(i=a;i<=b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                "body": "var even_numbers = [];\n for(var i=a;i<=b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
             },
             "incorrect": [
                 {
@@ -434,7 +434,7 @@
                         "a",
                         "b"
                     ],
-                    "body": "var even_numbers = [];\n for(i=a;i<b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                    "body": "var even_numbers = [];\n for(var i=a;i<b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
                 },
                 {
                     "heart": false,
@@ -442,7 +442,7 @@
                         "a",
                         "b"
                     ],
-                    "body": "var even_numbers = [];\n for(i=a+1;i<=b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                    "body": "var even_numbers = [];\n for(var i=a+1;i<=b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
                 },
                 {
                     "heart": false,
@@ -450,7 +450,7 @@
                         "a",
                         "b"
                     ],
-                    "body": "var even_numbers = [];\n for(i=a+1;i<b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                    "body": "var even_numbers = [];\n for(var i=a+1;i<b;i++){\n if(i%2==0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
                 },
                 {
                     "heart": false,
@@ -458,7 +458,7 @@
                         "a",
                         "b"
                     ],
-                    "body": "var even_numbers = [];\n for(i=a;i<=b;i++){\n if(i%2!=0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
+                    "body": "var even_numbers = [];\n for(var i=a;i<=b;i++){\n if(i%2!=0){\n even_numbers.push(i);\n }\n }\n return even_numbers;"
                 }
             ]
         },
@@ -484,7 +484,7 @@
                 "arguments": [
                     "arr"
                 ],
-                "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])<min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n return min;"
+                "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(var i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])<min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n return min;"
             },
             "incorrect": [
                 {
@@ -492,21 +492,21 @@
                     "arguments": [
                         "arr"
                     ],
-                    "body": " var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(arr[i+1]-arr[i]<min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n return min;"
+                    "body": " var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(var i=1;i<n-1;i++){\n if(arr[i+1]-arr[i]<min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n return min;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])>min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n if(Math.abs(arr[n-1]-arr[1])<min){\n min = Math.abs(arr[n-1]-arr[1]);\n }\n return min;"
+                    "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(var i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])>min){\n min = Math.abs(arr[i+1]-arr[i]);\n }\n }\n if(Math.abs(arr[n-1]-arr[1])<min){\n min = Math.abs(arr[n-1]-arr[1]);\n }\n return min;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])<min){\n min = arr[i+1]-arr[i];\n }\n }\n return min;"
+                    "body": "var n = arr.length;\n var min = Math.abs(arr[1]-arr[0]);\n for(var i=1;i<n-1;i++){\n if(Math.abs(arr[i+1]-arr[i])<min){\n min = arr[i+1]-arr[i];\n }\n }\n return min;"
                 }
             ]
         },
@@ -535,7 +535,7 @@
                     "arr1",
                     "arr2"
                 ],
-                "body": "var n = arr1.length;\n for(i=0;i<n;i++){\n if(arr1[i]!=arr2[i]){\n return i;\n }\n }\n return -1;"
+                "body": "var n = arr1.length;\n for(var i=0;i<n;i++){\n if(arr1[i]!=arr2[i]){\n return i;\n }\n }\n return -1;"
             },
             "incorrect": [
                 {
@@ -544,7 +544,7 @@
                         "arr1",
                         "arr2"
                     ],
-                    "body": "var n = arr1.length;\n for(i=0;i<n;i++){\n if(arr1[i]==arr2[i]){\n return i;\n }\n }\n return -1;"
+                    "body": "var n = arr1.length;\n for(var i=0;i<n;i++){\n if(arr1[i]==arr2[i]){\n return i;\n }\n }\n return -1;"
                 },
                 {
                     "heart": false,
@@ -552,7 +552,7 @@
                         "arr1",
                         "arr2"
                     ],
-                    "body": "var n = arr1.length;\n for(i=0;i<n-1;i++){\n if(arr1[i]!=arr2[i]){\n return i;\n }\n }\n return -1;"
+                    "body": "var n = arr1.length;\n for(var i=0;i<n-1;i++){\n if(arr1[i]!=arr2[i]){\n return i;\n }\n }\n return -1;"
                 },
                 {
                     "heart": false,
@@ -560,7 +560,7 @@
                         "arr1",
                         "arr2"
                     ],
-                    "body": "var n = arr1.length;\n for(i=0;i<n;i++){\n if(arr1[i]!=arr2[i]){\n return i+1;\n }\n }\n return -1;"
+                    "body": "var n = arr1.length;\n for(var i=0;i<n;i++){\n if(arr1[i]!=arr2[i]){\n return i+1;\n }\n }\n return -1;"
                 }
             ]
         },
@@ -586,7 +586,7 @@
                 "arguments": [
                     "lst"
                 ],
-                "body": "var n = lst.length;\n var count = 0;\n for(i=0;i<parseInt(n/2);i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
+                "body": "var n = lst.length;\n var count = 0;\n for(var i=0;i<parseInt(n/2);i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
             },
             "incorrect": [
                 {
@@ -594,21 +594,21 @@
                     "arguments": [
                         "lst"
                     ],
-                    "body": " var n = lst.length;\n var count = 0;\n for(i=0;i<n;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
+                    "body": " var n = lst.length;\n var count = 0;\n for(var i=0;i<n;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "lst"
                     ],
-                    "body": "var n = lst.length;\n var count = 0;\n for(i=0;i<parseInt(n/2)+1;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
+                    "body": "var n = lst.length;\n var count = 0;\n for(var i=0;i<parseInt(n/2)+1;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n return count;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "lst"
                     ],
-                    "body": "var n = lst.length;\n var count = 0;\n if(n%2==0){\n for(i=0;i<parseInt(n/2);i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n }\n else{\n for(i=0;i<parseInt(n/2)+1;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n }\n \n return count;"
+                    "body": "var n = lst.length;\n var count = 0;\n if(n%2==0){\n for(var i=0;i<parseInt(n/2);i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n }\n else{\n for(var i=0;i<parseInt(n/2)+1;i++){\n if(lst[i]==lst[n-i-1]){\n count++;\n }\n }\n }\n \n return count;"
                 }
             ]
         },
@@ -634,7 +634,7 @@
                 "arguments": [
                     "arr"
                 ],
-                "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
+                "body": "var n = arr.length;\n var newArr = [];\n for(var i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
             },
             "incorrect": [
                 {
@@ -642,21 +642,21 @@
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i]);\n }\n else if(i==n-1){\n newArr.push(arr[i]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
+                    "body": "var n = arr.length;\n var newArr = [];\n for(var i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i]);\n }\n else if(i==n-1){\n newArr.push(arr[i]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n arr[i] = (arr[i-1]+arr[i+1])/2;\n }\n }\n return arr;"
+                    "body": "var n = arr.length;\n var newArr = [];\n for(var i=0;i<n;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n arr[i] = (arr[i-1]+arr[i+1])/2;\n }\n }\n return arr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var newArr = [];\n for(i=0;i<n-1;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
+                    "body": "var n = arr.length;\n var newArr = [];\n for(var i=0;i<n-1;i++){\n if(i==0){\n newArr.push(arr[i+1]);\n }\n else if(i==n-1){\n newArr.push(arr[i-1]);\n }\n else{\n newArr.push((arr[i-1]+arr[i+1])/2);\n }\n }\n return newArr;"
                 }
             ]
         },
@@ -682,7 +682,7 @@
                 "arguments": [
                     "arr"
                 ],
-                "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(var i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
             },
             "incorrect": [
                 {
@@ -690,28 +690,28 @@
                     "arguments": [
                         "arr"
                     ],
-                    "body": " var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                    "body": " var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(var i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(var i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n }\n\n\n return newArr;"
+                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return arr;\n }\n else{\n for(var i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n }\n\n\n return newArr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return newArr;\n }\n else{\n for(i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
+                    "body": "var n = arr.length;\n var newArr = [];\n if(n==1){\n return newArr;\n }\n else{\n for(var i=0;i<n-1;i++){\n if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1] && i!=0){\n newArr.push(arr[i]);\n }\n else if (i==0 && arr[i]!=arr[i+1]){\n newArr.push(arr[i]);\n }\n }\n if(arr[n-1]!=arr[n-2]){\n newArr.push(arr[n-1]);\n }\n }\n\n\n return newArr;"
                 }
             ]
         },
@@ -738,7 +738,7 @@
                 "arguments": [
                     "str"
                 ],
-                "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=0;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
+                "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(var i=0;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
             },
             "incorrect": [
                 {
@@ -746,21 +746,21 @@
                     "arguments": [
                         "str"
                     ],
-                    "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=0;i<parseInt(n/2);i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
+                    "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(var i=0;i<parseInt(n/2);i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "str"
                     ],
-                    "body": " var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=0;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length-1) + str[n-1];\n return newStr;"
+                    "body": " var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(var i=0;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length-1) + str[n-1];\n return newStr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "str"
                     ],
-                    "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(i=1;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
+                    "body": "var n = str.length;\n var newStr = \"\";\n var prefix = \"\";\n var suffix = \"\";\n var longestPrefix = \"\";\n for(var i=1;i<parseInt(n/2)+1;i++){\n prefix = str.substring(0,i);\n suffix = str.substring(i,n);\n if(suffix.includes(prefix)){\n longestPrefix = prefix;\n }\n }\n newStr = str.substring(longestPrefix.length,n-longestPrefix.length);\n return newStr;"
                 }
             ]
         },
@@ -878,7 +878,7 @@
                 "arguments": [
                     "arr"
                 ],
-                "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(i=1;i<n-1;i++){\n if arr[i]==arr_min{\n continue;\n }\n else if arr[i]==arr_max{\n break;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
+                "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(var i=1;i<n-1;i++){\n if arr[i]==arr_min{\n continue;\n }\n else if arr[i]==arr_max{\n break;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
             },
             "incorrect": [
                 {
@@ -886,21 +886,21 @@
                     "arguments": [
                         "arr"
                     ],
-                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n for(i=1;i<n-1;i++){\n sum += arr[i];\n c += 1;\n }"
+                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n for(var i=1;i<n-1;i++){\n sum += arr[i];\n c += 1;\n }"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(i=1;i<n-1;i++){\n if arr[i]==arr_min{\n continue;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
+                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(var i=1;i<n-1;i++){\n if arr[i]==arr_min{\n continue;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(i=1;i<n-1;i++){\n if arr[i]==arr_max{\n break;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
+                    "body": "arr.sort();\n var sum = 0;\n var c = 0;\n var n = arr.length;\n var arr_min = arr[0];\n var arr_max = arr[n-1];\n for(var i=1;i<n-1;i++){\n if arr[i]==arr_max{\n break;\n }\n else{\n sum += arr[i];\n c += 1;\n }\n }\n return sum/c;"
                 }
             ]
         },
@@ -915,7 +915,7 @@
             ],
             "out": "string",
             "question": "Given strings s and t, return a string in which all characters in t are removed from s.",
-            "code": "#include<iostream>\n#include<string>\n\nstring removeCharacters (string s, string t){\n\\t string new_s = \"\";\n\\t for(int i=0;i<s.length();i++){\n\\t\\t if(t.find(s[i])!=string::npos){\n\\t\\t\\t continue;\n\\t\\t }\n\\t\\t else{new_s+=s[i];}\n\\t }\n\\t return new_s;\n}",
+            "code": "#include<iostream>\n#include<string>\n\nstring removeCharacters (string s, string t){\n\\t string new_s = \"\";\n\\t for(var int i=0;i<s.length();i++){\n\\t\\t if(t.find(s[i])!=string::npos){\n\\t\\t\\t continue;\n\\t\\t }\n\\t\\t else{new_s+=s[i];}\n\\t }\n\\t return new_s;\n}",
             "language": "cpp",
             "customValidate": false,
             "valFunc": {
@@ -930,7 +930,7 @@
                     "s",
                     "t"
                 ],
-                "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n }\n return new_str;"
+                "body": "var new_str = \"\";\n var n = s.length;\n for(var i=0;i<n;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n }\n return new_str;"
             },
             "incorrect": [
                 {
@@ -939,7 +939,7 @@
                         "s",
                         "t"
                     ],
-                    "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n else{\n new_str += s[i];\n }\n }\n return new_str;"
+                    "body": "var new_str = \"\";\n var n = s.length;\n for(var i=0;i<n;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n else{\n new_str += s[i];\n }\n }\n return new_str;"
                 },
                 {
                     "heart": false,
@@ -947,7 +947,7 @@
                         "s",
                         "t"
                     ],
-                    "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n-1;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n }\n new_str += s[n-1];\n return new_str;"
+                    "body": "var new_str = \"\";\n var n = s.length;\n for(var i=0;i<n-1;i++){\n if(!t.includes(s[i])){\n new_str += s[i];\n }\n }\n new_str += s[n-1];\n return new_str;"
                 },
                 {
                     "heart": false,
@@ -955,7 +955,7 @@
                         "s",
                         "t"
                     ],
-                    "body": "var new_str = \"\";\n var n = s.length;\n for(i=0;i<n;i++){\n if(t.includes(s[i])){\n new_str += s[i];\n }\n }\n return new_str;"
+                    "body": "var new_str = \"\";\n var n = s.length;\n for(var i=0;i<n;i++){\n if(t.includes(s[i])){\n new_str += s[i];\n }\n }\n return new_str;"
                 }
             ]
         },
@@ -1143,7 +1143,7 @@
                 "arguments": [
                     "str"
                 ],
-                "body": "var n = str.length;\n var newStr = \"\";\n for(i=0;i<n;i+=2){\n newStr += str[i];\n }\n for(i=1;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
+                "body": "var n = str.length;\n var newStr = \"\";\n for(var i=0;i<n;i+=2){\n newStr += str[i];\n }\n for(var i=1;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
             },
             "incorrect": [
                 {
@@ -1151,21 +1151,21 @@
                     "arguments": [
                         "str"
                     ],
-                    "body": "var n = str.length;\n var newStr = \"\";\n for(i=1;i<n;i+=2){\n newStr += str[i];\n }\n for(i=0;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
+                    "body": "var n = str.length;\n var newStr = \"\";\n for(var i=1;i<n;i+=2){\n newStr += str[i];\n }\n for(var i=0;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "str"
                     ],
-                    "body": "var n = str.length;\n var newStr = \"\";\n for(i=0;i<n;i+=2){\n newStr += str[i];\n }\n for(i=1;i<n-1;i+=2){\n newStr += str[i];\n }\n return newStr;"
+                    "body": "var n = str.length;\n var newStr = \"\";\n for(var i=0;i<n;i+=2){\n newStr += str[i];\n }\n for(var i=1;i<n-1;i+=2){\n newStr += str[i];\n }\n return newStr;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "str"
                     ],
-                    "body": "var n = str.length;\n var newStr = \"\";\n for(i=0;i<n-1;i+=2){\n newStr += str[i];\n }\n for(i=1;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
+                    "body": "var n = str.length;\n var newStr = \"\";\n for(var i=0;i<n-1;i+=2){\n newStr += str[i];\n }\n for(var i=1;i<n;i+=2){\n newStr += str[i];\n }\n return newStr;"
                 }
             ]
         },
@@ -1192,7 +1192,7 @@
                 "arguments": [
                     "arr"
                 ],
-                "body": "var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return -1;"
+                "body": "var n = arr.length;\n for(var i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return -1;"
             },
             "incorrect": [
                 {
@@ -1200,21 +1200,21 @@
                     "arguments": [
                         "arr"
                     ],
-                    "body": " var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return j;\n }\n }\n }\n return -1;"
+                    "body": " var n = arr.length;\n for(var i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return j;\n }\n }\n }\n return -1;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return -1;"
+                    "body": "var n = arr.length;\n for(var i=0;i<n;i++){\n for(j=i;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return -1;"
                 },
                 {
                     "heart": false,
                     "arguments": [
                         "arr"
                     ],
-                    "body": "var n = arr.length;\n for(i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return 1;"
+                    "body": "var n = arr.length;\n for(var i=0;i<n;i++){\n for(j=i+1;j<n;j++){\n if(arr[i]==arr[j]){\n return i;\n }\n }\n }\n return 1;"
                 }
             ]
         },
@@ -1237,7 +1237,7 @@
                     "arr",
                     "target"
                 ],
-                "body": "var n = arr.length;\n for(i=0;i<n-1;i++){\n if(arr[i]>arr[i+1]){\n return false;\n }\n }\n return true;"
+                "body": "var n = arr.length;\n for(var i=0;i<n-1;i++){\n if(arr[i]>arr[i+1]){\n return false;\n }\n }\n return true;"
             },
             "correct": {
                 "arguments": [
